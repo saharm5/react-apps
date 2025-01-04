@@ -39,7 +39,7 @@ const ProductPage: React.FC = () => {
       setIsLoading(false);
       setHasLoadedOnce(true);
       console.log("Loading complete!");
-    }, 1000);
+    },);
 
     return () => clearTimeout(timer);
   }, []);
