@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
       <div className="footer-content">
         <div className="footer-layout">
           {/* Right Column */}
-          <div className="footer-right-column">#
+          <div className="footer-right-column">
             {/* Footer Links */}
             <div className="footer-links">
               <div>
