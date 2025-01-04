@@ -1,0 +1,150 @@
+body {
+  direction: rtl;
+  font-family: Vazirmatn, sans-serif !important;
+  /* src/index.css or src/App.css */
+  /* font-family: 'Vazir', sans-serif ; */
+}
+.body-main {
+  margin: 112px 61px 0px 61px;
+  max-width: 1798px;
+  padding: 0px 20px;
+  margin: 150px 61px 0px 61px;
+  left: 61px;
+  right: 61px;
+  direction: rtl !important;
+}
+.body-login {
+  background-color: rgba(231, 247, 251, 0.9);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  direction: rtl !important;
+  height: 100vh;
+}
+
+
+
+
+.body-ReviewPage {
+    background-color: rgba(231, 247, 251, 0.9);
+    display: flex;
+    direction: rtl !important;
+    margin: 90px 61px 0px 61px;
+    max-width: 1798px;
+    padding: 0px 20px;
+    left: 61px;
+    right: 61px;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+
+
+.body-Product {
+  background-color: #ffff;
+}
+      
+.header,
+.footer {
+  background-color: #039cfd; /* Adjust color as per design */
+  color: white;
+}
+
+
+.row-container {
+  display: flex; /* Make the container a flexbox */
+  justify-content: space-between; /* Space components evenly */
+  gap: 20px; /* Space between components */
+}
+
+.boxRight {
+  text-align: right;
+  width: 18%; /* Equal width for both components */
+}
+.boxLeft {
+  text-align: center;
+  width: 80%; /* Equal width for both components */
+}
+/* General Styles */
+
+/* @media (max-width: 1024px) {
+  body {
+    margin: 10px;
+  }
+
+  .header-nav {
+    flex-direction: column;
+    gap: 20px;
+    left: 10px;
+    right: 10px;
+  }
+
+  footer {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-layout {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .product-grid-container {
+    margin: 20px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-nav {
+    padding: 5px;
+    gap: 10px;
+  }
+
+  .product-grid-container {
+    margin: 10px 5px;
+  }
+
+  footer {
+    font-size: 12px;
+  }
+} */
+@media (max-width: 950px) {
+  .body-main {   
+  padding: 0px !important; /* Support RTL layouts */
+  margin: 0px !important; /* Support RTL layouts */
+  
+  direction: rtl !important;
+}
+
+.mp {
+  padding: 0px 8%;
+
+}
+
+header {
+  margin-bottom: 12%;
+}
+
+
+}
+@media (max-width: 450px) {
+  
+header {
+  margin-bottom: 15%;
+}
+}
+@media (max-width: 370px) {
+header {
+  margin-bottom: 17.5%;
+}
+}

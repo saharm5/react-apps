@@ -1,0 +1,110 @@
+.SearchProductGridContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0px;
+  width: 100%;
+  background-color: #ffffff; /* Matches the white background */
+  padding: 20px;
+
+}
+
+.CardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+  width: 100%;
+  justify-items: center;
+}
+
+.SearchProductCard {
+ 
+  background-color: rgb(255, 255, 255); /* Card background */
+  border-radius: 20px; /* Rounded corners */
+  width: 150px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: 0px 1px 2px rgb(19, 62, 135, 0.1); /* Subtle shadow */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.SearchProductCard:hover {
+  transform: translateY(-5px); /* Hover lift effect */
+  box-shadow: 0px 4px 10px rgb(19, 62, 135, 0.15); /* Deeper shadow */
+}
+
+.SearchProductImage {
+  width: 80px;
+  height: 80px;
+  object-fit: contain; /* Ensure the product fits well */
+  margin-bottom: 12px;
+}
+
+.SearchProductTitle {
+  font-size: 14px;
+  height: 30px;
+  color: #112d4e; /* Dark gray for text */
+  margin: 15px;
+
+  line-height: 1.4;
+}
+
+.SearchProductPrice {
+  font-size: 12px;
+  height: 15px;
+  margin: 10px;
+
+  color: #112d4e; /* Matches the blue theme */
+}
+
+.AddToCart {
+  background-color: #d6e6f2cc; /* Light gray button */
+  color: #01194f; /* Blue text */
+  border: none;
+  padding: 6px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 20px;
+  height: 50px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.AddToCart:hover {
+  background-color: #cbdceb; /* Blue hover effect */ /* White text on hover */
+}
+.actionButton {
+  height: 30px;
+  width: 30px;
+  border: none;
+  background-color: #d6e6f2cc;
+  padding: 5px;
+  border-radius: 20px;
+}
+.controls {
+  border: none;
+}
+.QuantityControls {
+  background-color: #d6e6f2cc;
+  color: #01194f;
+  padding: 6px 15px;
+  font-size: 14px;
+  display: flex;
+  cursor: pointer;
+  border-radius: 20px;
+  height: 50px;
+  transition: background-color 0.3s, color 0.3s;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.iconBg {
+  background-color: #d6e6f2cc;  
+  border-radius: 20px;
+  border: none;
+  display: inline-block; /* Ensures the background fits the icon */
+}
+
+.BReduceAdd {
+  margin: 5px;
+  width: 14px;
+}

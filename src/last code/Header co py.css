@@ -1,0 +1,219 @@
+/* Header Section */
+
+header {
+  direction: rtl !important; /* Support RTL layouts */
+}
+
+/* Navbar */
+.HeaderNav {
+  display: flex;
+  justify-content: space-between; /*  *//* Note */
+  align-items: center;
+  background-color: rgb(17, 45, 78);
+  padding:8px  22px 8px 35px;
+  position: fixed;
+  top: 25px;
+  left: 61px;
+  right: 61px;
+  z-index: 10;
+  /*gap: 80px;*//* Note */
+  border-radius: 20px;
+  color: #f9f7f7;
+  /* margin-bottom: 25px; *//* Note */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+
+}
+
+/* Right Section - Dropdown Menu */
+.HeaderMainDropdown {
+  position: relative;
+}
+
+.HeaderMainDropdownBtn {
+  background: none;
+  border: none;
+  color: #f9f7f7;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;/* Note */
+  align-items: center;/* Note */
+  gap: 8px; /* Space between icon and text *//* Note */
+}
+.HeaderMainDropdownIconPadding{/* Note */
+  padding: 8px;/* Note */
+}
+
+.HeaderMainDropdownUl {
+  display: flex;
+  flex-direction: row;/* Note */
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  list-style: none;
+  background-color: rgb(17, 45, 78);
+  position: absolute;
+  border-radius: 0px 0px 20px 20px;
+  right: 0;
+  top: 50px;
+  padding: 10px 0;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+  z-index: 100;
+}
+
+.HeaderMainDropdown:hover .HeaderMainDropdownUl {
+  opacity: 1;
+  max-height: 400px; /* Adjust dynamically */
+  /* height: 400px; *//* Note */
+}
+
+.HeaderMainDropdownLi {
+  text-decoration-line: none;
+  padding: 10px 15px;
+  color: #f9f7f7;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.HeaderMainDropdownLi:hover {
+  background-color: rgb(8, 33, 63);
+  border-radius: 10px;
+}
+
+.HeaderDropdown {
+  position: relative;
+}
+
+.HeaderDropdownBtn {
+  background: none;
+  border: none;
+  color: #f9f7f7;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+/* Note */
+.HeaderDropdownUl {  
+  list-style: none; /* Removes bullets from the list */
+  margin: 0; /* Resets default margin */
+  display: none;
+  border-radius: 10px;
+  padding: 10px 0;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.HeaderDropdown:hover .HeaderDropdownUl {
+  display: block;
+}
+
+.HeaderDropdownLi {
+  text-decoration-line: none;
+  padding: 5px 10px;
+  color: #f9f7f7;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.HeaderDropdownLi:hover {
+  background-color: rgb(63, 114, 175);
+  border-radius: 5px;
+}
+/* Note */
+/* Center Section - Search Bar */
+.HeaderSearchContainer {
+  display: inline-flex;
+  justify-content: center;
+  flex: 1; /* Take available space */
+  position: relative;
+ /* table-layout: fixed; *//* Note */
+ /* flex: auto;*//* Note */
+ max-width: 30%;
+}
+
+.HeaderSearchForm {
+
+ /* margin: 10px; */
+  /* align-items: center; */
+  width: 100%;
+  display: inline-flex;
+  flex-direction: row-reverse;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.HeaderSearchInput {
+  flex: auto;
+  padding: 8px 20px;
+  font-size: 14px;
+  border: none;
+  
+  outline: none;
+  border-radius: 0; /* Removed redundant radius */
+}
+
+.HeaderSearchBtn {
+  background-color: #ffffff;
+  color: rgb(17, 45, 78);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.HeaderSearchBtn:hover {
+  transform: scale(1.1);
+}
+
+/* Location Section */
+.Headerlocation {
+  display: flex;
+  align-items: center;
+  color: #f9f7f7;
+  gap: 8px;
+  font-size: 14px;
+
+}
+
+/* Left Section - Icons */
+.HeaderIconContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.HeaderIcon {
+  font-size: 20px;
+  color: #f9f7f7;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.HeaderIcon:hover {
+  background-color: rgba(63, 114, 175, 0.5);
+}
+
+/* Solid Red Heart Icon */
+.HeaderHaertIcon {
+  color: red;
+}
+
+.HeaderHaertIcon:hover {
+  color: rgba(255, 0, 0, 0.78);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .HeaderNav {
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .HeaderSearchForm {
+    width: 80%;
+  }
+}

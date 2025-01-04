@@ -1,0 +1,144 @@
+/* Category.css */
+
+.containercategory {
+  padding: 20px;
+  margin: 50px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.categories-carousel {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  justify-content: space-evenly;
+  overflow-x: hidden; /* Prevent scrolling with mouse or touch */
+  scroll-behavior: smooth; /* Smooth scrolling */
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+}
+
+.category-card {
+  display: flex;
+  align-items: center; /* Vertically center items */
+  gap: 10px; /* Space between the image and the link */
+  margin: 15px 0; /* Optional: add some margin between cards */
+  flex: 0 0 auto;
+  height: 75px;
+  width: 200px; /* Adjust card width */
+  /* width: 148px; */
+  text-align: center;
+  background-color: #b9ddf86e;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(96, 140, 193, 0.144);
+  padding: 10px;
+  transition: transform 0.2s ease;
+   flex-direction: row;
+}
+.category-card:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.category-card__image {
+  width: 50px; /* Set a consistent width for images */
+  height: 45px; /* Maintain the aspect ratio */
+  border-radius: 8px;
+  background-color:#cbdceb ; /* Light blue background matching the design */
+  
+}
+
+.category-card__title {
+  margin: 10px;
+  font-size: 16px;
+  text-decoration: none;
+  color: rgb(19, 62, 135); /* Customize text color */
+  direction: rtl; /* Ensure RTL for Farsi */
+}
+.category-card__title:hover {
+  color: rgb(16, 58, 131); /* Slightly brighter on hover */
+ 
+}
+
+button.prevCat,
+button.nextCat {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: rgb(19, 62, 135); /* Dark blue */
+}
+button.prevCat:hover,
+button.nextCat:hover {
+  transform: scale(1.05);
+  color: #608BC1; /* Brighter blue on hover */
+}
+
+/* Align the header and navigation buttons in a single row */
+.header-container-cat {
+  /* max-width: 1400px; */
+  display: flex;
+  justify-content: space-between; /* Push title and buttons to edges */
+  align-items: center; /* Vertically center the items */
+  width: 100%; /* Adjust width as needed */
+  /* padding: 10px; */
+margin: 0px;
+  /* background-color: #ffffff;  Optional: Add background color */
+  /* border-radius: 8px; Optional: Add rounded corners */
+}
+
+.header-title-C {
+  
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(19, 62, 135); /* Adjust color */
+  margin: 0; /* Remove default margins */
+}
+
+.navigation-buttons {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+@media (max-width:440px){
+
+  .containercategory {
+  padding: 2%;
+  margin:6% 0px;
+}
+.header-title-C {
+  font-size: 90%;
+}
+
+
+
+button.prevCat,
+button.nextCat {
+  font-size: 16px;
+}
+
+.navigation-buttons {
+
+  gap: 0px; /* Space between buttons */
+}
+
+
+.categories-carousel {
+  gap: 0px;
+
+}
+.category-card {
+  height: 130px;
+  width: 30%;
+  margin: 2%;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.category-card__title {
+font-size: 85% ;
+}
+
+}

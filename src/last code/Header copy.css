@@ -1,0 +1,185 @@
+header {
+  direction: rtl;
+}
+/* General Navbar Styling */
+.header-nav {
+  display: flex;
+  justify-content: center; /* Center all elements */
+  align-items: center;
+  background-color: rgb(17, 45, 78); /* Keep the original background color */
+  padding: 8px 22px; /* Left and Right Padding */
+  position: fixed;
+  top: 25px;
+  left: 61px;
+  right: 61px;
+  z-index: 10;
+  border-radius: 20px; /* Border radius for rounded corners */
+  gap: 80px; /* Horizontal gap between items */
+  margin-bottom: 25px; /* Space at the bottom */
+  /* Right-to-left layout */
+  color: #f9f7f7; /* Set text color to white */
+}
+
+/* Left Section - Cart Icons */
+.cart-icon-container {
+  display: flex;
+  gap: 15px;
+}
+
+.cart-icon {
+  color: #f9f7f7;
+  font-size: 20px;
+  padding: 8px;
+  border-radius: 50%; /* Rounded buttons */
+  background-color: transparent;
+  border: none;
+}
+
+.cart-icon:hover {
+  background-color: rgba(63, 114, 175, 0.5);
+}
+
+/* Solid Red Heart Icon */
+.cart-icon-container .bi-heart-fill {
+  color: red; /* Solid red fill for the heart icon */
+}
+
+.cart-icon-container .bi-heart-fill:hover {
+  color: rgba(255, 0, 0, 0.78); /* Dark red on hover */
+}
+
+/* Brand Section */
+.brand {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.brand i {
+  margin-left: 8px; /* Adjusted for RTL layout */
+}
+
+/* Center Section - Search */
+.search-container {
+  table-layout: fixed;
+  flex: auto;
+  display: flex;
+  justify-content: center;
+  position: relative; /* Allow positioning of the search button inside */
+}
+
+.search-form {
+  display: flex;
+  width: 50%;
+}
+
+.search-input {
+  flex: auto;
+  padding: 8px 20px; /* Add extra padding to the right for the button */
+  font-size: 14px;
+  border-radius: 20px;
+  border: none;
+}
+
+.search-btn {
+  background-color: transparent;
+  border: none;
+  color: rgb(17, 45, 78);
+  font-size: 18px;
+  cursor: pointer;
+  position: absolute;
+  left: 26%; /* Position the button inside, on the right */
+  top: 50%;
+  transform: translateY(-50%); /* Vertically center the button */
+}
+
+.search-btn:hover {
+  /* color:rgba(17, 45, 78); */
+  font-size: 20px;
+}
+
+/* Right Section */
+.store-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(249, 247, 247);
+}
+
+/* Dropdown Section */
+.dropdown {
+  position: relative;
+  
+}
+
+.dropdown-btn {
+ 
+  background: none;
+  border: none;
+  color: rgb(249, 247, 247);
+  font-size: 18px;
+  cursor: pointer;
+}
+.dropdown_padding {
+  padding: 10px;
+  
+}
+.bg-color-dropdown-menu {
+  display: flex; /* Always present but controlled via opacity and height */
+  opacity: 0; /* Initially hidden */
+  max-height: 0; /* No height initially */
+  overflow: hidden; /* Prevent overflow content */
+  list-style: none;
+  background-color: rgb(17, 45, 78);
+  position: absolute;
+  border-radius:  0px 0px 20px 20px;
+  border: none;
+  /* width: 500px !important; */
+
+  right: 0;
+  top: 50px;
+  margin: 0;
+  
+  padding: 0;
+  transition: opacity 0.3s ease, max-height 0.3s ease; /* Smooth transition */
+}
+
+.dropdown:hover .bg-color-dropdown-menu {
+  opacity: 1; /* Fully visible */
+  max-height: 400px; /* Set a height that fits the content */
+  /* width: 500px !important; */
+  height: 400px;
+
+}
+
+.bg-color-dropdown-menu li {
+  padding: 12px 20px;
+  width: 300px !important;
+
+  border-width: 10px;
+}
+
+.bg-color-dropdown-menu li a {
+  /* width: 500px !important; */
+
+  text-decoration: none;
+  color: rgb(249, 247, 247);
+  font-size: 14px;
+}
+
+.bg-color-dropdown-menu li:hover {
+  /* width: 500px !important; */
+
+  background-color: rgb(63, 114, 175);
+  border-radius: 0px 0px 20px 20px;
+}
+@media (max-width: 768px) {
+  .header-nav {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .footer-layout {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+

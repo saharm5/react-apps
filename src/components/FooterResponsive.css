@@ -1,0 +1,50 @@
+@media (min-width:949px){
+    .FooterResponsive{
+        display: none;
+    }
+}
+ @media (max-width: 950px){
+
+
+.FooterResponsive{
+    background-color: #ffffffff;
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-around;
+    flex-direction: row;
+    font-size: 35px !important;
+    border-top: solid 1px rgb(17, 45, 78);
+     position: fixed; /* Makes the footer sticky */
+    bottom: 0;       /* Positions it at the bottom */
+    left: 0;         /* Ensures it spans the full width */
+    width: 100%;     /* Full-width footer */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional: slight shadow for better visibility */
+    z-index: 1000;   /* Ensures it stays on top of other content */
+}
+
+
+/* .FooterResponsive {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f8f8f8;
+    padding: 10px 0;
+} */
+
+.icon {
+    text-align: center;
+    color: rgba(17, 45, 78, 0.678);
+    font-size: 20px;
+    cursor: pointer;
+    
+}
+
+.icon.active {
+    color: rgb(17, 45, 78);
+    font-weight: bold;
+}
+.HeaderHaertIcon {
+  color: red;
+  
+}
+
+}
