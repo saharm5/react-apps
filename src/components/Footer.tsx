@@ -2,7 +2,7 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./footer.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronUp, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faChevronUp, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
   faLinkedin,
   faInstagram,
@@ -22,10 +22,10 @@ const Footer: React.FC = () => {
 
       <div className="footer500px">
         <div className="footerlinks500px">
-          <div className="footerlinks500pxdiv"><a className="footerlinks500pxa" href="#"><p className="footerlinks500pxp">راهنمای خرید از بقالی </p><i className="fa fa-chevron-left"></i></a></div>
-          <div className="footerlinks500pxdiv"><a className="footerlinks500pxa" href="#"><p className="footerlinks500pxp">درباره بقالی </p><i className="fa fa-chevron-left"></i></a></div>
-          <div className="footerlinks500pxdiv"><a className="footerlinks500pxa" href="#"><p className="footerlinks500pxp">با ما در ارتباط باشید </p><i className="fa fa-chevron-left"></i></a></div>
-          <div className="footerlinks500pxdiv"><a className="footerlinks500pxa" href="#"><p className="footerlinks500pxp">اطلاع از آخرین تخفیفات </p><i className="fa fa-chevron-left"></i></a></div>
+          <div className="footerlinks500pxdiv"><a className="footerlinks500pxa" href="#"><p className="footerlinks500pxp">راهنمای خرید از بقالی </p><FontAwesomeIcon icon={faChevronLeft} /></a></div>
+          <div className="footerlinks500pxdiv"><a className="footerlinks500pxa" href="#"><p className="footerlinks500pxp">درباره بقالی </p><FontAwesomeIcon icon={faChevronLeft} /></a></div>
+          <div className="footerlinks500pxdiv"><a className="footerlinks500pxa" href="#"><p className="footerlinks500pxp">با ما در ارتباط باشید </p><FontAwesomeIcon icon={faChevronLeft} /></a></div>
+          <div className="footerlinks500pxdiv"><a className="footerlinks500pxa" href="#"><p className="footerlinks500pxp">اطلاع از آخرین تخفیفات </p><FontAwesomeIcon icon={faChevronLeft} /></a></div>
         </div>
         <div className="certifications">
           <div>
