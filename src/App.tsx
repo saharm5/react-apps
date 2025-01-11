@@ -3,10 +3,10 @@ import MainPage from "./pageComponents/MainPage";
 import LoginPage from "./pageComponents/LoginPage";
 import ProductPage from "./pageComponents/ProductPage";
 // import ProductPagessssss from "./pageComponents/ExamplePage";
-import HeaderResponsive from "./pageComponents/ExamplePage";
+// import HeaderResponsive from "./pageComponents/ExamplePage";
 import ReviewPage from "./pageComponents/ReviewPage";
 import "./styles/global.css";
-
+import NotFoundPage from "./pageComponents/NotFoundPage";
 
 
 
@@ -16,15 +16,15 @@ export default function App() {
       <Routes>
         <Route index element={<MainPage />} />
         <Route path="login" element={<LoginPage />} />
-        <Route path="Page" element={<HeaderResponsive />} />
+        {/* <Route path="Page" element={<HeaderResponsive />} /> */}
         <Route path="Product" element={<ProductPage />} />
         {/* <Route path="Productsssssss" element={<Page />} /> */}
         <Route path="Review" element={<ReviewPage />} />
+        <Route path="*" element={<NotFoundPage />} /> {/* Optional 404 page */}
       </Routes>
     </BrowserRouter>
   );
 }
-
 
 
 
