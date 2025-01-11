@@ -36,8 +36,8 @@ const Categories: React.FC<CategoriesProps> = ({ categories }) => {
   };
 
   return (
-        <div className="containercategory">
-    
+    <div className="containercategory">
+
       {/* Header */}
       <div className="header-container-cat">
         <p className="header-title-C">دسته بندی ها</p>
@@ -63,22 +63,22 @@ const Categories: React.FC<CategoriesProps> = ({ categories }) => {
       <div ref={carouselRef} className="categories-carousel">
         {categories.map((category, index) => (
           <div className="category-card" key={index}>
-            
-              <img
-                src={category.imageSrc}
-                alt={category.categoryName}
-                className="category-card__image"
-              />
-              <a href={category.categoryLink} className="category-card__title">
-                {category.categoryName}
-              </a>
-            
+
+            <img
+              src={category.imageSrc}
+              alt={category.categoryName}
+              className="category-card__image"
+            />
+            <a href={category.categoryLink} className="category-card__title">
+              {category.categoryName}
+            </a>
+
           </div>
         ))}
       </div>
 
     </div>
-    
+
   );
 };
 

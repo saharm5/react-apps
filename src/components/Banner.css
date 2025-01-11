@@ -61,33 +61,38 @@
 .dot.active {
   background-color: #717171;
 } */
-@media (max-width:950px){
+@media (max-width:950px) {
 
-.containerBanner {
-  height: 250px;
-}
-.imgSize {
-   height: 250px;
-   object-fit: cover;
-}
-}
-@media (max-width:800px){
+  .containerBanner {
+    height: 250px;
+  }
 
-.containerBanner {
-  height: 200px;
+  .imgSize {
+    height: 250px;
+    object-fit: cover;
+  }
 }
-.imgSize {
-   height: 200px;
-   object-fit: cover;
-}
-}
-@media (max-width:480px){
 
-.containerBanner {
-  height: 150px;
+@media (max-width:800px) {
+
+  .containerBanner {
+    height: 200px;
+  }
+
+  .imgSize {
+    height: 200px;
+    object-fit: cover;
+  }
 }
-.imgSize {
-   height: 150px;
-   object-fit: cover;
-}
+
+@media (max-width:480px) {
+
+  .containerBanner {
+    height: 150px;
+  }
+
+  .imgSize {
+    height: 150px;
+    object-fit: cover;
+  }
 }

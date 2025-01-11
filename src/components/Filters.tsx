@@ -26,7 +26,7 @@ const Filter: React.FC<FilterProps> = ({
     setOnlyAvailable,
     applyFilters,
 }) => {
-  
+
     const [isCategoryDropdownVisible, setIsCategoryDropdownVisible] = useState(false);
     const [categoryFilter, setCategoryFilter] = useState("");
     const [isBrandDropdownVisible, setIsBrandDropdownVisible] = useState(false);
@@ -50,7 +50,7 @@ const Filter: React.FC<FilterProps> = ({
         "میوه و سبزیجات",
     ];
 
-    
+
     useEffect(() => {
         const fetchBrands = async () => {
             try {
@@ -60,10 +60,10 @@ const Filter: React.FC<FilterProps> = ({
                 }
                 const data = await response.json();
 
-                const products: { brand: string }[] = data; 
+                const products: { brand: string }[] = data;
                 const uniqueBrands = Array.from(new Set(products.map((product) => product.brand)));
 
-            
+
                 setBrands(uniqueBrands as string[]);
             } catch (error) {
                 console.error("Error fetching products:", error);
@@ -73,7 +73,7 @@ const Filter: React.FC<FilterProps> = ({
         fetchBrands();
     }, []);
 
-    
+
     const handleBrandSelection = (brand: string) => {
         setSelectedBrands((prev) =>
             prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]

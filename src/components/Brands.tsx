@@ -22,14 +22,14 @@ const Brands: React.FC<BrandsProps> = ({ Brands }) => {
       {/* Carousel */}
       <div className="Brands-carousel">
         {Brands.map((Brand, index) => (
-          
-            <img
-              src={Brand.imageSrc}
-              alt={Brand.BrandName}
-              className="Brand-circle__image"
-              onError={(e) => (e.currentTarget.src = "/fallback-image.png")}
-            />
-          
+
+          <img
+            src={Brand.imageSrc}
+            alt={Brand.BrandName}
+            className="Brand-circle__image"
+            onError={(e) => (e.currentTarget.src = "/fallback-image.png")}
+          />
+
         ))}
       </div>
     </div>

@@ -19,21 +19,21 @@ const HeaderSearchProducts: React.FC<HeaderSearchProductsProps> = ({ SearchPath,
         <div>
             {/* max-width: 950px */}
             <div className="HSPMResponsiv">
-            
+
                 <div className="HSPBResponsiv">
-                    
-                        <a className="" href="#">
-                            <p className="">مرتب سازی</p>
-                            <FontAwesomeIcon icon={faChevronDown} />
-                        </a>
+
+                    <a className="" href="#">
+                        <p className="">مرتب سازی</p>
+                        <FontAwesomeIcon icon={faChevronDown} />
+                    </a>
                 </div>
                 <div className="HSPBResponsiv">
-                    
+
                     <a className="" href="#">
                         <p className="">فیلتر ها </p>
                         <FontAwesomeIcon icon={faChevronDown} />
                     </a>
-            </div>
+                </div>
             </div>
             {/* min-width: 950px */}
             <div className="HeaderSearchProductsMain ">

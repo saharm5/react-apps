@@ -28,7 +28,7 @@ const ProductPage: React.FC = () => {
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
 
   const [products, setProducts] = useState<Product[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]); 
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [cart, setCart] = useState<{ id: number; quantity: number }[]>([]);
 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -64,7 +64,7 @@ const ProductPage: React.FC = () => {
         }
         const data = await response.json();
         setProducts(data);
-        setFilteredProducts(data); 
+        setFilteredProducts(data);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -85,13 +85,13 @@ const ProductPage: React.FC = () => {
       const matchesPrice =
         product.price >= priceRange[0] && product.price <= priceRange[1];
       const matchesAvailability = onlyAvailable
-        ? product.available === "true" 
+        ? product.available === "true"
         : true;
 
       return matchesCategory && matchesBrand && matchesPrice && matchesAvailability;
     });
 
-    setFilteredProducts(filtered); 
+    setFilteredProducts(filtered);
     console.log("Filters applied:", { selectedCategory, selectedBrands, priceRange, onlyAvailable });
   };
 
@@ -125,7 +125,7 @@ const ProductPage: React.FC = () => {
       <Header />
       <HeaderSearchProducts
         SearchPath={"صفحه اصلی > محصولات > تمام محصولات"}
-        NumberOfItems={filteredProducts.length} 
+        NumberOfItems={filteredProducts.length}
       />
       <div className="row-container">
         <div className="boxRight">

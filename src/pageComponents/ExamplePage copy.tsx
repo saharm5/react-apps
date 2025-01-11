@@ -133,7 +133,7 @@ const ProductPagessssss: React.FC = () => {
                                                 imageUrl={product.imageSrc}
                                                 addition={() => increaseQuantity(product.id)}
                                                 reduce={() => decreaseQuantity(product.id)}
-                                                num={quantity} CategoryId={""}                                            />
+                                                num={quantity} CategoryId={""} />
                                         </div>
                                     );
                                 })
@@ -156,7 +156,7 @@ export default ProductPagessssss;
 // const [searchTerm, setSearchTerm] = useState(""); // State for search term
 // const filteredProducts = products.filter((product) =>
 //     product.title.toLowerCase().includes(searchTerm.toLowerCase())
-// ); 
+// );
 
 
 // value = { searchTerm }

@@ -180,7 +180,7 @@ const Header: React.FC = () => {
               {/* <i className="bi bi-search HeaderResponsiveNavbarIconPadding half-size-icon"></i> */}
             </span>
             بقالی
-            
+
           </button>
           <div className="Headerlocation">
             <i className="bi bi-geo-alt-fill"></i>

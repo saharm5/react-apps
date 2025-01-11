@@ -189,38 +189,38 @@ const MainPage: React.FC = () => {
                 {/* Tabs */}
                 <div className="maintabe">
                   <p className="ptabe">محصولات ویژه</p>
-                  </div>
-                  <div className="grid">
-                    {products.map((product) => {
-                      const cartItem = cart.find((item) => item.id === product.id);
-                      const quantity = cartItem?.quantity || 0;
-                      return (
-                        <ProductGrid
-                          key={product.id}
-                          id={product.id}
-                          title={product.title}
-                          price={product.price}
-                          imageUrl={product.imageSrc}
-                          addition={() => increaseQuantity(product.id)}
-                          reduce={() => decreaseQuantity(product.id)}
-                          num={quantity}
-                        />
-                      );
-                    })}
-                  </div>
+                </div>
+                <div className="grid">
+                  {products.map((product) => {
+                    const cartItem = cart.find((item) => item.id === product.id);
+                    const quantity = cartItem?.quantity || 0;
+                    return (
+                      <ProductGrid
+                        key={product.id}
+                        id={product.id}
+                        title={product.title}
+                        price={product.price}
+                        imageUrl={product.imageSrc}
+                        addition={() => increaseQuantity(product.id)}
+                        reduce={() => decreaseQuantity(product.id)}
+                        num={quantity}
+                      />
+                    );
+                  })}
                 </div>
               </div>
-
-              <Brands Brands={brandData} />
-
             </div>
-            <FooterResponsive />
 
-            <Footer />
+            <Brands Brands={brandData} />
+
           </div>
-      )}
+          <FooterResponsive />
+
+          <Footer />
         </div>
-      );
+      )}
+    </div>
+  );
 };
 
-      export default MainPage;
+export default MainPage;
