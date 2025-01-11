@@ -78,7 +78,7 @@ const MainPage: React.FC = () => {
     // Function to fetch products
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8000/data/?limit=20");
+        const response = await fetch("http://localhost:8000/data/?limit=10");
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
