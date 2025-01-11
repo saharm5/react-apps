@@ -11,28 +11,93 @@ interface HeaderSearchProductsProps {
 
 const HeaderSearchProducts: React.FC<HeaderSearchProductsProps> = ({ SearchPath, NumberOfItems }) => {
     const [activeTab, setActiveTab] = useState<string>("BestSeller"); // Manage active tab
-
+    const [isSortingDropdownVisible, setIsSortingDropdownVisible] = useState(false);
     const handleTabClick = (tab: string) => {
         setActiveTab(tab);
+    };
+    const toggleSortingDropdown = () => {
+        setIsSortingDropdownVisible((prev) => !prev);
     };
     return (
         <div>
             {/* max-width: 950px */}
             <div className="HSPMResponsiv">
 
-                <div className="HSPBResponsiv">
+                <div className="HSPDResponsiv">
 
-                    <a className="" href="#">
+                    <button className="HSPBResponsiv " onClick={toggleSortingDropdown}>
                         <p className="">مرتب سازی</p>
                         <FontAwesomeIcon icon={faChevronDown} />
-                    </a>
+                    </button>
+                    {isSortingDropdownVisible && (
+                        <div className=" HeaderSearchProductsTabes ">
+                            <ul className="HeaderSearchProductsBreadcrumb">
+                                <li>
+                                    <button
+                                        className={`tab ${activeTab === "BestSeller" ? "active" : ""}`}
+                                        onClick={() => handleTabClick("BestSeller")}
+                                    >
+                                        پرفروش ترین
+                                    </button>
+                                </li>
+                                <li>
+                                    <button
+                                        className={`tab ${activeTab === "Discounted" ? "active" : ""}`}
+                                        onClick={() => handleTabClick("Discounted")}
+                                    >
+                                        بیشترین تخفیف
+                                    </button>
+                                </li>
+                                <li>
+                                    <button
+                                        className={`tab ${activeTab === "Viewed" ? "active" : ""}`}
+                                        onClick={() => handleTabClick("Viewed")}
+                                    >
+                                        پربازدیدترین
+                                    </button>
+                                </li>
+                                <li>
+                                    <button
+                                        className={`tab ${activeTab === "Popular" ? "active" : ""}`}
+                                        onClick={() => handleTabClick("Popular")}
+                                    >
+                                        محبوب ترین
+                                    </button>
+                                </li>
+                                <li>
+                                    <button
+                                        className={`tab ${activeTab === "Newest" ? "active" : ""}`}
+                                        onClick={() => handleTabClick("Newest")}
+                                    >
+                                        جدید ترین
+                                    </button>
+                                </li>
+                                <li>
+                                    <button
+                                        className={`tab ${activeTab === "Cheapest" ? "active" : ""}`}
+                                        onClick={() => handleTabClick("Cheapest")}
+                                    >
+                                        ارزان ترین
+                                    </button>
+                                </li>
+                                <li>
+                                    <button
+                                        className={`tab ${activeTab === "Expensive" ? "active" : ""}`}
+                                        onClick={() => handleTabClick("Expensive")}
+                                    >
+                                        گرانترین
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    )}
                 </div>
-                <div className="HSPBResponsiv">
+                <div className="HSPDResponsiv">
 
-                    <a className="" href="#">
+                    <button className="HSPBResponsiv">
                         <p className="">فیلتر ها </p>
                         <FontAwesomeIcon icon={faChevronDown} />
-                    </a>
+                    </button>
                 </div>
             </div>
             {/* min-width: 950px */}
@@ -111,3 +176,4 @@ const HeaderSearchProducts: React.FC<HeaderSearchProductsProps> = ({ SearchPath,
 }
 
 export default HeaderSearchProducts;
+
