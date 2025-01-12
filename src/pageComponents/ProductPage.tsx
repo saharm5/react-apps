@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FooterResponsive from "../components/FooterResponsive";
-
+import { fetchProducts } from '../server/api'; 
 import "../styles/global.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -54,25 +54,22 @@ const ProductPage: React.FC = () => {
     };
   }, []);
 
-  useEffect(() => {
+  const [error, setError] = useState<string | null>(null); 
 
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8000/data/");
-        if (!response.ok) {
-          throw new Error("Failed to fetch products");
-        }
-        const data = await response.json();
+        const data = await fetchProducts("http://localhost:8000/data/");
         setProducts(data);
-        setFilteredProducts(data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
+        setFilteredProducts(data); 
+      } catch (err) {
+        setError('Failed to fetch products');
       }
     };
 
     fetchData();
   }, []);
-
+  
 
   const applyFilters = () => {
     const filtered = products.filter((product) => {

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import Inputmask from "inputmask";
 import "./Review.css";
+import { submitForm } from '../server/api';
 
 const Review: React.FC = () => {
     const location = useLocation();
@@ -25,23 +26,28 @@ const Review: React.FC = () => {
         }
     }, []);
 
-    const handleSubmit = () => {
-        const phoneRegex = /^[0-9]{4}-[0-9]{3}-[0-9]{4}$/;
+    const handleSubmit = async () => {
+        setIsSubmitting(true);
 
         // Validate phone number
+        const phoneRegex = /^[0-9]{4}-[0-9]{3}-[0-9]{4}$/;
         if (!phone) {
             setError("شماره موبایل وارد نشده است.");
+            setIsSubmitting(false);
             return;
         } else if (!phoneRegex.test(phone)) {
             setError("شماره موبایل باید به فرمت صحیح باشد (0999-999-9999).");
+            setIsSubmitting(false);
             return;
         }
 
         // Validate email
         if (!email) {
             setError("ایمیل وارد نشده است.");
+            setIsSubmitting(false);
             return;
         }
+        // باید براش تعریف شه 
 
         const formData = {
             phone: phone.replace(/-/g, ""), // Remove dashes from phone number
@@ -50,39 +56,19 @@ const Review: React.FC = () => {
             comments,
         };
 
-        // Dynamically construct the URL (for debugging purposes, but we send data as POST)
-        const url = `http://localhost:8000/regmsg/`;
-
-        // Set isSubmitting to true when the request starts
-        setIsSubmitting(true);
-
-        // Make the POST request
-        fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData), // Send formData as the body of the request
-        })
-
-            .then((result) => {
-                console.log(result);
-
-                // After successful fetch, clear form and show success message
-                setPhone("");
-                setFromDate("");
-                setEmail("");
-                setComments("");
-
-                setResponseMessage("فرم با موفقیت ارسال شد!"); // Set success message
-                setError(""); // Clear any previous errors
-                setIsSubmitting(false); // Set isSubmitting back to false
-            })
-            .catch((error) => {
-                console.error(error);
-                setError(error.message); // Set error message if request fails
-                setIsSubmitting(false); // Set isSubmitting back to false
-            });
+        try {
+            const result = await submitForm("http://localhost:8000/regmsg/", formData);
+            setResponseMessage("فرم با موفقیت ارسال شد!");
+            setError("");
+            setPhone("");
+            setFromDate("");
+            setEmail("");
+            setComments("");
+        } catch (err) {
+            setError("ارسال فرم با خطا مواجه شد. لطفاً دوباره امتحان کنید.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -99,7 +85,7 @@ const Review: React.FC = () => {
                                 value={phone}
                                 onChange={(e) => {
                                     setPhone(e.target.value);
-                                    setError(""); // Clear error when user types
+                                    setError("");
                                 }}
                                 placeholder="0912-345-6789"
                                 required

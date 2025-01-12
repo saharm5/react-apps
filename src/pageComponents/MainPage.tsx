@@ -6,12 +6,11 @@ import ProductGrid from "../components/ProductGrid";
 import Brands from "../components/Brands";
 import Footer from "../components/Footer";
 import FooterResponsive from "../components/FooterResponsive";
-// import HeaderProductGrid from "../components/HeaderProductGrid";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../styles/global.css";
+import { fetchProducts } from '../server/api'; 
 
-// import "vazir-font";
 interface Product {
   id: number;
   title: string;
@@ -24,9 +23,13 @@ interface Product {
 const MainPage: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState(true);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [cart, setCart] = useState<{ id: number; quantity: number }[]>([]);
+
+
 
   useEffect(() => {
-
     const timer = setTimeout(() => {
       setIsLoading(false);
       console.log("Loading complete!");
@@ -36,19 +39,15 @@ const MainPage: React.FC = () => {
   }, []);
 
 
-
-
-  const [products, setProducts] = useState<Product[]>([]);
   useEffect(() => {
     document.body.classList.add("body-main");
-
+    
     return () => {
       document.body.classList.remove("body-main");
     };
   }, []);
 
 
-  const [cart, setCart] = useState<{ id: number; quantity: number }[]>([]);
 
   const increaseQuantity = (id: number) => {
     setCart((prev) => {
@@ -74,24 +73,20 @@ const MainPage: React.FC = () => {
     });
   };
 
+
   useEffect(() => {
-    // Function to fetch products
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8000/data/?limit=10");
-        if (!response.ok) {
-          throw new Error("Failed to fetch products");
-        }
-        const data = await response.json();
-        setProducts(data);
+        const data = await fetchProducts('http://localhost:8000/data/?limit=10');
+        setProducts(data); 
       } catch (error) {
-        console.error("Error fetching products:", error);
+        setError('Failed to fetch products');
       }
     };
 
     fetchData();
   }, []);
-
+  
   const categories = [
     {
       imageSrc: "./Img/kharbar.png",
