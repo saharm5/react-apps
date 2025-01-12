@@ -131,7 +131,7 @@ const Footer: React.FC = () => {
 
             {/* Email Subscription */}
             <div className="email-subscription">
-              <p className="pfooter">برای اطلاع از آخرین تخفیف‌ها، {true && <p className="boldpfooter"> ایمیل </p>} خود را ثبت نمایید</p>
+              <p className="pfooter">برای اطلاع از آخرین تخفیف‌ها، {true && <span className="boldpfooter"> ایمیل </span>} خود را ثبت نمایید</p>
               <form>
                 <input type="email" placeholder="ایمیل شما" />
                 <button type="submit">
