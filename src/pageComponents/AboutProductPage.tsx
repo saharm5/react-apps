@@ -5,8 +5,9 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import AboutProduct from "../components/AboutProduct";
 
-const ProductAbout: React.FC = () => {
+const ProductDetails: React.FC = () => {
 
 
 
@@ -23,13 +24,14 @@ const ProductAbout: React.FC = () => {
     return (
         <div>
             <Header />
-            <div>
-                {/* compoments */}
-            </div>
+
+            <AboutProduct />
+            {/* <similar products /> */}
+            {/* <product's Reviews /> */}
             <FooterResponsive />
             <Footer />
         </div>
     );
 };
 
-export default ProductAbout;
+export default ProductDetails;
