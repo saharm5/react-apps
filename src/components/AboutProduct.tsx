@@ -1,25 +1,28 @@
-
 import React, { useState } from "react";
 import "./AboutProduct.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
 const AboutProduct: React.FC = () => {
-    const [favorit, setFavorit] = useState<string>("");
-    const [isCopied, setIsCopied] = useState<boolean>(false);
+    const [favorit, setFavorit] = useState<boolean>(false); // Boolean state for favorite
+    const [isCopied, setIsCopied] = useState<boolean>(false); // Boolean state for copied link
 
-
-    const handleAddFavorit = (icon: string) => {
-        setFavorit(favorit === icon ? "" : icon);
+    // Handle adding/removing from favorites
+    const handleAddFavorit = () => {
+        if (favorit === false) {
+            setFavorit(true); // Set favorit to true
+        } else {
+            setFavorit(false); // Set favorit to false
+        }
     };
-
+// قراره اینجا یه get بیاد 
+    // Handle copying the URL to clipboard
     const handleCopyLink = () => {
         navigator.clipboard
             .writeText(window.location.href) // Copies the current page's URL
             .then(() => {
                 setIsCopied(true); // Mark as copied
                 setTimeout(() => setIsCopied(false), 2000); // Reset after 2 seconds
-            })
+            });
     };
 
     return (
@@ -34,13 +37,13 @@ const AboutProduct: React.FC = () => {
                     <div className="card position-relative">
                         {/* Icons */}
                         <div className="position-absolute top-0 start-0 m-2 d-flex flex-column">
-                            {/* Favorite Icon */}
+                            {/* Favorite true */}
                             <button
-                                className={`btn icon ${favorit === "favorit" ? "active" : ""}`}
-                                onClick={() => handleAddFavorit("favorit")}
+                                className={`btn ${favorit ? "active" : ""}`}
+                                onClick={handleAddFavorit}
                             >
                                 {favorit ? (
-                                    <i className="bi bi-suit-heart-fill  text-danger"></i>
+                                    <i className="bi bi-suit-heart-fill text-danger"></i>
                                 ) : (
                                     <i className="bi bi-suit-heart"></i>
                                 )}
@@ -69,63 +72,7 @@ const AboutProduct: React.FC = () => {
                 <div></div>
             </div>
         </div>
-    )
-}
+    );
+};
+
 export default AboutProduct;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
