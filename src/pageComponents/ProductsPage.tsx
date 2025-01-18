@@ -23,7 +23,7 @@ interface Product {
   category: string;
 }
 
-const ProductPage: React.FC = () => {
+const ProductsPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
 
@@ -173,4 +173,4 @@ const ProductPage: React.FC = () => {
   );
 };
 
-export default ProductPage;
+export default ProductsPage;
