@@ -8,12 +8,16 @@ import ProductDetails from "./pageComponents/AboutProductPage";
 import ReviewPage from "./pageComponents/ReviewPage";
 import "./styles/global.css";
 import NotFoundPage from "./pageComponents/NotFoundPage";
+// import Header from "./components/Header";
+
 
 
 
 export default function App() {
   return (
+
     <BrowserRouter>
+      {/* <Header /> */}
       <Routes>
         <Route index element={<MainPage />} />
         <Route path="login" element={<LoginPage />} />
