@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./pageComponents/MainPage";
 import LoginPage from "./pageComponents/LoginPage";
 import ProductsPage from "./pageComponents/ProductsPage";
+import ProductAbout from "./pageComponents/Product";
 // import ProductPagessssss from "./pageComponents/ExamplePage";
 // import HeaderResponsive from "./pageComponents/ExamplePage";
 import ReviewPage from "./pageComponents/ReviewPage";
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="login" element={<LoginPage />} />
         {/* <Route path="Page" element={<HeaderResponsive />} /> */}
         <Route path="Products" element={<ProductsPage />} />
+        <Route path="Product" element={<ProductAbout />} />
         {/* <Route path="Productsssssss" element={<Page />} /> */}
         <Route path="Review" element={<ReviewPage />} />
         <Route path="*" element={<NotFoundPage />} /> {/* Optional 404 page */}
