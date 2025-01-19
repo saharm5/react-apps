@@ -1,28 +1,58 @@
 import React, { useState } from "react";
 import "./AboutProduct.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from 'axios';
 
 const AboutProduct: React.FC = () => {
-    const [favorit, setFavorit] = useState<boolean>(false); // Boolean state for favorite
-    const [isCopied, setIsCopied] = useState<boolean>(false); // Boolean state for copied link
+    const [favorit, setFavorit] = useState<boolean>(false);
+    const [isCopied, setIsCopied] = useState<boolean>(false);
+    const [message, setMessage] = useState<string>('');
 
     // Handle adding/removing from favorites
-    const handleAddFavorit = () => {
+    const handleAddFavorit = async (e: React.FormEvent) => {
+        e.preventDefault();
         if (favorit === false) {
-            setFavorit(true); // Set favorit to true
+            setFavorit(true);
+            try {
+
+                const response = await axios.get("http://localhost:8000/save-data/", {
+                    params: {
+                        data: window.location.href,  // Correct the query parameter name
+                    }
+                });
+                console.log(response.data);  // Log the server response for debugging
+                postMessage('Data saved successfully!');
+
+                // await axios.get("http://localhost:8000/regmsg/", {
+                //     params: {
+                //         url: window.location.href,
+                //     }
+                // });
+                // postMessage('Data saved successfully!');
+            } catch (error) {
+                postMessage('Error saving data');
+                console.error(error);
+            }
         } else {
-            setFavorit(false); // Set favorit to false
         }
     };
-// قراره اینجا یه get بیاد 
+
     // Handle copying the URL to clipboard
     const handleCopyLink = () => {
         navigator.clipboard
-            .writeText(window.location.href) // Copies the current page's URL
+            .writeText(window.location.href)
             .then(() => {
-                setIsCopied(true); // Mark as copied
-                setTimeout(() => setIsCopied(false), 2000); // Reset after 2 seconds
+                setIsCopied(true);
+                setTimeout(() => setIsCopied(false), 2000);
+            })
+            .catch((error) => {
+                console.error('Error copying to clipboard:', error);
             });
+    };
+    // Function to display message
+    const postMessage = (msg: string) => {
+        setMessage(msg);
+        setTimeout(() => setMessage(''), 3000); // Clear message after 3 seconds
     };
 
     return (
@@ -50,7 +80,7 @@ const AboutProduct: React.FC = () => {
                             </button>
                             {/* Share Icon */}
                             <button
-                               className="btn icon share"
+                                className="btn icon share"
                                 onClick={handleCopyLink}
                             >
                                 {isCopied ? (
@@ -68,6 +98,8 @@ const AboutProduct: React.FC = () => {
                         />
                     </div>
                 </div>
+                {/* Feedback message */}
+                {message && <div>{message}</div>}
                 {/* imgs container */}
                 <div></div>
             </div>
