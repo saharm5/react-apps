@@ -66,11 +66,11 @@ const AboutProduct: React.FC = () => {
                 <div className="container d-flex justify-content-center align-items-center vh-100">
                     {/* Card */}
                     <div className="card position-relative">
-                        {/* Icons */}
+                        {/* iconBs */}
                         <div className="position-absolute top-0 start-0 m-2 d-flex flex-column">
                             {/* Favorite true */}
                             <button
-                                className={`btn ${favorit ? "active" : ""}`}
+                                className="btnI iconB favorit "
                                 onClick={handleAddFavorit}
                             >
                                 {favorit ? (
@@ -79,9 +79,9 @@ const AboutProduct: React.FC = () => {
                                     <i className="bi bi-suit-heart"></i>
                                 )}
                             </button>
-                            {/* Share Icon */}
+                            {/* Share iconB */}
                             <button
-                                className="btn icon share"
+                                className="btnI iconB share"
                                 onClick={handleCopyLink}
                             >
                                 {isCopied ? (
