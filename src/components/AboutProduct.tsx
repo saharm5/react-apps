@@ -34,6 +34,7 @@ const AboutProduct: React.FC = () => {
                 console.error(error);
             }
         } else {
+            setFavorit(false);
         }
     };
 
