@@ -23,6 +23,6 @@ last-code
 *.njsproj
 *.sln
 *.sw?
-src/assets/react.svg
+src/assets
 src/pageComponents/ExamplePage copy.tsx
 src/pageComponents/ExamplePage.tsx
