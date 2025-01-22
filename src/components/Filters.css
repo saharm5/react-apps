@@ -33,13 +33,14 @@
   /* transform: translate(-1px);  */
 }
 
+/* 
 .FilterDropdownContent {
   padding: 5px 12px;
   display: none;
   position: relative;
   max-height: 200px;
   overflow-y: auto;
-  /* z-index: 10; */
+ 
 }
 
 .FilterDropdownContent.Show {
@@ -47,37 +48,37 @@
   display: block;
 }
 
-/* Webkit browsers (Chrome, Safari, Edge) */
+ 
 .FilterDropdownContent.Show::-webkit-scrollbar {
   width: 10px;
 }
 
 .FilterDropdownContent.Show::-webkit-scrollbar-thumb {
   background-color: transparent;
-  /* Hide thumb */
+ 
   border-radius: 10px;
 }
 
 .FilterDropdownContent.Show::-webkit-scrollbar-track {
   background: transparent;
-  /* Hide track */
+ 
 }
 
 .FilterDropdownContent.Show::-webkit-scrollbar-button {
   background-color: transparent;
-  /* Make buttons (arrows) visible */
+ 
   width: 10px;
   height: 15px;
   display: block;
 }
 
-/* Optional: styling the arrows to make them visible */
+ 
 .FilterDropdownContent.Show::-webkit-scrollbar-button:start:increment {
   background-color: none;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
   border-bottom: 6px solid #01194f;
-  /* Downward triangle */
+ 
   content: "";
 }
 
@@ -86,8 +87,95 @@
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
   border-top: 6px solid #01194f;
-  /* Upward triangle */
+  
   content: "";
+}
+
+*/ 
+.FilterDropdownContent {
+  padding: 5px 12px;
+  display: none;
+  position: relative;
+  max-height: 200px;
+  overflow-y: auto;
+  /* Enable vertical scrolling when needed */
+}
+
+.FilterDropdownContent.Show {
+  margin: 10px 0px 10px 10px;
+  display: block;
+  z-index: 1;
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+.FilterDropdownContent.Show::-webkit-scrollbar {
+  width: 10px;
+  /* Width of the vertical scrollbar */
+}
+
+.FilterDropdownContent.Show::-webkit-scrollbar-thumb {
+  background-color: #888;
+  /* Visible thumb color */
+  border-radius: 10px;
+  /* Rounded thumb */
+  border: 2px solid transparent;
+  /* Adds spacing around the thumb */
+  background-clip: content-box;
+  /* Ensures visible spacing */
+}
+
+.FilterDropdownContent.Show::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+  /* Darker thumb color on hover */
+}
+
+.FilterDropdownContent.Show::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /* Light background for the track */
+  border-radius: 10px;
+}
+
+.FilterDropdownContent.Show::-webkit-scrollbar-button {
+  display: none;
+  /* Remove the default up and down buttons */
+}
+
+/* If you want to add custom scroll up and down buttons */
+.FilterDropdownContent.Show .scroll-button-up,
+.FilterDropdownContent.Show .scroll-button-down {
+  position: absolute;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: #01194f;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.FilterDropdownContent.Show .scroll-button-up {
+  top: 5px;
+  /* Position up button at the top */
+}
+
+.FilterDropdownContent.Show .scroll-button-down {
+  bottom: 5px;
+  /* Position down button at the bottom */
+}
+
+/* Optional: Add icon or text for scroll buttons */
+.FilterDropdownContent.Show .scroll-button-up::after {
+  content: "↑";
+  /* Up arrow */
+  font-size: 14px;
+  text-align: center;
+}
+
+.FilterDropdownContent.Show .scroll-button-down::after {
+  content: "↓";
+  /* Down arrow */
+  font-size: 14px;
+  text-align: center;
 }
 
 .FilterDropdownContentInputText {
