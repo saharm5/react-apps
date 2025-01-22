@@ -1,12 +1,40 @@
+
 import React, { useState } from "react";
+import axios from "axios";
 import "./AboutProduct.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from 'axios';
 
-const AboutProduct: React.FC = () => {
+// Define interfaces for props
+interface AboutProductProps {
+    imagesrc: string | null;
+    imagealt: string;
+    title: string;
+    category: string | null;
+    imagessrc: string;
+    SubCategory: string | null;
+    discription: string | null;
+    brand: string;
+    mainprice: number;
+    Discount: number;
+    finalprice: number;
+}
+
+
+const AboutProduct: React.FC<AboutProductProps> = ({
+    imagessrc,
+    imagesrc,
+    category,
+    SubCategory,
+    imagealt,
+    title,
+    discription,
+    brand,
+    mainprice,
+    Discount,
+    finalprice,
+}) => {
     const [favorit, setFavorit] = useState<boolean>(false);
     const [isCopied, setIsCopied] = useState<boolean>(false);
-    const [message, setMessage] = useState<string>('');
 
     // Handle adding/removing from favorites
     const handleAddFavorit = async (e: React.FormEvent) => {
@@ -15,20 +43,13 @@ const AboutProduct: React.FC = () => {
             setFavorit(true);
             try {
 
-                const response = await axios.get("http://localhost:8000/save-data/", {
+                const response = await axios.get("http://127.0.0.1:8000/save-data/", {
                     params: {
-                        data: window.location.href,  // Correct the query parameter name
+                        data: window.location.href,
                     }
                 });
-                console.log(response.data);  // Log the server response for debugging
+                console.log(response.data);
                 postMessage('Data saved successfully!');
-
-                // await axios.get("http://localhost:8000/regmsg/", {
-                //     params: {
-                //         url: window.location.href,
-                //     }
-                // });
-                // postMessage('Data saved successfully!');
             } catch (error) {
                 postMessage('Error saving data');
                 console.error(error);
@@ -38,7 +59,7 @@ const AboutProduct: React.FC = () => {
         }
     };
 
-    // Handle copying the URL to clipboard
+
     const handleCopyLink = () => {
         navigator.clipboard
             .writeText(window.location.href)
@@ -50,62 +71,101 @@ const AboutProduct: React.FC = () => {
                 console.error('Error copying to clipboard:', error);
             });
     };
-    // Function to display message
-    const postMessage = (msg: string) => {
-        setMessage(msg);
-        setTimeout(() => setMessage(''), 3000); // Clear message after 3 seconds
-    };
 
     return (
-        <div>
-            {/* left */}
-            <div></div>
-            {/* right */}
-            <div>
+        <div className="d-flex flex-row">
+            {/* Right Section */}
+            <div className="d-flex flex-column align-items-center" style={{ maxWidth: "250px" }}>
                 {/* img container */}
-                <div className="container d-flex justify-content-center align-items-center vh-100">
-                    {/* Card */}
-                    <div className="card position-relative">
-                        {/* iconBs */}
-                        <div className="position-absolute top-0 start-0 m-2 d-flex flex-column">
-                            {/* Favorite true */}
-                            <button
-                                className="btnI iconB favorit "
-                                onClick={handleAddFavorit}
-                            >
-                                {favorit ? (
-                                    <i className="bi bi-suit-heart-fill text-danger"></i>
-                                ) : (
-                                    <i className="bi bi-suit-heart"></i>
-                                )}
-                            </button>
-                            {/* Share iconB */}
-                            <button
-                                className="btnI iconB share"
-                                onClick={handleCopyLink}
-                            >
-                                {isCopied ? (
-                                    <i className="bi bi-check-lg text-success"></i>
-                                ) : (
-                                    <i className="bi bi-link-45deg"></i>
-                                )}
-                            </button>
-                        </div>
-                        {/* Image */}
+                <div className="card position-relative mb-3">
+                    {/* Cardicons */}
+                    <div className="position-absolute top-0 start-0 m-2">
+                        {/* Favorite true */}
+                        <button className="btnI iconB favorit btn-light"
+                            onClick={handleAddFavorit}>
+                            {favorit ? (
+                                <i className="bi bi-suit-heart-fill text-danger"></i>
+                            ) : (
+                                <i className="bi bi-suit-heart"></i>
+                            )}
+                        </button>
+                        <button className="btnI iconB share btn-light"
+                            onClick={handleCopyLink}>
+                            {isCopied ? (
+                                <i className="bi bi-check-lg text-success"></i>
+                            ) : (
+                                <i className="bi bi-link-45deg"></i>
+                            )}
+                        </button>
+                    </div>
+                    {/* Image */}
+                    <img
+                        src={imagesrc || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs9gUXKwt2KErC_jWWlkZkGabxpeGchT-fyw&s"}
+                        className="card-img-top"
+                        alt="Product"
+                    />
+                </div>
+                {/* imgs container */}
+                <div className="Products-imgs d-flex flex-row gap-3">
+
+                
+                    <div className="">
                         <img
-                            src="https://asset.okala.com/unsigned/rs:fill/size:192:192/quality:100/plain/s3://cdn/product/379324.png"
-                            className="card-img-top"
-                            alt="Product"
-                        />
+                            src={imagessrc}
+                            alt={imagealt || "Image"}
+                            // key={index}
+                            className="card-imgs"
+                        /></div>
+                  
+                </div>
+            </div>
+            {/* Left Section */}
+            <div className="d-flex flex-row">
+                {/* about product */}
+                <div className="d-flex flex-column">
+                    <div>
+                        <p id="title">{title}</p>
+                        <p id="discription">{discription}</p>
+                        <p id="category">{category}</p>
+                        <p id="brand">{brand}</p>
+                        {/* div price */}
+                        <div>
+                            <p id="mainprice">{mainprice}</p>
+                            <p id="Discount">{Discount}</p>
+                            <p id="finalprice">{finalprice}</p>
+                        </div>
+
+                    </div>
+                    {/* btn add to card */}
+                    <div>
+
                     </div>
                 </div>
-                {/* Feedback message */}
-                {message && <div>{message}</div>}
-                {/* imgs container */}
-                <div></div>
+                {/* Product Features */}
+                <div>
+                    <h6>ویژگی های محصول</h6>
+                    <ul>
+                    
+                        <li>
+                            {category}: {SubCategory}
+                        </li>
+                      
+                    </ul>
+                </div>
             </div>
         </div>
     );
 };
 
 export default AboutProduct;
+
+
+
+
+
+
+
+
+
+
+
