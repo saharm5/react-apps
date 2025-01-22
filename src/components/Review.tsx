@@ -57,7 +57,7 @@ const Review: React.FC = () => {
         };
 
         try {
-            const result = await submitForm("http://localhost:8000/regmsg/", formData);
+            const result = await submitForm("http://127.0.0.1:8000/regmsg/", formData);
             setResponseMessage("فرم با موفقیت ارسال شد!");
             setError("");
             setPhone("");

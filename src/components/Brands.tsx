@@ -27,7 +27,7 @@ const Brands: React.FC<BrandsProps> = ({ Brands }) => {
             src={Brand.imageSrc}
             alt={Brand.BrandName}
             className="Brand-circle__image"
-            onError={(e) => (e.currentTarget.src = "/fallback-image.png")}
+            onError={(e) => (e.currentTarget.src = "https://png.pngtree.com/element_our/20190531/ourmid/pngtree-return-icon-image_1287495.jpg")}
           />
 
         ))}

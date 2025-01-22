@@ -77,7 +77,7 @@ const MainPage: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchProducts('http://localhost:8000/data/?limit=10');
+        const data = await fetchProducts('http://127.0.0.1:8000/data/?limit=10');
         setProducts(data); 
       } catch (error) {
         setError('Failed to fetch products');
@@ -89,82 +89,83 @@ const MainPage: React.FC = () => {
   
   const categories = [
     {
-      imageSrc: "./Img/kharbar.png",
+      imageSrc: "./src/assets/Img/kharbar.png",
       categoryName: "خواربار",
       categoryLink: "#",
     },
     {
-      imageSrc: "./Img/Spice.png",
+      imageSrc: "./src/assets/Img/Spice.png",
       categoryName: "ادویه و چاشنی",
       categoryLink: "#",
     },
     {
-      imageSrc: "./Img/cannedfood.png",
+      imageSrc: "./src/assets/Img/cannedfood.png",
       categoryName: " غذای آماده",
       categoryLink: "#",
     },
     {
-      imageSrc: "./Img/kharbar.png",
+      imageSrc: "./src/assets/Img/kharbar.png",
       categoryName: "خواربار",
       categoryLink: "#",
     },
     {
-      imageSrc: "./Img/cannedfood.png",
+      imageSrc: "./src/assets/Img/cannedfood.png",
       categoryName: " غذای آماده",
       categoryLink: "#",
     },
     {
-      imageSrc: "./Img/nezafat.png",
+      imageSrc: "./src/assets/Img/nezafat.png",
       categoryName: "نظافت خانه",
       categoryLink: "#",
     },
     {
-      imageSrc: "./Img/kharbar.png",
+      imageSrc: "./src/assets/Img/kharbar.png",
       categoryName: "خواربار",
       categoryLink: "#",
     },
     {
-      imageSrc: "./Img/cannedfood.png",
+      imageSrc: "./src/assets/Img/cannedfood.png",
       categoryName: " غذای آماده",
       categoryLink: "#",
     },
     {
-      imageSrc: "./Img/kharbar.png",
+      imageSrc: "./src/assets/Img/kharbar.png",
       categoryName: "خواربار",
       categoryLink: "#",
     },
     {
-      imageSrc: "./Img/tanagholat.png",
+      imageSrc: "./src/assets/Img/tanagholat.png",
       categoryName: "تنقلات",
       categoryLink: "#",
     },
     {
-      imageSrc: "./Img/labaniat.png",
+      imageSrc: "./src/assets/Img/labaniat.png",
       categoryName: "لبنیات",
       categoryLink: "#",
     },
     {
-      imageSrc: "./Img/behdashti.png",
+      imageSrc: "./src/assets/Img/behdashti.png",
       categoryName: " بهداشتی",
       categoryLink: "#",
     },
   ];
 
+
   const brandData = [
-    { imageSrc: "./Img/mihan.png", BrandName: "میهن" },
-    { imageSrc: "./Img/Tak.png", BrandName: "تک" },
-    { imageSrc: "./Img/Yekvayek.png", BrandName: "یک و یک" },
-    { imageSrc: " ./Img/cocacola.png", BrandName: "کوکاکولا" },
-    { imageSrc: " ./Img/mazmaz.png", BrandName: "مزمز" },
-    { imageSrc: " ./Img/Choopan.png", BrandName: "چوپان" },
-    { imageSrc: " ./Img/pril.png", BrandName: "پریل" },
-    { imageSrc: " ./Img/Kaleh.png", BrandName: "کاله" },
-    { imageSrc: " ./Img/Mahram.png", BrandName: "مهرام" },
-    { imageSrc: " ./Img/Damdaran.png", BrandName: "دامداران" },
-    { imageSrc: " ./Img/Golestan.png", BrandName: "گلستان" },
-    { imageSrc: " ./Img/ChinChin.png", BrandName: "چین چین" },
-    { imageSrc: " ./Img/Minoo.png", BrandName: "مینو" },
-    { imageSrc: " ./Img/3dots.png", BrandName: "بیشتر " },
+    { imageSrc: "./src/assets/Img/mihan.png", BrandName: "میهن" },
+    { imageSrc: "./src/assets/Img/Tak.png", BrandName: "تک" },
+    { imageSrc: "./src/assets/Img/Yekvayek.png", BrandName: "یک و یک" },
+    { imageSrc: " ./src/assets/Img/cocacola.png", BrandName: "کوکاکولا" },
+    { imageSrc: " ./src/assets/Img/mazmaz.png", BrandName: "مزمز" },
+    { imageSrc: " ./src/assets/Img/Choopan.png", BrandName: "چوپان" },
+    { imageSrc: " ./src/assets/Img/pril.png", BrandName: "پریل" },
+    { imageSrc: " ./src/assets/Img/Kaleh.png", BrandName: "کاله" },
+    { imageSrc: " ./src/assets/Img/Mahram.png", BrandName: "مهرام" },
+    { imageSrc: " ./src/assets/Img/Damdaran.png", BrandName: "دامداران" },
+    { imageSrc: " ./src/assets/Img/Golestan.png", BrandName: "گلستان" },
+    { imageSrc: " ./src/assets/Img/ChinChin.png", BrandName: "چین چین" },
+    { imageSrc: " ./src/assets/Img/Minoo.png", BrandName: "مینو" },
+    { imageSrc: " ./src/assets/Img/3dots.png", BrandName: "بیشتر " },
   ];
 
 

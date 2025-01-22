@@ -17,7 +17,8 @@ interface GridProps {
   num: number;
 }
 
-const ProductGrid: React.FC<GridProps> = ({ imageUrl,
+const ProductGrid: React.FC<GridProps> = ({ 
+  imageUrl,
   title,
   price,
   addition,
@@ -32,7 +33,7 @@ const ProductGrid: React.FC<GridProps> = ({ imageUrl,
   return (
     <div className="productCards" >
       <img
-        src={imageUrl || "https://via.placeholder.com/200"}
+        src={imageUrl || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs9gUXKwt2KErC_jWWlkZkGabxpeGchT-fyw&s"}
         alt={title}
         className="product-image"
       />
