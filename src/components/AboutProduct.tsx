@@ -5,23 +5,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { fetchProducts } from "../server/api"; // Assume this function exists
 
 interface Image {
-  imagealt: string;
-  imagessrc: string;
+  productName: string;
+  productImageSrc: string;
 }
 
 // Define interfaces for props
 interface Product {
   id: number;
-  imagesrc: string | null;
-  title: string;
+  productImageSrc: string | null;
+  productName: string;
   category: string | null;
-  SubCategory: string | null;
-  description: string | null;
+  subCategory: string | null;
+  productDetails: string | null;
   brand: string;
-  mainprice: number;
-  Discount: number;
-  finalprice: number;
-  Images: Image[];
+  mainPrice: string;
+  discount	: string;
+  finalPrice: string;
+  SubproductImages: Image[];
 }
 
 const AboutProduct: React.FC = () => {
@@ -110,20 +110,20 @@ const AboutProduct: React.FC = () => {
                 {/* Main Image */}
                 <img
                   src={
-                    product.imagesrc ||
+                    product.productImageSrc ||
                     "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
                   }
                   className="card-img-top"
-                  alt={product.title || "Product"}
+                  alt={product.productName || "Product"}
                 />
               </div>
               {/* Additional Images */}
               <div className="Products-imgs d-flex flex-row gap-3">
-                {product.Images.map((img, i) => (
+                {product.SubproductImages.map((img, i) => (
                   <img
                     key={i}
-                    src={img.imagessrc}
-                    alt={img.imagealt || "Product Image"}
+                    src={img.productImageSrc}
+                    alt={img.productName || "Product Image"}
                     className="card-imgs"
                   />
                 ))}
@@ -133,21 +133,21 @@ const AboutProduct: React.FC = () => {
             {/* Left Section */}
             <div className="d-flex flex-row">
               <div className="d-flex flex-column">
-                <p id="title">{product.title}</p>
-                <p id="description">{product.description}</p>
-                <p id="category">Category: {product.category}</p>
-                <p id="brand">Brand: {product.brand}</p>
+                <p id="productName">{product.productName}</p>
+                <p id="productDetails"><strong>توضیحات محصول : </strong>{product.productDetails}</p>
+                <p id="category"><strong> Category: </strong>{product.category}</p>
+                <p id="brand"><strong> Brand:</strong> {product.brand}</p>
                 <div>
-                  <p id="mainprice">{product.mainprice}</p>
-                  <p id="Discount">{product.Discount}%</p>
-                  <p id="finalprice">{product.finalprice}</p>
+                  <p id="mainPrice">{product.mainPrice}</p>
+                  <p id="discount	">{product.discount	}%</p>
+                  <p id="finalPrice">{product.finalPrice}</p>
                 </div>
               </div>
               <div>
                 <h6>Product Features</h6>
                 <ul>
                   <li>
-                    {product.category}: {product.SubCategory}
+                    {product.category}: {product.subCategory}
                   </li>
                 </ul>
               </div>
