@@ -111,7 +111,7 @@ const ProductDetails: React.FC = () => {
                         reduce={decreasesQuantity}
                         carts={carts}
                     />
-                    <div className=" shadow-lg rounded mainproductcard">
+                    <div className=" shadow-lg rounded mainproductcard" style={{margin:"0px"}}>
                         {/* <HeaderProductGrid /> */}
                         <div className="products-card">
                             {/* Tabs */}

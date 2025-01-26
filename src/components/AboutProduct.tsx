@@ -40,7 +40,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
   // Handle image click to expand
   const handleImageClick = (src: string, alt: string) => {
     setExpandedImg(src);
-    setImgText(alt || "Image");
+    setImgText(alt);
   };
 
   // Close the expanded image
@@ -100,7 +100,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
           const quantity = cartsItem ? cartsItem.quantity : 0;
 
           return (
-            <div key={product.id} className="d-flex flex-row mb-4 p-5 shadow-lg rounded " style={{ justifyContent: "space-between", width: "1500px" }}>
+            <div key={product.id} className="d-flex flex-row mb-5 p-5 rounded shadow-lg" style={{ justifyContent: "space-between", width: "1500px" }}>
               {/* Right Section */}
               <div className="d-flex flex-column align-items-center m-3">
                 <div className="card position-relative mb-4">
@@ -137,17 +137,19 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                       </div>
                     </div>
                   )}
+                  <div className="mb-3 shadow-lg rounded-5 ">
 
-                  <img
-                    src={
-                      product.SubproductImages[0]?.productImageSrc ||
-                      "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
-                    }
-                    alt={product.productName || "Product"}
-                    className="card-img-top"
-                  />
+                    <img
+                      src={
+                        product.SubproductImages[0]?.productImageSrc ||
+                        "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+                      }
+                      alt={product.productName || "Product"}
+                      className="card-img-top "
+                    />
 
-                  <div className="Products-imgs d-flex flex-row gap-3">
+                  </div>
+                  <div className="Products-imgs d-flex flex-row gap-3 rounded">
                     {product.SubproductImages.map((img, i) => (
                       <img
                         key={i}
