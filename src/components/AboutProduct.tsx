@@ -27,10 +27,10 @@ interface Product {
 interface AboutProductProps {
   addition: (id: number) => void;
   reduce: (id: number) => void;
-  cart: { id: number; quantity: number }[];
+  carts: { id: number; quantity: number }[];
 }
 
-const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, cart }) => {
+const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) => {
   const [favorit, setFavorit] = useState<boolean>(false);
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [products, setProducts] = useState<Product[]>([]);
@@ -79,11 +79,11 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, cart }) =
         <div>No products available. Please try again later.</div>
       ) : (
         products.map((product) => {
-          const cartItem = cart.find((item) => item.id === product.id);
-          const quantity = cartItem ? cartItem.quantity : 0;
+          const cartsItem = carts.find((item) => item.id === product.id);
+          const quantity = cartsItem ? cartsItem.quantity : 0;
 
           return (
-            <div key={product.id} className="d-flex flex-row mb-4 p-5 shadow-lg border rounded " style={{ justifyContent: " space-between", width: "1500px" }}>
+            <div key={product.id} className="d-flex flex-row mb-4 p-5 shadow-lg rounded " style={{ justifyContent: " space-between", width: "1500px" }}>
               <div className="d-flex flex-row">
                 {/* Right Section */}
                 <div className="d-flex flex-column align-items-center m-3">
@@ -132,7 +132,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, cart }) =
                           "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
                         }
                         alt={img.productName || "Product Image"}
-                        className="card-imgs"
+                        className="card-imgs shadow rounded border"
                       />
                     ))}
                   </div>
