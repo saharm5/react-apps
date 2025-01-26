@@ -63,7 +63,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, cart }) =
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchProducts("http://localhost:8000/data?id=" + 2);
+        const data = await fetchProducts("http://localhost:8000/data1?id=" + 2);
         setProducts(data);
       } catch (error) {
         console.error("Error fetching product data:", error);
