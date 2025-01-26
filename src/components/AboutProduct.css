@@ -7,17 +7,10 @@
     position: relative;
   }
    */
-.card {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
 
-.btnI {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
+
+
 
 .card-img-top {
   object-fit: contain;
@@ -31,7 +24,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
   border: none;
-  max-width: 300px;
+  max-width: 400px;
 }
 
 
@@ -70,24 +63,6 @@
 } */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .Products-imgs {
   margin-inline: 10px;
   overflow-x: auto;
@@ -102,38 +77,31 @@
   cursor: pointer;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Scrollbar styling */
 .Products-imgs::-webkit-scrollbar {
   width: 10px;
-  height: 10px; /* Ensure horizontal scrollbar is styled */
+  height: 10px;
+  /* Ensure horizontal scrollbar is styled */
 }
 
 .Products-imgs::-webkit-scrollbar-thumb {
-  background-color: #888; /* Add visible color for thumb */
+  background-color: #888;
+  /* Add visible color for thumb */
   border-radius: 10px;
-  border: 2px solid transparent; /* Adds spacing around the thumb */
-  background-clip: content-box; /* Ensures visible spacing */
+  border: 2px solid transparent;
+  /* Adds spacing around the thumb */
+  background-clip: content-box;
+  /* Ensures visible spacing */
 }
 
 .Products-imgs::-webkit-scrollbar-thumb:hover {
-  background-color: #555; /* Darker color on hover */
+  background-color: #555;
+  /* Darker color on hover */
 }
 
 .Products-imgs::-webkit-scrollbar-track {
-  background: #ffffff; /* Light background for track */
+  background: #ffffff;
+  /* Light background for track */
   border-radius: 10px;
   border: 2px solid #ffffff;
 }
@@ -143,4 +111,52 @@
   background-color: transparent;
   width: 0px;
   height: 15px;
+}
+
+
+
+.productName {
+  font-size: 18px;
+}
+
+.productDetails {
+  font-size: 15px;
+}
+
+.productbrand {
+  font-size: 15px;
+
+}
+
+.productbrand a {
+  text-decoration: none;
+
+}
+
+.productcategory {
+  font-size: 15px;
+}
+
+.productcategory a {
+  text-decoration: none;
+
+}
+
+.ulsize li {
+  font-size: 14px;
+
+}
+
+
+.LeftSection {
+  position: relative;
+  height: 100vh;
+  border: solid 1px rgb(186, 226, 233);
+  max-height: 350px;
+}
+.btncard{
+  position: absolute;
+  left: 50%; /* Center horizontally */
+  bottom: 25px; /* Align to the bottom */
+  transform: translateX(-50%);
 }
