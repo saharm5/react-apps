@@ -14,7 +14,7 @@
 .CardGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit,
-      minmax(120px, 1fr));
+      minmax(150px, 0fr));
   /* Responsive layout */
   gap: 40px;
   width: 100%;
