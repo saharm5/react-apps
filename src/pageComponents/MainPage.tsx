@@ -89,92 +89,62 @@ const MainPage: React.FC = () => {
 
   const categories = [
     {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/kharbar.png?raw=true",
+      imageSrc: "./src/assets/Img/kharbar.png",
       categoryName: "خواربار",
       categoryLink: "#",
     },
     {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/Spice.png?raw=true",
+      imageSrc: "./src/assets/Img/Spice.png",
       categoryName: "ادویه و چاشنی",
       categoryLink: "#",
     },
     {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/cannedfood.png?raw=true",
+      imageSrc: "./src/assets/Img/cannedfood.png",
       categoryName: " غذای آماده",
       categoryLink: "#",
     },
     {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/kharbar.png?raw=true",
+      imageSrc: "./src/assets/Img/kharbar.png",
       categoryName: "خواربار",
       categoryLink: "#",
     },
     {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/tanagholat.png?raw=true",
-      categoryName: "تنقلات",
-      categoryLink: "#",
-    },
-    {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/labaniat.png?raw=true",
-      categoryName: "لبنیات",
-      categoryLink: "#",
-    },
-    {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/behdashti.png?raw=true",
-      categoryName: " بهداشتی",
-      categoryLink: "#",
-    },
-    {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/cannedfood.png?raw=true",
+      imageSrc: "./src/assets/Img/cannedfood.png",
       categoryName: " غذای آماده",
       categoryLink: "#",
     },
     {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/nezafat.png?raw=true",
+      imageSrc: "./src/assets/Img/nezafat.png",
       categoryName: "نظافت خانه",
       categoryLink: "#",
     },
     {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/kharbar.png?raw=true",
+      imageSrc: "./src/assets/Img/kharbar.png",
       categoryName: "خواربار",
       categoryLink: "#",
     },
     {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/tanagholat.png?raw=true",
-      categoryName: "تنقلات",
-      categoryLink: "#",
-    },
-    {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/labaniat.png?raw=true",
-      categoryName: "لبنیات",
-      categoryLink: "#",
-    },
-    {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/behdashti.png?raw=true",
-      categoryName: " بهداشتی",
-      categoryLink: "#",
-    },
-    {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/cannedfood.png?raw=true",
+      imageSrc: "./src/assets/Img/cannedfood.png",
       categoryName: " غذای آماده",
       categoryLink: "#",
     },
     {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/kharbar.png?raw=true",
+      imageSrc: "./src/assets/Img/kharbar.png",
       categoryName: "خواربار",
       categoryLink: "#",
     },
     {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/tanagholat.png?raw=true",
+      imageSrc: "./src/assets/Img/tanagholat.png",
       categoryName: "تنقلات",
       categoryLink: "#",
     },
     {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/labaniat.png?raw=true",
+      imageSrc: "./src/assets/Img/labaniat.png",
       categoryName: "لبنیات",
       categoryLink: "#",
     },
     {
-      imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/behdashti.png?raw=true",
+      imageSrc: "./src/assets/Img/behdashti.png",
       categoryName: " بهداشتی",
       categoryLink: "#",
     },
@@ -182,20 +152,20 @@ const MainPage: React.FC = () => {
 
 
   const brandData = [
-    { imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/mihan.png?raw=true", BrandName: "میهن" },
-    { imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/Tak.png?raw=true", BrandName: "تک" },
-    { imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/Yekvayek.png?raw=true", BrandName: "یک و یک" },
-    { imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/coca.jpg?raw=true", BrandName: "کوکاکولا" },
-    { imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/mazmaz.png?raw=true", BrandName: "مزمز" },
-    { imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/Choopan.png?raw=true", BrandName: "چوپان" },
-    { imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/pril.png?raw=true", BrandName: "پریل" },
-    { imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/Kaleh.png?raw=true", BrandName: "کاله" },
-    { imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/Mahram.png?raw=true", BrandName: "مهرام" },
-    { imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/Damdaran.png?raw=true", BrandName: "دامداران" },
-    { imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/Golestan.png?raw=true", BrandName: "گلستان" },
-    { imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/ChinChin.png?raw=true", BrandName: "چین چین" },
-    { imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/Minoo.png?raw=true", BrandName: "مینو" },
-    { imageSrc: "https://github.com/saharm5/react-apps/blob/main/src/assets/Img/3dots.png?raw=true", BrandName: "بیشتر " },
+    { imageSrc: "./src/assets/Img/mihan.png", BrandName: "میهن" },
+    { imageSrc: "./src/assets/Img/Tak.png", BrandName: "تک" },
+    { imageSrc: "./src/assets/Img/Yekvayek.png", BrandName: "یک و یک" },
+    { imageSrc: " ./src/assets/Img/cocacola.png", BrandName: "کوکاکولا" },
+    { imageSrc: " ./src/assets/Img/mazmaz.png", BrandName: "مزمز" },
+    { imageSrc: " ./src/assets/Img/Choopan.png", BrandName: "چوپان" },
+    { imageSrc: " ./src/assets/Img/pril.png", BrandName: "پریل" },
+    { imageSrc: " ./src/assets/Img/Kaleh.png", BrandName: "کاله" },
+    { imageSrc: " ./src/assets/Img/Mahram.png", BrandName: "مهرام" },
+    { imageSrc: " ./src/assets/Img/Damdaran.png", BrandName: "دامداران" },
+    { imageSrc: " ./src/assets/Img/Golestan.png", BrandName: "گلستان" },
+    { imageSrc: " ./src/assets/Img/ChinChin.png", BrandName: "چین چین" },
+    { imageSrc: " ./src/assets/Img/Minoo.png", BrandName: "مینو" },
+    { imageSrc: " ./src/assets/Img/3dots.png", BrandName: "بیشتر " },
   ];
 
 
