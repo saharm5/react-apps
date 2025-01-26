@@ -51,7 +51,7 @@
 }
 
 .Brand-circle__image {
-  object-fit: cover;
+  object-fit: fill;
 }
 
 /* Hover Effect */
