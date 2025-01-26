@@ -78,6 +78,12 @@ body {
   /* Equal width for both components */
 }
 
+
+
+.bodyproductcard{
+  display: flex;
+  justify-content: space-between;
+}
 /* General Styles */
 
 /* @media (max-width: 1024px) {
