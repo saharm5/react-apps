@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../styles/global.css";
 import { fetchProducts } from '../server/api';
+import useBodyClass from "../components/useBodyClass"
 
 interface Product {
   id: number;
@@ -27,6 +28,7 @@ const MainPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [cart, setCart] = useState<{ id: number; quantity: number }[]>([]);
 
+  useBodyClass("body-main");
 
 
   useEffect(() => {
@@ -36,15 +38,6 @@ const MainPage: React.FC = () => {
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, []);
-
-
-  useEffect(() => {
-    document.body.classList.add("body-main");
-
-    return () => {
-      document.body.classList.remove("body-main");
-    };
   }, []);
 
 
@@ -152,20 +145,20 @@ const MainPage: React.FC = () => {
 
 
   const brandData = [
-    { imageSrc: "./src/assets/Img/mihan.png", BrandName: "میهن" },
-    { imageSrc: "./src/assets/Img/Tak.png", BrandName: "تک" },
-    { imageSrc: "./src/assets/Img/Yekvayek.png", BrandName: "یک و یک" },
-    { imageSrc: " ./src/assets/Img/cocacola.png", BrandName: "کوکاکولا" },
-    { imageSrc: " ./src/assets/Img/mazmaz.png", BrandName: "مزمز" },
-    { imageSrc: " ./src/assets/Img/Choopan.png", BrandName: "چوپان" },
-    { imageSrc: " ./src/assets/Img/pril.png", BrandName: "پریل" },
-    { imageSrc: " ./src/assets/Img/Kaleh.png", BrandName: "کاله" },
-    { imageSrc: " ./src/assets/Img/Mahram.png", BrandName: "مهرام" },
-    { imageSrc: " ./src/assets/Img/Damdaran.png", BrandName: "دامداران" },
-    { imageSrc: " ./src/assets/Img/Golestan.png", BrandName: "گلستان" },
-    { imageSrc: " ./src/assets/Img/ChinChin.png", BrandName: "چین چین" },
-    { imageSrc: " ./src/assets/Img/Minoo.png", BrandName: "مینو" },
-    { imageSrc: " ./src/assets/Img/3dots.png", BrandName: "بیشتر " },
+    { imageSrc: "./src/assets/Img/mihan.svg", BrandName: "میهن" },
+    { imageSrc: "./src/assets/Img/Tak.svg", BrandName: "تک" },
+    { imageSrc: "./src/assets/Img/Yekvayek.svg", BrandName: "یک و یک" },
+    { imageSrc: " ./src/assets/Img/Alis.svg", BrandName: "عالیس" },
+    { imageSrc: " ./src/assets/Img/mazmaz.svg", BrandName: "مزمز" },
+    { imageSrc: " ./src/assets/Img/Choopan.svg", BrandName: "چوپان" },
+    { imageSrc: " ./src/assets/Img/Ramak.svg", BrandName: "رامک" },
+    { imageSrc: " ./src/assets/Img/Kaleh.svg", BrandName: "کاله" },
+    { imageSrc: " ./src/assets/Img/Mahram.svg", BrandName: "مهرام" },
+    { imageSrc: " ./src/assets/Img/Damdaran.svg", BrandName: "دامداران" },
+    { imageSrc: " ./src/assets/Img/Golestan.svg", BrandName: "گلستان" },
+    { imageSrc: " ./src/assets/Img/ChinChin.svg", BrandName: "چین چین" },
+    { imageSrc: " ./src/assets/Img/Minoo.svg", BrandName: "مینو" },
+    { imageSrc: " ./src/assets/Img/SunIch.svg", BrandName: "سن ایچ " },
   ];
 
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FooterResponsive from "../components/FooterResponsive";
-import { fetchProducts } from '../server/api'; 
+import { fetchProducts } from '../server/api';
 import "../styles/global.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,6 +9,7 @@ import Header from "../components/Header";
 import HeaderSearchProducts from "../components/HeaderSearchProducts";
 import Filter from "../components/Filters";
 import Footer from "../components/Footer";
+import useBodyClass from "../components/useBodyClass"
 
 
 interface Product {
@@ -26,16 +27,19 @@ interface Product {
 const ProductsPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
-
+  
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [cart, setCart] = useState<{ id: number; quantity: number }[]>([]);
-
+  
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000000]);
   const [onlyAvailable, setOnlyAvailable] = useState(false);
+  
+  useBodyClass("body-main");
 
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -46,22 +50,16 @@ const ProductsPage: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    document.body.classList.add("body-main");
 
-    return () => {
-      document.body.classList.remove("body-main");
-    };
-  }, []);
 
-  const [error, setError] = useState<string | null>(null); 
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await fetchProducts("http://localhost:8000/data/");
         setProducts(data);
-        setFilteredProducts(data); 
+        setFilteredProducts(data);
       } catch (err) {
         setError('Failed to fetch products');
       }
@@ -69,7 +67,7 @@ const ProductsPage: React.FC = () => {
 
     fetchData();
   }, []);
-  
+
 
   const applyFilters = () => {
     const filtered = products.filter((product) => {
