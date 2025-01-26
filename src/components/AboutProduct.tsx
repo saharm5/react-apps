@@ -129,7 +129,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                   {expandedImg && (
                     <div className="expanded-image-overlay">
                       <div className="expanded-image-container">
-                        <span className="close-btn px-3 rounded-4" style={{backgroundColor:"rgba(63, 91, 122, 0.226)"}} onClick={closeImage}>
+                        <span className="close-btn px-3 rounded-4" style={{ backgroundColor: "rgba(63, 91, 122, 0.226)" }} onClick={closeImage}>
                           &times;
                         </span>
                         <img src={expandedImg} alt={imgText} />
@@ -160,13 +160,28 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                   </div>
                 </div>
               </div>
-
-              {/* Center Section */}
+              {/* center Section */}
               <div className="d-flex flex-column mx-5 gap-1 p-4">
-                <p className="fw-bold">{product.productName}</p>
-                <p><strong>توضیحات محصول: </strong>{product.productDetails || "ثبت نشده"}</p>
-                <p><strong>دسته بندی: </strong>{product.category || "ثبت نشده"}</p>
-                <p><strong>برند: </strong>{product.brand}</p>
+                <div>
+                  <p id="productName" className="fw-bold productName" >{product.productName}</p>
+                  <p id="productDetails" className="productDetails"><strong>توضیحات محصول : </strong>{product.productDetails}</p>
+                  <p id="category" className="productcategory"><strong> دسته بندی : </strong><a href="#">{product.category}</a></p>
+                  <p id="brand" className="productbrand"><strong> برند:</strong> <a href="#">{product.brand}</a></p>
+                </div>
+                <div>
+                  <h6 className="my-2">ویژگی های محصول:</h6>
+                  <ul className="px-2 ulsize">
+                    <li className="d-block ">
+                      <p className="m-0"> تاریخ تولید: {product.productName || "ثبت نشده"}</p>
+                    </li>
+                    <li className="d-block">
+                      <p className="m-0"> تاریخ انقضا: {product.productName || "ثبت نشده"}</p>
+                    </li>
+                    <li className="d-block">
+                      <p className="m-0"> ابعاد بسته بندی: {product.productName || "ثبت نشده"}</p>
+                    </li>
+                  </ul>
+                </div>
               </div>
 
               {/* Left Section */}
@@ -191,7 +206,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
           );
         })
       )}
-    </div>
+    </div >
   );
 };
 
