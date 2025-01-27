@@ -94,6 +94,20 @@
 /* .container {
   width: 250px;
 } */
+.image-nav-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.image-nav-buttons button {
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
 
 
 .Products-imgs {

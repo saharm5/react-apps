@@ -34,19 +34,33 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
   const [favorit, setFavorit] = useState<boolean>(false);
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [products, setProducts] = useState<Product[]>([]);
-  const [expandedImg, setExpandedImg] = useState<string | null>(null);
+  const [expandedImgIndex, setExpandedImgIndex] = useState<number | null>(null);
   const [imgText, setImgText] = useState<string>("");
 
   // Handle image click to expand
-  const handleImageClick = (src: string, alt: string) => {
-    setExpandedImg(src);
-    setImgText(alt);
+  const handleImageClick = (index: number, alt: string) => {
+    setExpandedImgIndex(index);
+    setImgText("");
   };
 
   // Close the expanded image
   const closeImage = () => {
-    setExpandedImg(null);
+    setExpandedImgIndex(null);
     setImgText("");
+  };
+
+  // Navigate to previous image
+  const handlePrevImage = (images: Image[]) => {
+    if (expandedImgIndex !== null) {
+      setExpandedImgIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : (prevIndex || images.length) - 1));
+    }
+  };
+
+  // Navigate to next image
+  const handleNextImage = (images: Image[]) => {
+    if (expandedImgIndex !== null) {
+      setExpandedImgIndex((prevIndex) => ((prevIndex || -1) + 1) % images.length);
+    }
   };
 
   // Handle adding a product to favorites
@@ -100,7 +114,11 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
           const quantity = cartsItem ? cartsItem.quantity : 0;
 
           return (
-            <div key={product.id} className="d-flex flex-row mb-5 p-5 rounded shadow-lg" style={{ justifyContent: "space-between", width: "1500px" }}>
+            <div
+              key={product.id}
+              className="d-flex flex-row mb-5 p-5 rounded shadow-lg"
+              style={{ justifyContent: "space-between", width: "1500px" }}
+            >
               {/* Right Section */}
               <div className="d-flex flex-column align-items-center m-3">
                 <div className="card position-relative mb-4">
@@ -126,36 +144,68 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                   </div>
 
                   {/* Product Images */}
-                  {expandedImg && (
+                  {expandedImgIndex !== null && (
                     <div className="expanded-image-overlay">
-                      <div className="expanded-image-container">
-                        <span className="close-btn px-3 rounded-4" style={{ backgroundColor: "rgba(63, 91, 122, 0.226)" }} onClick={closeImage}>
+                      <div className="expanded-image-container d-flex flex-column align-items-center">
+                        <span
+                          className="close-btn px-3 rounded-4 mb-2"
+                          style={{ backgroundColor: "rgba(63, 91, 122, 0.226)" }}
+                          onClick={closeImage}
+                        >
                           &times;
                         </span>
-                        <img src={expandedImg} alt={imgText} />
-                        <p>{imgText}</p>
+                        <img
+                          src={
+                            product.SubproductImages[expandedImgIndex]?.productImageSrc || ""
+                          }
+                          alt={imgText}
+                          style={{height:"750px"  }}
+                          className="img-fluid rounded"
+                        />
+                        <div className="d-flex justify-content-center gap-3 mt-3">
+                          <div className="d-flex justify-content-between">
+                            <button
+                              className="btn btn-outline position-absolute top-50 translate-middle-y"
+                              style={{ left: "0", height:"600px", border:"none"  }}
+                              onClick={() => handlePrevImage(product.SubproductImages)}
+                            >
+                               <i className="bi bi-chevron-left" style={{fontSize:"20px"}}></i>
+                            </button>
+                            <button
+                              className="btn btn-outline position-absolute top-50 translate-middle-y"
+                              style={{ right: "0", height:"600px", border:"none" }}
+                              onClick={() => handleNextImage(product.SubproductImages)}
+                            >
+                               <i className="bi bi-chevron-right" style={{fontSize:"20px"}}></i>
+                            </button>
+                          </div>
+
+                        </div>
                       </div>
                     </div>
                   )}
-                  <div className="mb-3 shadow-lg rounded-5 ">
 
+                  <div className="mb-3 shadow-lg rounded-5 ">
                     <img
                       src={
                         product.SubproductImages[0]?.productImageSrc ||
                         "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
                       }
                       alt={product.productName || "Product"}
-                      className="card-img-top "
+                      className="card-img-top"
+                      onClick={() => handleImageClick(0, product.productName || "Product")}
                     />
-
                   </div>
                   <div className="Products-imgs d-flex flex-row gap-3 rounded">
                     {product.SubproductImages.map((img, i) => (
                       <img
                         key={i}
-                        src={img.productImageSrc || "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"}
+                        src={
+                          img.productImageSrc ||
+                          "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+                        }
                         alt={img.productName || "Product Image"}
-                        onClick={() => handleImageClick(img.productImageSrc || "", img.productName || "")}
+                        onClick={() => handleImageClick(i, img.productName || "Product Image")}
                         className="card-imgs shadow rounded border"
                       />
                     ))}
@@ -165,10 +215,20 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
               {/* center Section */}
               <div className="d-flex flex-column mx-5 gap-1 p-4">
                 <div>
-                  <p id="productName" className="fw-bold productName" >{product.productName}</p>
-                  <p id="productDetails" className="productDetails"><strong>توضیحات محصول : </strong>{product.productDetails}</p>
-                  <p id="category" className="productcategory"><strong> دسته بندی : </strong><a href="#">{product.category}</a></p>
-                  <p id="brand" className="productbrand"><strong> برند:</strong> <a href="#">{product.brand}</a></p>
+                  <p id="productName" className="fw-bold productName">
+                    {product.productName}
+                  </p>
+                  <p id="productDetails" className="productDetails">
+                    <strong>توضیحات محصول : </strong>
+                    {product.productDetails}
+                  </p>
+                  <p id="category" className="productcategory">
+                    <strong> دسته بندی : </strong>
+                    <a href="#">{product.category}</a>
+                  </p>
+                  <p id="brand" className="productbrand">
+                    <strong> برند:</strong> <a href="#">{product.brand}</a>
+                  </p>
                 </div>
                 <div>
                   <h6 className="my-2">ویژگی های محصول:</h6>
@@ -188,14 +248,18 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
 
               {/* Left Section */}
               <div className="LeftSection rounded shadow m-3 gap-5 p-4">
-                <p className="fw-bold">ارسال رایگان</p>
+                <p className="fw-bold">ارسال رایگان </p>
                 <p className="fw-bold">گارانتی اصالت و سلامت فیزیکی کالا</p>
                 <p className="fw-bold">امتیاز های این محصول: 4.5</p>
                 <div className="btncard">
                   <div className="d-flex flex-row-reverse align-items-center">
-                    <p className="text-decoration-line-through text-danger">{product.mainPrice}</p>
+                    <p className="text-decoration-line-through text-danger">
+                      {product.mainPrice}
+                    </p>
                     <p className="badge bg-success mx-2">{product.discount}</p>
-                    <p className="text-success"><strong>{product.finalPrice}</strong></p>
+                    <p className="text-success">
+                      <strong>{product.finalPrice}</strong>
+                    </p>
                   </div>
                   <CartButton
                     quantity={quantity}
@@ -208,7 +272,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
           );
         })
       )}
-    </div >
+    </div>
   );
 };
 
