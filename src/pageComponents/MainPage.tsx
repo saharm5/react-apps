@@ -12,14 +12,20 @@ import "../styles/global.css";
 import { fetchProducts } from '../server/api';
 import useBodyClass from "../components/useBodyClass"
 
+interface Image {
+  productName: string;
+  productImageSrc: string;
+}
 interface Product {
   id: number;
-  title: string;
-  price: number;
-  imageSrc: string;
+  productName: string;
+  finalPrice: number;
   description: string;
   rating: number;
+  SubproductImages: Image[];
+
 }
+
 
 const MainPage: React.FC = () => {
 
@@ -184,12 +190,15 @@ const MainPage: React.FC = () => {
                     const cartItem = cart.find((item) => item.id === product.id);
                     const quantity = cartItem?.quantity || 0;
                     return (
+
+
                       <ProductGrid
+                        idslm={product.id}
                         key={product.id}
                         id={product.id}
-                        title={product.title}
-                        price={product.price}
-                        imageUrl={product.imageSrc}
+                        title={product.productName}
+                        price={product.finalPrice}
+                        imageUrl={product.SubproductImages[0]?.productImageSrc}
                         addition={() => increaseQuantity(product.id)}
                         reduce={() => decreaseQuantity(product.id)}
                         num={quantity}

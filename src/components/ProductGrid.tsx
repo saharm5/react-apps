@@ -11,10 +11,11 @@ interface GridProps {
   id: number;
   imageUrl: string | null;
   title: string;
-  price: string;
+  price: number;
   addition: () => void;
   reduce: () => void;
   num: number;
+  idslm: number;
 }
 
 const ProductGrid: React.FC<GridProps> = ({
@@ -23,7 +24,9 @@ const ProductGrid: React.FC<GridProps> = ({
   price,
   addition,
   reduce,
-  num, }) => {
+  num,
+  idslm,
+}) => {
 
 
 
@@ -32,38 +35,40 @@ const ProductGrid: React.FC<GridProps> = ({
 
   return (
     <div className="productCards" >
+      <a href={`http://localhost:5173/ProductDetails?id=${idslm}`} style={{ textDecoration: "none" }}>
         <img
           src={imageUrl || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs9gUXKwt2KErC_jWWlkZkGabxpeGchT-fyw&s"}
           alt={title}
           className="product-image"
         />
-        <p className="product-Title">{title}</p>
-        {price && (
-          <p className="product-price">{price.toLocaleString()} تومان</p>
-        )}
-        <div className="controls">
-          {num === 0 ? (
-            <button className="add-to-cart" onClick={addition}>
-              🛒 <span>افزودن به سبد خرید</span>
+      </a>
+      <p className="product-Title">{title}</p>
+      {price && (
+        <p className="product-price">{price.toLocaleString()} تومان</p>
+      )}
+      <div className="controls">
+        {num === 0 ? (
+          <button className="add-to-cart" onClick={addition}>
+            🛒 <span>افزودن به سبد خرید</span>
+          </button>
+        ) : (
+          <div className="Quantity-Controls">
+            <button className="action-Button" onClick={addition}>
+              <span className="B-Reduce-Add" >+</span>
             </button>
-          ) : (
-            <div className="Quantity-Controls">
-              <button className="action-Button" onClick={addition}>
-                <span className="B-Reduce-Add" >+</span>
-              </button>
-              <span>{num}</span>
-              <button onClick={reduce} className="action-Button">
-                {num === 1 ? (
-                  <i className="bi bi-trash3 icon-Bg "></i>
-                ) : (
-                  <span className="B-Reduce-Add" >-</span>
-                )}
-              </button>
-            </div>
-          )}
+            <span>{num}</span>
+            <button onClick={reduce} className="action-Button">
+              {num === 1 ? (
+                <i className="bi bi-trash3 icon-Bg "></i>
+              ) : (
+                <span className="B-Reduce-Add" >-</span>
+              )}
+            </button>
+          </div>
+        )}
 
-        </div>
-    
+      </div>
+
     </div>
   );
 };

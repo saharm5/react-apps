@@ -4,11 +4,11 @@ import "./SearchProductPage.css";
 interface SearchProductPageProps {
   imageUrl: string | null;
   title: string;
-
   price?: number;
   addition: () => void;
   reduce: () => void;
   num: number;
+  idslm: number;
 }
 
 const SearchProductPage: React.FC<SearchProductPageProps> = ({
@@ -18,14 +18,17 @@ const SearchProductPage: React.FC<SearchProductPageProps> = ({
   addition,
   reduce,
   num,
+  idslm,
 }) => {
   return (
     <div className="productCards">
-      <img
-        src={imageUrl || "https://via.placeholder.com/200"}
-        alt={title}
-        className="product-image"
-      />
+      <a href={`http://localhost:5173/ProductDetails?id=${idslm}`} style={{ textDecoration: "none" }}>
+        <img
+          src={imageUrl || "https://via.placeholder.com/200"}
+          alt={title}
+          className="product-image"
+        />
+      </a>
       <p className="product-Title">{title}</p>
       {price && (
         <p className="product-price">{price.toLocaleString()} تومان</p>

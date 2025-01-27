@@ -10,6 +10,7 @@ import useBodyClass from "../components/useBodyClass"
 
 import Footer from "../components/Footer";
 import AboutProduct from "../components/AboutProduct";
+
 interface Image {
     productName: string;
     productImageSrc: string;
@@ -17,7 +18,7 @@ interface Image {
 interface Product {
     id: number;
     productName: string;
-    finalPrice: string;
+    finalPrice: number;
     description: string;
     rating: number;
     SubproductImages: Image[];
@@ -66,7 +67,7 @@ const ProductDetails: React.FC = () => {
         const fetchData = async () => {
             try {
                 const data = await fetchProducts('http://127.0.0.1:8000/data/?limit=9');
-                
+
                 setProducts(data);
             } catch (error) {
                 setError('Failed to fetch products');
@@ -130,19 +131,18 @@ const ProductDetails: React.FC = () => {
                                     const quantity = cartItem?.quantity || 0;
 
                                     return (
-                                        <a href={`http://localhost:5173/ProductDetails?id=${product.id}`} style={{ textDecoration: "none" }}>
 
-                                            <ProductGrid
-                                                key={product.id}
-                                                id={product.id}
-                                                title={product.productName}
-                                                price={product.finalPrice}
-                                                imageUrl={product.SubproductImages[0]?.productImageSrc}
-                                                addition={() => increaseQuantity(product.id)}
-                                                reduce={() => decreaseQuantity(product.id)}
-                                                num={quantity}
-                                            />
-                                        </a>
+                                        <ProductGrid
+                                            idslm={product.id}
+                                            key={product.id}
+                                            id={product.id}
+                                            title={product.productName}
+                                            price={product.finalPrice}
+                                            imageUrl={product.SubproductImages[0]?.productImageSrc}
+                                            addition={() => increaseQuantity(product.id)}
+                                            reduce={() => decreaseQuantity(product.id)}
+                                            num={quantity}
+                                        />
                                     );
                                 })}
 
