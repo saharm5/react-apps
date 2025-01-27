@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./Header.css";
 import { FaSearch } from 'react-icons/fa';
+
+
+
 const Header: React.FC = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -212,7 +215,7 @@ const Header: React.FC = () => {
             <button className="HeaderMainDropdownBtn">
               <h4>
                 <i className="bi bi-list HeaderMainDropdownIconPadding"></i>
-                <a href="http://localhost:5173/" style={{textDecoration:"none" , color:"#fff"}}>بقالی</a>
+                <a href="http://localhost:5173/" style={{ textDecoration: "none", color: "#fff" }}>بقالی</a>
               </h4>
             </button>
           </div>
@@ -254,10 +257,12 @@ const Header: React.FC = () => {
 
         {/* Center Section - Search */}
         <div className="HeaderSearchContainer">
+          
           <form className="HeaderSearchForm">
-            <button ref="http://localhost:5173/Products" className="HeaderSearchBtn" type="submit">
-              <i className="bi bi-search"></i>
-            </button>
+            <button className="HeaderSearchBtn" type="submit">
+              
+                <i className="bi bi-search"></i>
+              </button>
             <input
               className="HeaderSearchInput"
               type="search"
