@@ -212,7 +212,7 @@ const Header: React.FC = () => {
             <button className="HeaderMainDropdownBtn">
               <h4>
                 <i className="bi bi-list HeaderMainDropdownIconPadding"></i>
-                بقالی
+                <a href="http://localhost:5173/" style={{textDecoration:"none" , color:"#fff"}}>بقالی</a>
               </h4>
             </button>
           </div>
@@ -255,7 +255,7 @@ const Header: React.FC = () => {
         {/* Center Section - Search */}
         <div className="HeaderSearchContainer">
           <form className="HeaderSearchForm">
-            <button className="HeaderSearchBtn" type="submit">
+            <button ref="http://localhost:5173/Products" className="HeaderSearchBtn" type="submit">
               <i className="bi bi-search"></i>
             </button>
             <input
