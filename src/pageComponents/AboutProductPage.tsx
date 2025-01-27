@@ -10,14 +10,17 @@ import useBodyClass from "../components/useBodyClass"
 
 import Footer from "../components/Footer";
 import AboutProduct from "../components/AboutProduct";
-
+interface Image {
+    productName: string;
+    productImageSrc: string;
+}
 interface Product {
     id: number;
-    title: string;
-    price: number;
-    imageSrc: string;
+    productName: string;
+    finalPrice: string;
     description: string;
     rating: number;
+    SubproductImages: Image[];
 }
 
 
@@ -63,6 +66,7 @@ const ProductDetails: React.FC = () => {
         const fetchData = async () => {
             try {
                 const data = await fetchProducts('http://127.0.0.1:8000/data/?limit=9');
+                
                 setProducts(data);
             } catch (error) {
                 setError('Failed to fetch products');
@@ -111,7 +115,7 @@ const ProductDetails: React.FC = () => {
                         reduce={decreasesQuantity}
                         carts={carts}
                     />
-                    <div className=" shadow-lg rounded mainproductcard" style={{margin:"0px"}}>
+                    <div className=" shadow-lg rounded mainproductcard" style={{ margin: "0px" }}>
                         {/* <HeaderProductGrid /> */}
                         <div className="products-card">
                             {/* Tabs */}
@@ -119,22 +123,29 @@ const ProductDetails: React.FC = () => {
                                 <p className="ptabe">محصولات مشابه</p>
                             </div>
                             <div className="grid">
+
+
                                 {products.map((product) => {
                                     const cartItem = cart.find((item) => item.id === product.id);
                                     const quantity = cartItem?.quantity || 0;
+
                                     return (
-                                        <ProductGrid
-                                            key={product.id}
-                                            id={product.id}
-                                            title={product.title}
-                                            price={product.price}
-                                            imageUrl={product.imageSrc}
-                                            addition={() => increaseQuantity(product.id)}
-                                            reduce={() => decreaseQuantity(product.id)}
-                                            num={quantity}
-                                        />
+                                        <a href={`http://localhost:5173/ProductDetails?id=${product.id}`} style={{ textDecoration: "none" }}>
+
+                                            <ProductGrid
+                                                key={product.id}
+                                                id={product.id}
+                                                title={product.productName}
+                                                price={product.finalPrice}
+                                                imageUrl={product.SubproductImages[0]?.productImageSrc}
+                                                addition={() => increaseQuantity(product.id)}
+                                                reduce={() => decreaseQuantity(product.id)}
+                                                num={quantity}
+                                            />
+                                        </a>
                                     );
                                 })}
+
                             </div>
                         </div>
                     </div>
