@@ -5,6 +5,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { fetchProducts } from "../server/api"; // Assume this function exists
 import CartButton from "./CartButton"; // Importing the new component
 import { useSearchParams } from "react-router-dom";
+import FreeDelivery from "../assets/svg/FreeDelivery";
+import CheckShield from "../assets/svg/CheckShield";
+import Star from "../assets/svg/Star";
+import Payment from "../assets/svg/Payment"
+
+
 
 interface Image {
   productName: string;
@@ -162,7 +168,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                               product.SubproductImages[expandedImgIndex]?.productImageSrc || ""
                             }
                             alt={imgText}
-                            style={{ height: "750px" }}
+                            style={{ height: "750px", width: "750px" }}
                             className="img-fluid rounded"
                           />
                           <div className="d-flex justify-content-center gap-3 mt-3">
@@ -234,7 +240,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                     </p>
                   </div>
                   <div>
-                    <h6 className="my-2">ویژگی های محصول:</h6>
+                    <p className="my-2 fw-bold">ویژگی های محصول:</p>
                     <ul className="px-2 ulsize">
                       <li className="d-block ">
                         <p className="m-0"> تاریخ تولید: {product.productName || "ثبت نشده"}</p>
@@ -251,9 +257,22 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
               </div>
               {/* Left Section */}
               <div className="LeftSection rounded shadow m-3 gap-5 p-4">
-                <p className="fw-bold">ارسال رایگان </p>
-                <p className="fw-bold">گارانتی اصالت و سلامت فیزیکی کالا</p>
-                <p className="fw-bold">امتیاز های این محصول: 4.5</p>
+                <div className="d-flex fw-bold flex-row mb-3 gap-2">
+                  <FreeDelivery /> ارسال رایگان
+                </div>
+                <div className="d-flex fw-bold flex-row mb-3 gap-2">
+                  <CheckShield />
+                  گارانتی سلامت فیزیکی کالا
+                </div>
+                <div className="d-flex fw-bold flex-row mb-3 gap-2">
+                  <Star />
+                  امتیاز های این محصول: 4.5
+                </div>
+                <div className="d-flex fw-bold flex-row mb-3 gap-2">
+                  <Payment />
+                  پرداخت درب منزل
+                </div>
+
                 <div className="btncard">
                   <div className="d-flex flex-row-reverse align-items-center">
                     <p className="text-decoration-line-through text-danger">
