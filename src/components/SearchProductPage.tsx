@@ -21,7 +21,7 @@ const SearchProductPage: React.FC<SearchProductPageProps> = ({
   idslm,
 }) => {
   return (
-    <div className="productCards">
+    <div className="SearchProductCard">
       <a href={`http://localhost:5173/ProductDetails?id=${idslm}`} style={{ textDecoration: "none" }}>
         <img
           src={imageUrl || "https://via.placeholder.com/200"}

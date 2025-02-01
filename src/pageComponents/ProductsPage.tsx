@@ -154,17 +154,16 @@ const ProductsPage: React.FC = () => {
                   const quantity = cartItem?.quantity || 0;
 
                   return (
-                    <div key={product.id}>
-                      <SearchProductPage
-                        idslm={product.id}
-                        title={product.productName}
-                        price={product.finalPrice}
-                        imageUrl={product.SubproductImages[0]?.productImageSrc}
-                        addition={() => increaseQuantity(product.id)}
-                        reduce={() => decreaseQuantity(product.id)}
-                        num={quantity}
-                      />
-                    </div>
+                    <SearchProductPage
+                      key={product.id}
+                      idslm={product.id}
+                      title={product.productName}
+                      price={product.finalPrice}
+                      imageUrl={product.SubproductImages[0]?.productImageSrc}
+                      addition={() => increaseQuantity(product.id)}
+                      reduce={() => decreaseQuantity(product.id)}
+                      num={quantity}
+                    />
                   );
                 })
               )}

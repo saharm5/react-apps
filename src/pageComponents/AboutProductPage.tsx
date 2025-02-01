@@ -103,8 +103,7 @@ const ProductDetails: React.FC = () => {
     };
     useBodyClass("body-main");
 
-
-
+    
 
     return (
         <div>
@@ -116,7 +115,7 @@ const ProductDetails: React.FC = () => {
                         reduce={decreasesQuantity}
                         carts={carts}
                     />
-                    <div className=" shadow-lg rounded mainproductcard" style={{ margin: "0px" }}>
+                    <div className=" shadow-lg rounded mainproductcard" style={{ margin: "0px", overflow: "auto" }}>
                         {/* <HeaderProductGrid /> */}
                         <div className="products-card">
                             {/* Tabs */}
@@ -124,14 +123,10 @@ const ProductDetails: React.FC = () => {
                                 <p className="ptabe">محصولات مشابه</p>
                             </div>
                             <div className="grid">
-
-
                                 {products.map((product) => {
                                     const cartItem = cart.find((item) => item.id === product.id);
                                     const quantity = cartItem?.quantity || 0;
-
                                     return (
-
                                         <ProductGrid
                                             idslm={product.id}
                                             key={product.id}

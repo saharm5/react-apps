@@ -138,8 +138,9 @@
 
 
   .CardGrid {
-    gap: 0;
-    row-gap: 10px;
+    gap:10px;
+    justify-content: center;
+
   }
 
 }

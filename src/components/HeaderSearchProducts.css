@@ -7,8 +7,6 @@
   background-color: #ffffff;
 }
 
-
-
 .HeaderSearchProductsPTabe {
   font-size: 14px;
   padding: 12px;
@@ -18,47 +16,38 @@
 
 .HeaderSearchProductsTabes {
   display: flex;
-  padding: 0px 10px 3px;
-  margin-left: 50px;
-  margin-right: 50px;
+  padding: 0 10px 3px;
+  margin: 0 50px;
   align-items: flex-end;
   width: 80%;
   background-color: #ffffff;
-  border-bottom: solid rgba(136, 147, 180, 0.664) 1px;
+  border-bottom: 1px solid rgba(136, 147, 180, 0.664);
   justify-content: space-between;
 }
-
 
 .tab {
   width: 110px;
   height: 45px;
   background-color: #ffffff;
-  /* Dark blue color */
   color: #133e87;
-  /* White text */
   border: none;
-  padding: 0px;
+  padding: 0;
   font-size: 13px;
   font-weight: 450;
   cursor: pointer;
   border-radius: 20px;
   transition: background-color 0.3s;
-
   text-align: center;
 }
 
 .tab:hover {
   background-color: #cbdceb;
-  /* Light blue hover effect */
 }
 
 .tab.active {
   background-color: rgb(19, 62, 135);
-  /* Yellow for active tab */
   color: #f9f7f7;
-  /* Black text */
 }
-
 
 .HeaderSearchProductsNumberOfItem {
   font-size: 12px;
@@ -71,15 +60,15 @@
   list-style: none;
   margin: 0;
   background-color: #fff;
+  display: flex;
   justify-content: flex-start;
   gap: 10px;
-  display: flex;
 }
 
 .HeaderSearchProductsBreadcrumb li {
   display: inline;
   font-size: 12px;
-  padding: 0px;
+  padding: 0;
 }
 
 .HeaderSearchProductsBreadcrumb li a {
@@ -100,7 +89,6 @@
   .HSPMResponsiv {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
     justify-content: space-evenly;
     align-items: center;
   }
@@ -110,18 +98,14 @@
   }
 
   .HSPBResponsiv {
-    margin: 10PX;
-    margin-bottom: 0;
+    margin: 10px 0 0 10px;
     background-color: #fff;
     padding: 2px 10px;
-    text-decoration: none;
     color: #112d4ed0;
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    border: solid 1px #3059883b;
+    border: 1px solid #3059883b;
     border-radius: 15px;
     width: 130px;
   }
@@ -132,16 +116,15 @@
 
   .HSPBResponsiv p {
     font-size: 13px;
-    margin: 0px;
+    margin: 0;
   }
 
   .HeaderSearchProductsTabes {
     padding: 10px 0;
     position: absolute;
-    border: solid 1px #3059883b;
+    border: 1px solid #3059883b;
     border-radius: 15px;
-    margin: 12px;
-    margin-top: 0;
+    margin: 12px 0 0 12px;
     width: 124px;
     justify-content: space-around;
   }
@@ -150,10 +133,10 @@
     flex-direction: column;
     z-index: 200;
   }
+
   .tab {
     font-size: 10px;
     height: 20px;
     width: 90px;
   }
-
 }

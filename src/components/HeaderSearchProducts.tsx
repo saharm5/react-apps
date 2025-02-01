@@ -1,179 +1,75 @@
 import React, { useState } from "react";
-
 import "./HeaderSearchProducts.css";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface HeaderSearchProductsProps {
     SearchPath: string;
-    NumberOfItems: number
+    NumberOfItems: number;
 }
 
 const HeaderSearchProducts: React.FC<HeaderSearchProductsProps> = ({ SearchPath, NumberOfItems }) => {
-    const [activeTab, setActiveTab] = useState<string>("BestSeller"); // Manage active tab
+    const [activeTab, setActiveTab] = useState<string>("BestSeller");
     const [isSortingDropdownVisible, setIsSortingDropdownVisible] = useState(false);
-    const handleTabClick = (tab: string) => {
-        setActiveTab(tab);
-    };
-    const toggleSortingDropdown = () => {
-        setIsSortingDropdownVisible((prev) => !prev);
-    };
+
+    const handleTabClick = (tab: string) => setActiveTab(tab);
+    const toggleSortingDropdown = () => setIsSortingDropdownVisible(prev => !prev);
+
+    const tabs = [
+        { key: "BestSeller", label: "پرفروش ترین" },
+        { key: "Discounted", label: "بیشترین تخفیف" },
+        { key: "Viewed", label: "پربازدیدترین" },
+        { key: "Popular", label: "محبوب ترین" },
+        { key: "Newest", label: "جدید ترین" },
+        { key: "Cheapest", label: "ارزان ترین" },
+        { key: "Expensive", label: "گرانترین" },
+    ];
+
+    const renderTabs = () => (
+        <ul className="HeaderSearchProductsBreadcrumb">
+            {tabs.map(tab => (
+                <li key={tab.key}>
+                    <button
+                        className={`tab ${activeTab === tab.key ? "active" : ""}`}
+                        onClick={() => handleTabClick(tab.key)}
+                    >
+                        {tab.label}
+                    </button>
+                </li>
+            ))}
+
+        </ul>
+    );
+
     return (
         <div>
-            {/* max-width: 950px */}
             <div className="HSPMResponsiv">
-
                 <div className="HSPDResponsiv">
-
-                    <button className="HSPBResponsiv " onClick={toggleSortingDropdown}>
-                        <p className="">مرتب سازی</p>
+                    <button className="HSPBResponsiv" onClick={toggleSortingDropdown}>
+                        <p>مرتب سازی</p>
                         <FontAwesomeIcon icon={faChevronDown} />
                     </button>
-                    {isSortingDropdownVisible && (
-                        <div className=" HeaderSearchProductsTabes ">
-                            <ul className="HeaderSearchProductsBreadcrumb">
-                                <li>
-                                    <button
-                                        className={`tab ${activeTab === "BestSeller" ? "active" : ""}`}
-                                        onClick={() => handleTabClick("BestSeller")}
-                                    >
-                                        پرفروش ترین
-                                    </button>
-                                </li>
-                                <li>
-                                    <button
-                                        className={`tab ${activeTab === "Discounted" ? "active" : ""}`}
-                                        onClick={() => handleTabClick("Discounted")}
-                                    >
-                                        بیشترین تخفیف
-                                    </button>
-                                </li>
-                                <li>
-                                    <button
-                                        className={`tab ${activeTab === "Viewed" ? "active" : ""}`}
-                                        onClick={() => handleTabClick("Viewed")}
-                                    >
-                                        پربازدیدترین
-                                    </button>
-                                </li>
-                                <li>
-                                    <button
-                                        className={`tab ${activeTab === "Popular" ? "active" : ""}`}
-                                        onClick={() => handleTabClick("Popular")}
-                                    >
-                                        محبوب ترین
-                                    </button>
-                                </li>
-                                <li>
-                                    <button
-                                        className={`tab ${activeTab === "Newest" ? "active" : ""}`}
-                                        onClick={() => handleTabClick("Newest")}
-                                    >
-                                        جدید ترین
-                                    </button>
-                                </li>
-                                <li>
-                                    <button
-                                        className={`tab ${activeTab === "Cheapest" ? "active" : ""}`}
-                                        onClick={() => handleTabClick("Cheapest")}
-                                    >
-                                        ارزان ترین
-                                    </button>
-                                </li>
-                                <li>
-                                    <button
-                                        className={`tab ${activeTab === "Expensive" ? "active" : ""}`}
-                                        onClick={() => handleTabClick("Expensive")}
-                                    >
-                                        گرانترین
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    )}
+                    {isSortingDropdownVisible && <div className="HeaderSearchProductsTabes">{renderTabs()}</div>}
                 </div>
                 <div className="HSPDResponsiv">
-
                     <button className="HSPBResponsiv">
-                        <p className="">فیلتر ها </p>
+                        <p>فیلتر ها</p>
                         <FontAwesomeIcon icon={faChevronDown} />
                     </button>
                 </div>
             </div>
-            {/* min-width: 950px */}
-            <div className="HeaderSearchProductsMain ">
+            <div className="HeaderSearchProductsMain">
                 <div className="HeaderSearchProductsPTabe">
-                    <p className="">{SearchPath}</p>
+                    <p>{SearchPath}</p>
                 </div>
-                {/* tabs */}
-                <div className=" HeaderSearchProductsTabes ">
-                    <ul className="HeaderSearchProductsBreadcrumb">
-                        <li>
-                            <button
-                                className={`tab ${activeTab === "BestSeller" ? "active" : ""}`}
-                                onClick={() => handleTabClick("BestSeller")}
-                            >
-                                پرفروش ترین
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                className={`tab ${activeTab === "Discounted" ? "active" : ""}`}
-                                onClick={() => handleTabClick("Discounted")}
-                            >
-                                بیشترین تخفیف
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                className={`tab ${activeTab === "Viewed" ? "active" : ""}`}
-                                onClick={() => handleTabClick("Viewed")}
-                            >
-                                پربازدیدترین
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                className={`tab ${activeTab === "Popular" ? "active" : ""}`}
-                                onClick={() => handleTabClick("Popular")}
-                            >
-                                محبوب ترین
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                className={`tab ${activeTab === "Newest" ? "active" : ""}`}
-                                onClick={() => handleTabClick("Newest")}
-                            >
-                                جدید ترین
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                className={`tab ${activeTab === "Cheapest" ? "active" : ""}`}
-                                onClick={() => handleTabClick("Cheapest")}
-                            >
-                                ارزان ترین
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                className={`tab ${activeTab === "Expensive" ? "active" : ""}`}
-                                onClick={() => handleTabClick("Expensive")}
-                            >
-                                گرانترین
-                            </button>
-                        </li>
-                    </ul>
-                    {/* Number of items */}
+                <div className="HeaderSearchProductsTabes">{renderTabs()}
                     <div className="HeaderSearchProductsNumberOfItem">{NumberOfItems} عدد</div>
                 </div>
             </div>
+
         </div>
 
-
-    )
-}
+    );
+};
 
 export default HeaderSearchProducts;
-
