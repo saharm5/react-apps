@@ -76,7 +76,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
     setFavorit(!favorit);
     if (!favorit) {
       try {
-        const response = await axios.get("/save-data/", {
+        const response = await axios.get("/save_data/", {
           params: { data: window.location.href },
         });
         console.log(`Product ${id} added to favorites`, response.data);
