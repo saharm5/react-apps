@@ -72,11 +72,12 @@ const MainPage: React.FC = () => {
     });
   };
 
+  const limit =10
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchProducts('http://127.0.0.1:8000/data/?limit=10');
+        const data = await fetchProducts('/data/?limit='+limit);
         setProducts(data);
       } catch (error) {
         setError('Failed to fetch products');

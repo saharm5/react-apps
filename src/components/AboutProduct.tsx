@@ -76,7 +76,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
     setFavorit(!favorit);
     if (!favorit) {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/save-data/", {
+        const response = await axios.get("/save-data/", {
           params: { data: window.location.href },
         });
         console.log(`Product ${id} added to favorites`, response.data);
@@ -102,7 +102,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchProducts("http://localhost:8000/data1?id=" + value);
+        const data = await fetchProducts("/data1?id=" + value);
         setProducts(data);
       } catch (error) {
         console.error("Error fetching product data:", error);

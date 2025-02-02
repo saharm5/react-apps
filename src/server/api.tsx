@@ -1,7 +1,7 @@
 // برای درخواست GET
 export const fetchProducts = async (url: string) => {
     try {
-        const response = await fetch(url);
+        const response = await fetch("http://192.168.110.104:5000"+ url);
         if (!response.ok) {
             throw new Error("Failed to fetch products");
         }
@@ -13,10 +13,11 @@ export const fetchProducts = async (url: string) => {
     }
 };
 
+
 // برای درخواست POST
 export const submitForm = async (url: string, formData: object) => {
     try {
-        const response = await fetch(url, {
+        const response = await fetch("http://192.168.110.104:5000"+ url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -62,11 +62,13 @@ const ProductDetails: React.FC = () => {
         });
     };
 
+      const limit =9
+    
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await fetchProducts('http://127.0.0.1:8000/data/?limit=9');
+                const data = await fetchProducts('/data/?limit='+limit);
 
                 setProducts(data);
             } catch (error) {
