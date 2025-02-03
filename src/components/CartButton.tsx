@@ -1,4 +1,5 @@
 import React from "react";
+import AddToCart from "../assets/svg/AddToCart";
 
 interface CartButtonProps {
     quantity: number;
@@ -28,7 +29,7 @@ const CartButton: React.FC<CartButtonProps> = ({ quantity, onAdd, onReduce }) =>
 
                     onClick={onAdd}
                 >
-                    🛒 <span className="ms-2">افزودن به سبد خرید</span>
+                    <AddToCart /> <span className="m-2">افزودن به سبد خرید</span>
                 </button>
             ) : (
                 <div className="d-flex bg-primary rounded align-items-center gap-2 h-100" style={{

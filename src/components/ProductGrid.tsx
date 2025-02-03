@@ -46,10 +46,11 @@ const ProductGrid: React.FC<GridProps> = ({
       {price && (
         <p className="product-price">{price.toLocaleString()} تومان</p>
       )}
+      {/* اینجا میخواد mainPriceو  discountو  finalPrice بیاد */}
       <div className="controls">
         {num === 0 ? (
           <button className="add-to-cart" onClick={addition}>
-            🛒 <span>افزودن به سبد خرید</span>
+             <span>افزودن به سبد خرید</span>
           </button>
         ) : (
           <div className="Quantity-Controls">

@@ -36,7 +36,7 @@ const SearchProductPage: React.FC<SearchProductPageProps> = ({
       <div className="controls">
         {num === 0 ? (
           <button className="add-to-cart" onClick={addition}>
-            🛒 <span>افزودن به سبد خرید</span>
+             <span>افزودن به سبد خرید</span>
           </button>
         ) : (
           <div className="Quantity-Controls">
