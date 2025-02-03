@@ -58,16 +58,15 @@ const ProductsPage: React.FC = () => {
 
 
 
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchProducts("http://localhost:8000/data/");
+        const data = await fetchProducts("/data/");
         setProducts(data);
         setFilteredProducts(data);
       } catch (err) {
-        setError('Failed to fetch products');
+        Error('Failed to fetch products');
       }
     };
 
