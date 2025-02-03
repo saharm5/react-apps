@@ -283,7 +283,7 @@ const Header: React.FC = () => {
           <a href="http://localhost:5173/login" className="HeaderIcon" aria-label="User Profile">
             <i className="bi bi-person"></i>
           </a>
-          <a href="#" className="HeaderIcon" aria-label="Shopping Cart">
+          <a href="https://www.digikala.com/checkout/cart/" className="HeaderIcon" aria-label="Shopping Cart">
             <i className="bi bi-cart"></i>
           </a>
           <a href="#" className="HeaderIcon" aria-label="Wishlist">
