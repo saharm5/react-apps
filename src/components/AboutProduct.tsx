@@ -18,6 +18,9 @@ interface Image {
 }
 
 interface Product {
+  Production: string | null;
+  Expiration: string | null;
+  size: string | null;
   id: number;
   productImageSrc: string | null;
   productName: string;
@@ -25,9 +28,9 @@ interface Product {
   subCategory: string | null;
   productDetails: string | null;
   brand: string;
-  mainPrice: string;
-  discount: string;
-  finalPrice: string;
+  mainPrice: number;
+  discount: number;
+  finalPrice: number;
   SubproductImages: Image[];
 }
 
@@ -71,13 +74,13 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
     }
   };
 
-  // Handle adding a product to favorites
+  //  خرایههههه Handle adding a product to favorites
   const handleAddFavorit = async (id: number) => {
     setFavorit(!favorit);
     if (!favorit) {
       try {
-        const response = await axios.get("/save_data/", {
-          params: { data: window.location.href },
+        const response = await axios.get("http://192.168.110.104:5000/save-data/", {
+          params: { url: window.location.href, id },
         });
         console.log(`Product ${id} added to favorites`, response.data);
       } catch (error) {
@@ -86,6 +89,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
       }
     }
   };
+  
 
   // Handle copying the product link
   const handleCopyLink = () => {
@@ -102,7 +106,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchProducts("/data1?id=" + value);
+        const data = await fetchProducts("/data?id=" + value);
         setProducts(data);
       } catch (error) {
         console.error("Error fetching product data:", error);
@@ -243,13 +247,13 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                     <p className="my-2 fw-bold">ویژگی های محصول:</p>
                     <ul className="px-2 ulsize">
                       <li className="d-block ">
-                        <p className="m-0"> تاریخ تولید: {product.productName || "ثبت نشده"}</p>
+                        <p className="m-0"> تاریخ تولید: {product.Production || "ثبت نشده"}</p>
                       </li>
                       <li className="d-block">
-                        <p className="m-0"> تاریخ انقضا: {product.productName || "ثبت نشده"}</p>
+                        <p className="m-0"> تاریخ انقضا: {product.Expiration || "ثبت نشده"}</p>
                       </li>
                       <li className="d-block">
-                        <p className="m-0"> ابعاد بسته بندی: {product.productName || "ثبت نشده"}</p>
+                        <p className="m-0"> ابعاد بسته بندی: {product.size || "ثبت نشده"}</p>
                       </li>
                     </ul>
                   </div>
@@ -257,30 +261,32 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
               </div>
               {/* Left Section */}
               <div className="LeftSection rounded shadow m-3 gap-5 p-4">
-                <div className="d-flex fw-bold flex-row mb-3 gap-2">
+                <div className="d-flex  flex-row mb-3 gap-2">
                   <FreeDelivery /> ارسال رایگان
                 </div>
-                <div className="d-flex fw-bold flex-row mb-3 gap-2">
+                <div className="d-flex  flex-row mb-3 gap-2">
                   <CheckShield />
                   گارانتی سلامت فیزیکی کالا
                 </div>
-                <div className="d-flex fw-bold flex-row mb-3 gap-2">
+                <div className="d-flex  flex-row mb-3 gap-2">
                   <Star />
                   امتیاز های این محصول: 4.5
                 </div>
-                <div className="d-flex fw-bold flex-row mb-3 gap-2">
+                <div className="d-flex  flex-row mb-3 gap-2">
                   <Payment />
                   پرداخت درب منزل
                 </div>
 
                 <div className="btncard">
-                  <div className="d-flex flex-row-reverse align-items-center">
-                    <p className="text-decoration-line-through text-danger">
-                      {product.mainPrice}
-                    </p>
-                    <p className="badge bg-success mx-2">{product.discount}</p>
-                    <p className="text-success">
-                      <strong>{product.finalPrice}</strong>
+                  <div className="d-flex flex-column align-items-end gap-2 m-3">
+                    <div className="d-flex flex-row gap-2">
+                      <p className="text-decoration-line-through text-muted m-0" style={{ fontSize: " 12px" }}>
+                        {product.mainPrice.toLocaleString()} تومان
+                      </p>
+                      <p className="badge mb-1 p-1" style={{ backgroundColor: "#d32f2f" }}>% {product.discount}</p>
+                    </div>
+                    <p className=" m-0">
+                      <strong style={{ fontSize: " 17px" }}>{product.finalPrice.toLocaleString()} تومان</strong>
                     </p>
                   </div>
                   <CartButton
