@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Filters.css";
+import { fetchProducts } from '../server/api';
 
 
 interface FilterProps {
@@ -31,46 +32,31 @@ const Filter: React.FC<FilterProps> = ({
     const [categoryFilter, setCategoryFilter] = useState("");
     const [isBrandDropdownVisible, setIsBrandDropdownVisible] = useState(false);
     const [brandFilter, setBrandFilter] = useState("");
+    // const [brands, setBrands] = useState<string[]>([]);
+    // const [categories, setcategories] = useState<string[]>([]);
+
+
+
+    const [categories, setCategories] = useState<string[]>([]);
     const [brands, setBrands] = useState<string[]>([]);
 
-    const categories = [
-        "همه کالاها",
-        "تنقلات",
-        "لبنیات",
-        "نوشیدنی ها",
-        "خواربار",
-        "نظافت منزل",
-        "چاشنی و ادویه",
-        "کنسرو و غذای آماده",
-        "آرایشی و بهداشتی",
-        "محصولات پروتئینی",
-        "خانه و سبک زندگی",
-        "آجیل و خشکبار",
-        "مادر و کودک",
-        "میوه و سبزیجات",
-    ];
-
-
     useEffect(() => {
-        const fetchBrands = async () => {
+        const fetchData = async () => {
             try {
-                const response = await fetch("/data");
-                if (!response.ok) {
-                    throw new Error("Failed to fetch products");
-                }
-                const data = await response.json();
+                const data: { category: string; brand: string }[] = await fetchProducts("/data");
 
-                const products: { brand: string }[] = data;
-                const uniqueBrands = Array.from(new Set(products.map((product) => product.brand)));
+                // استخراج دسته‌ها و برندها
+                const uniqueCategories = Array.from(new Set(data.map(product => product.category)));
+                const uniqueBrands = Array.from(new Set(data.map(product => product.brand)));
 
-
-                setBrands(uniqueBrands as string[]);
+                setCategories(uniqueCategories);
+                setBrands(uniqueBrands);
             } catch (error) {
-                console.error("Error fetching products:", error);
+                console.error("Error fetching product data:", error);
             }
         };
 
-        fetchBrands();
+        fetchData();
     }, []);
 
 
