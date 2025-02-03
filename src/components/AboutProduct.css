@@ -199,6 +199,7 @@
   height: 100vh;
   border: solid 1px rgb(186, 226, 233);
   max-height: 350px;
+  font-size: 15px;
 }
 .btncard {
   position: absolute;
@@ -206,5 +207,6 @@
   /* Center horizontally */
   bottom: 25px;
   /* Align to the bottom */
+ 
   transform: translateX(-50%);
 }
