@@ -1,31 +1,61 @@
 import React, { useState } from "react";
 import "./Login.css";
+import { submitForm } from "../server/api";
 
 const Login: React.FC = () => {
   const [phone, setPhone] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPhone(e.target.value);
     setError("");
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
 
     const phoneRegex = /^[0-9]{11}$/;
     if (!phone) {
       setError("شماره موبایل وارد نشده است.");
+      setIsSubmitting(false);
+      return;
+
+
     } else if (!phoneRegex.test(phone)) {
       setError("شماره موبایل باید 11 رقم باشد.");
-    } else {
+      setIsSubmitting(false);
+
+      return;
+
+    }
+
+
+    const formData = {
+      phone,
+    };
+
+    console.log(formData);
+
+    try {
+      const result = await submitForm("/regmsg/", formData);
       setError("");
-      alert("ورود با موفقیت انجام شد!"); // Simulate successful login
+      setPhone("");
+    } catch (err) {
+      setError("ارسال با خطا مواجه شد. لطفاً دوباره امتحان کنید.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
+
+  //adding password or not 
+
+
   return (
     <div className="">
+
       <div className="login-container">
         <div className="">
           <h2>بقالی</h2>
@@ -40,7 +70,7 @@ const Login: React.FC = () => {
             </p>
           </div>
           <div className="telephone">
-            <form onSubmit={handleSubmit}>
+            <form>
               <div className="form-group-login">
                 <i className="bi bi-telephone"></i>
                 <input
@@ -54,7 +84,7 @@ const Login: React.FC = () => {
                 />
               </div>
               {error && <p className="validation-error">{error}</p>}
-              <button className="button-login" type="submit">
+              <button className="button-login" onClick={handleSubmit} disabled={isSubmitting} type="submit">
                 ورود
               </button>
             </form>
