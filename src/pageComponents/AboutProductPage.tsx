@@ -122,7 +122,7 @@ const ProductDetails: React.FC = () => {
                         <div className="products-card">
                             {/* Tabs */}
                             <div className="maintabe">
-                                <p className="ptabe">محصولات مشابه</p>
+                                <h5 className="ptabe" style={{fontSize:"20px"}}>محصولات مشابه</h5>
                             </div>
                             <div className="grid">
                                 {products.map((product) => {
