@@ -26,3 +26,4 @@ last-code
 src/assets
 src/pageComponents/ExamplePage copy.tsx
 src/pageComponents/ExamplePage.tsx
+src/components/data.json
