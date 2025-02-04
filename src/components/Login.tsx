@@ -19,13 +19,15 @@ const Login: React.FC = () => {
     const phoneRegex = /^[0-9]{11}$/;
     if (!phone) {
       setError("شماره موبایل وارد نشده است.");
-      setIsSubmitting(false);
+      // setIsSubmitting(false);
+      setTimeout(() => setIsSubmitting(false), 2000);
       return;
 
 
     } else if (!phoneRegex.test(phone)) {
       setError("شماره موبایل باید 11 رقم باشد.");
-      setIsSubmitting(false);
+      // setIsSubmitting(false);
+      setTimeout(() => setIsSubmitting(false), 2000);
 
       return;
 
@@ -66,7 +68,7 @@ const Login: React.FC = () => {
           </div>
           <div className="">
             <p className="login-container-p ">
-              برای ورود یا ثبت‌نام، شماره موبایل خود را وارد کنید.
+              برای ورود یا ثبت‌ نام، شماره موبایل خود را وارد کنید.
             </p>
           </div>
           <div className="telephone">
