@@ -3,47 +3,51 @@ import "./Login.css";
 import { submitForm } from "../server/api";
 
 const Login: React.FC = () => {
-  const [phone, setPhone] = useState<string>("");
+  const [phone_number, setphone_number] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhone(e.target.value);
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setphone_number(e.target.value);
     setError("");
   };
 
-  const handleSubmit = async () => {
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+    setError("");
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault(); // Prevents default form submission behavior
     setIsSubmitting(true);
+    setError("");
 
-    const phoneRegex = /^[0-9]{11}$/;
-    if (!phone) {
+    const phone_numberRegex = /^[0-9]{11}$/;
+    
+    if (!phone_number) {
       setError("شماره موبایل وارد نشده است.");
-      // setIsSubmitting(false);
       setTimeout(() => setIsSubmitting(false), 2000);
       return;
-
-
-    } else if (!phoneRegex.test(phone)) {
+    } else if (!phone_numberRegex.test(phone_number)) {
       setError("شماره موبایل باید 11 رقم باشد.");
-      // setIsSubmitting(false);
       setTimeout(() => setIsSubmitting(false), 2000);
-
       return;
-
     }
 
+    if (!password) {
+      setError("رمز عبور الزامی است.");
+      setTimeout(() => setIsSubmitting(false), 2000);
+      return;
+    }
 
-    const formData = {
-      phone,
-    };
-
-    console.log(formData);
+    const formData = { phone_number, password };
 
     try {
-      const result = await submitForm("/regmsg/", formData);
+      await submitForm("api/auth/login/", formData);
+      setphone_number("");
+      setPassword("");
       setError("");
-      setPhone("");
     } catch (err) {
       setError("ارسال با خطا مواجه شد. لطفاً دوباره امتحان کنید.");
     } finally {
@@ -51,56 +55,48 @@ const Login: React.FC = () => {
     }
   };
 
-
-  //adding password or not 
-
-
   return (
-    <div className="">
-
-      <div className="login-container">
-        <div className="">
-          <h2>بقالی</h2>
-        </div>
-        <div className="">
-          <div className="">
-            <h3>ورود | ثبت نام</h3>
-          </div>
-          <div className="">
-            <p className="login-container-p ">
-              برای ورود یا ثبت‌ نام، شماره موبایل خود را وارد کنید.
-            </p>
-          </div>
-          <div className="telephone">
-            <form>
-              <div className="form-group-login">
-                <i className="bi bi-telephone"></i>
-                <input
-                  className={`phone-input ${error ? "input-error" : ""}`}
-                  type="tel"
-                  value={phone}
-                  onChange={handleInputChange}
-                  placeholder="شماره تلفن"
-                  aria-label="phone"
-                  required
-                />
-              </div>
-              {error && <p className="validation-error">{error}</p>}
-              <button className="button-login" onClick={handleSubmit} disabled={isSubmitting} type="submit">
-                ورود
-              </button>
-            </form>
-          </div>
-
-          <p className="disclaimer-login ">
-            ورود شما به معنی پذیرش
-            <a href="#" className="ColorRoll-login">
-              قوانین و مقررات
-            </a>
-            است.
-          </p>
-        </div>
+    <div className="login-container">
+      <h2>بقالی</h2>
+      <div>
+        <h3>ورود | ثبت نام</h3>
+        <p className="login-container-p">
+          برای ورود یا ثبت‌ نام، شماره موبایل خود را وارد کنید.
+        </p>
       </div>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group-login">
+          <i className="bi bi-telephone"></i>
+          <input
+            className={`phone-input ${error ? "input-error" : ""}`}
+            type="tel"
+            value={phone_number}
+            onChange={handlePhoneChange}
+            placeholder="شماره تلفن"
+            aria-label="phone"
+            required
+          />
+        </div>
+        <div className="form-group-login" style={{marginBottom:"25px"}}>
+          <input
+            type="password"
+            className={`password-input ${error ? "input-error" : ""}`}
+            value={password}
+            onChange={handlePasswordChange}
+            placeholder="رمز ورود"
+            required
+          />
+        </div>
+        {error && <p className="validation-error">{error}</p>}
+        <button className="button-login" disabled={isSubmitting} type="submit">
+          ورود
+        </button>
+      </form>
+      <p className="disclaimer-login">
+        ورود شما به معنی پذیرش
+        <a href="#" className="ColorRoll-login"> قوانین و مقررات </a>
+        است.
+      </p>
     </div>
   );
 };

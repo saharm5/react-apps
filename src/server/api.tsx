@@ -17,7 +17,7 @@ export const fetchProducts = async (url: string) => {
 // برای درخواست POST
 export const submitForm = async (url: string, formData: object) => {
     try {
-        const response = await fetch("http://192.168.110.104:5000"+ url, {
+        const response = await fetch("http://localhost:8000/"+ url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
