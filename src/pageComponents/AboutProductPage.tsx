@@ -15,13 +15,13 @@ interface Image {
     productName: string;
     productImageSrc: string;
 }
-interface Product {
+interface Products {
     id: number;
-    productName: string;
-    finalPrice: number;
+    product_name: string;
+    final_price: number;
     description: string;
     rating: number;
-    SubproductImages: Image[];
+    productImageSrc: Image[];
 }
 
 
@@ -33,7 +33,7 @@ interface CartsItem {
 
 const ProductDetails: React.FC = () => {
     const [carts, setCarts] = useState<CartsItem[]>([]);
-    const [products, setProducts] = useState<Product[]>([]);
+    const [products, setProducts] = useState<Products[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [cart, setCart] = useState<{ id: number; quantity: number }[]>([]);
 
@@ -62,13 +62,13 @@ const ProductDetails: React.FC = () => {
         });
     };
 
-      const limit =9
+
     
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await fetchProducts('/data/?limit='+limit);
+                const data = await fetchProducts('/data/');
 
                 setProducts(data);
             } catch (error) {
@@ -133,9 +133,9 @@ const ProductDetails: React.FC = () => {
                                             idslm={product.id}
                                             key={product.id}
                                             id={product.id}
-                                            title={product.productName}
-                                            price={product.finalPrice}
-                                            imageUrl={product.SubproductImages[0]?.productImageSrc}
+                                            title={product.product_name}
+                                            price={product.final_price}
+                                            imageUrl={product.productImageSrc[0]?.productImageSrc}
                                             addition={() => increaseQuantity(product.id)}
                                             reduce={() => decreaseQuantity(product.id)}
                                             num={quantity}
