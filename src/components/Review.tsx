@@ -1,17 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+
 import Inputmask from "inputmask";
 import "./Review.css";
 import { submitForm } from '../server/api';
 
 const Review: React.FC = () => {
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const initialEmail = queryParams.get("email") || "";
 
     const [phone, setPhone] = useState<string>("");
     const [fromDate, setFromDate] = useState<string>("");
-    const [email, setEmail] = useState<string>(initialEmail);
+    const [email, setEmail] = useState<string>();
     const [comments, setComments] = useState<string>("");
     const [error, setError] = useState<string>("");
     const [responseMessage, setResponseMessage] = useState<string>("");
@@ -100,6 +97,7 @@ const Review: React.FC = () => {
             <div className="Reviewdate">
                 <label htmlFor="fromDate">تاریخ تولد :</label>
                 <input
+                className="ReviewdateInput"
                     id="fromDate"
                     type="date"
                     value={fromDate}
