@@ -1,19 +1,17 @@
 // Categories.tsx
+import { fetchProducts } from "../server/api";
 import "./Categories.css";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface Category {
-  imageSrc: string;
-  categoryName: string;
+  category_image_src: string;
+  category: string;
   categoryLink: string;
 }
 
-interface CategoriesProps {
-  categories: Category[];
-}
-
-const Categories: React.FC<CategoriesProps> = ({ categories }) => {
+const Categories: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null); // Reference to the scrollable container
+  const [Category, setCategory] = useState<Category[]>([]);
 
   const scrollDistance = 300; // Adjust scroll distance as needed
 
@@ -34,6 +32,34 @@ const Categories: React.FC<CategoriesProps> = ({ categories }) => {
       });
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data: { category: string; category_image_src: string }[] = await fetchProducts("/data");
+
+        // استخراج ترکیب یکتا از دسته و تصویر
+        const categoryMap = new Map();
+        data.forEach((product) => {
+          if (!categoryMap.has(product.category)) {
+            categoryMap.set(product.category, product.category_image_src);
+          }
+        });
+
+
+        const uniqueCategories = Array.from(categoryMap, ([category, category_image_src]) => ({
+          category,
+          category_image_src,
+          categoryLink: `/categories/${category}`,
+        }));
+        setCategory(uniqueCategories);
+      } catch (error) {
+        console.error("خطا در دریافت داده‌های محصول:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="containercategory">
@@ -61,16 +87,16 @@ const Categories: React.FC<CategoriesProps> = ({ categories }) => {
 
       {/* Scrollable container */}
       <div ref={carouselRef} className="categories-carousel">
-        {categories.map((category, index) => (
+        {Category.map((category, index) => (
           <div className="category-card" key={index}>
 
             <img
-              src={category.imageSrc}
-              alt={category.categoryName}
+              src={category.category_image_src}
+              alt={category.category}
               className="category-card__image"
             />
             <a href={category.categoryLink} className="category-card__title">
-              {category.categoryName}
+              {category.category || "#"}
             </a>
 
           </div>
