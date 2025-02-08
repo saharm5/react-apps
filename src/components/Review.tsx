@@ -97,7 +97,7 @@ const Review: React.FC = () => {
             <div className="Reviewdate">
                 <label htmlFor="fromDate">تاریخ تولد :</label>
                 <input
-                className="ReviewdateInput"
+                    className="ReviewdateInput"
                     id="fromDate"
                     type="date"
                     value={fromDate}
