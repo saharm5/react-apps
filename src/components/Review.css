@@ -56,8 +56,11 @@
 
 
 
-
-
+.ReviewdateInput::-webkit-calendar-picker-indicator {
+  filter: invert(12%) sepia(90%) saturate(700%) hue-rotate(200deg);
+  opacity: 1;
+  cursor: pointer;
+}
 
 
 .ReviewEmailSubscriptionInput {
@@ -69,7 +72,7 @@
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  color: #01194f;
+  /* color: #01194f; */
   font-size: 18px;
 }
 
@@ -300,7 +303,7 @@
 
   font-weight: bold;
   font-size: 16px;
-  color: #333;
+
 
 }
 
