@@ -12,21 +12,21 @@ import Footer from "../components/Footer";
 import useBodyClass from "../components/useBodyClass"
 
 interface Image {
-  productName: string;
+  product_name: string;
   productImageSrc: string;
 }
 
-interface Product {
+interface Products {
   available: any;
   id: number;
-  productName: string;
+  product_name: string;
   brand: string;
-  finalPrice: number;
+  final_price: number;
   imageSrc: string;
   description: string;
   rating: number;
   category: string;
-  SubproductImages: Image[];
+  productImageSrc: Image[];
 
 }
 
@@ -34,8 +34,8 @@ const ProductsPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
 
-  const [products, setProducts] = useState<Product[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Products[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Products[]>([]);
   const [cart, setCart] = useState<{ id: number; quantity: number }[]>([]);
 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -83,7 +83,7 @@ const ProductsPage: React.FC = () => {
         ? selectedBrands.includes(product.brand)
         : true;
       const matchesPrice =
-        product.finalPrice >= priceRange[0] && product.finalPrice <= priceRange[1];
+        product.final_price >= priceRange[0] && product.final_price <= priceRange[1];
       const matchesAvailability = onlyAvailable
         ? product.available === "true"
         : true;
@@ -156,9 +156,9 @@ const ProductsPage: React.FC = () => {
                     <SearchProductPage
                       key={product.id}
                       idslm={product.id}
-                      title={product.productName}
-                      price={product.finalPrice}
-                      imageUrl={product.SubproductImages[0]?.productImageSrc}
+                      title={product.product_name}
+                      price={product.final_price}
+                      imageUrl={product.productImageSrc[0]?.productImageSrc}
                       addition={() => increaseQuantity(product.id)}
                       reduce={() => decreaseQuantity(product.id)}
                       num={quantity}

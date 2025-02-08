@@ -29,17 +29,24 @@
   justify-content: space-evenly;
   align-items: center;
   padding: 10px 0;
+  
 }
 
 .Brands-carousel::-webkit-scrollbar {
   display: none;
   /* Hide scrollbars */
 }
-
+.Brand-circle{
+  width: 90px !important;
+  height: 90px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* Brand Circle */
 .Brand-circle__image {
-  width: 90px;
-  height: 90px;
+  width: 90px !important;
+  height: 90px !important;
   border-radius: 50%;
   background-color: #ffffff;
   display: flex;
@@ -48,9 +55,6 @@
   box-shadow: 0 4px 6px rgb(17, 45, 78, 0.1);
   border: 0.45px solid rgb(17, 45, 78, 0.082);
   transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.Brand-circle__image {
   object-fit: fill;
 }
 
