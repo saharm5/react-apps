@@ -12,7 +12,7 @@ import Footer from "../components/Footer";
 import AboutProduct from "../components/AboutProduct";
 
 interface Image {
-    productName: string;
+    product_name: string;
     productImageSrc: string;
 }
 interface Products {
@@ -63,12 +63,13 @@ const ProductDetails: React.FC = () => {
     };
 
 
+    const limit =9
     
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await fetchProducts('/data/');
+                const data = await fetchProducts('/data/?limit='+limit);
 
                 setProducts(data);
             } catch (error) {

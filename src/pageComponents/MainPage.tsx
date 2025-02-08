@@ -73,12 +73,13 @@ const MainPage: React.FC = () => {
     });
   };
 
+  const limit = 10
 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchProducts('/data/');
+        const data = await fetchProducts('/data/?limit=' + limit);
         setProducts(data);
       } catch (error) {
         setError('Failed to fetch products');
@@ -88,89 +89,6 @@ const MainPage: React.FC = () => {
     fetchData();
   }, []);
 
-
-
-
-  // const categories = [
-  //   {
-  //     imageSrc: "./src/assets/Img/kharbar.png",
-  //     categoryName: "خواربار",
-  //     categoryLink: "#",
-  //   },
-  //   {
-  //     imageSrc: "./src/assets/Img/Spice.png",
-  //     categoryName: "ادویه و چاشنی",
-  //     categoryLink: "#",
-  //   },
-  //   {
-  //     imageSrc: "./src/assets/Img/cannedfood.png",
-  //     categoryName: " غذای آماده",
-  //     categoryLink: "#",
-  //   },
-  //   {
-  //     imageSrc: "./src/assets/Img/kharbar.png",
-  //     categoryName: "خواربار",
-  //     categoryLink: "#",
-  //   },
-  //   {
-  //     imageSrc: "./src/assets/Img/cannedfood.png",
-  //     categoryName: " غذای آماده",
-  //     categoryLink: "#",
-  //   },
-  //   {
-  //     imageSrc: "./src/assets/Img/nezafat.png",
-  //     categoryName: "نظافت خانه",
-  //     categoryLink: "#",
-  //   },
-  //   {
-  //     imageSrc: "./src/assets/Img/kharbar.png",
-  //     categoryName: "خواربار",
-  //     categoryLink: "#",
-  //   },
-  //   {
-  //     imageSrc: "./src/assets/Img/cannedfood.png",
-  //     categoryName: " غذای آماده",
-  //     categoryLink: "#",
-  //   },
-  //   {
-  //     imageSrc: "./src/assets/Img/kharbar.png",
-  //     categoryName: "خواربار",
-  //     categoryLink: "#",
-  //   },
-  //   {
-  //     imageSrc: "./src/assets/Img/tanagholat.png",
-  //     categoryName: "تنقلات",
-  //     categoryLink: "#",
-  //   },
-  //   {
-  //     imageSrc: "./src/assets/Img/labaniat.png",
-  //     categoryName: "لبنیات",
-  //     categoryLink: "#",
-  //   },
-  //   {
-  //     imageSrc: "./src/assets/Img/behdashti.png",
-  //     categoryName: " بهداشتی",
-  //     categoryLink: "#",
-  //   },
-  // ];
-
-
-  const brandData = [
-    { imageSrc: "./src/assets/Img/mihan.svg", BrandName: "میهن" },
-    { imageSrc: "./src/assets/Img/Tak.svg", BrandName: "تک" },
-    { imageSrc: "./src/assets/Img/Yekvayek.svg", BrandName: "یک و یک" },
-    { imageSrc: " ./src/assets/Img/Alis.svg", BrandName: "عالیس" },
-    { imageSrc: " ./src/assets/Img/mazmaz.svg", BrandName: "مزمز" },
-    { imageSrc: " ./src/assets/Img/Choopan.svg", BrandName: "چوپان" },
-    { imageSrc: " ./src/assets/Img/Ramak.svg", BrandName: "رامک" },
-    { imageSrc: " ./src/assets/Img/Kaleh.svg", BrandName: "کاله" },
-    { imageSrc: " ./src/assets/Img/Mahram.svg", BrandName: "مهرام" },
-    { imageSrc: " ./src/assets/Img/Damdaran.svg", BrandName: "دامداران" },
-    { imageSrc: " ./src/assets/Img/Golestan.svg", BrandName: "گلستان" },
-    { imageSrc: " ./src/assets/Img/ChinChin.svg", BrandName: "چین چین" },
-    { imageSrc: " ./src/assets/Img/Minoo.svg", BrandName: "مینو" },
-    { imageSrc: " ./src/assets/Img/SunIch.svg", BrandName: "سن ایچ " },
-  ];
 
 
   return (
@@ -212,7 +130,7 @@ const MainPage: React.FC = () => {
               </div>
             </div>
 
-            <Brands Brands={brandData} />
+            <Brands />
 
           </div>
           <FooterResponsive />
