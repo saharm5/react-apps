@@ -13,16 +13,16 @@ import { fetchProducts } from '../server/api';
 import useBodyClass from "../components/useBodyClass"
 
 interface Image {
-  productName: string;
+  product_name: string;
   productImageSrc: string;
 }
-interface Product {
+interface products {
   id: number;
-  productName: string;
-  finalPrice: number;
+  product_name: string;
+  final_price: number;
   description: string;
   rating: number;
-  SubproductImages: Image[];
+  productImageSrc: Image[];
 
 }
 
@@ -30,9 +30,10 @@ interface Product {
 const MainPage: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<products[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [cart, setCart] = useState<{ id: number; quantity: number }[]>([]);
+
 
   useBodyClass("body-main");
 
@@ -72,12 +73,12 @@ const MainPage: React.FC = () => {
     });
   };
 
-  const limit =10
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchProducts('/data/?limit='+limit);
+        const data = await fetchProducts('/data/');
         setProducts(data);
       } catch (error) {
         setError('Failed to fetch products');
@@ -87,68 +88,71 @@ const MainPage: React.FC = () => {
     fetchData();
   }, []);
 
-  const categories = [
-    {
-      imageSrc: "./src/assets/Img/kharbar.png",
-      categoryName: "خواربار",
-      categoryLink: "#",
-    },
-    {
-      imageSrc: "./src/assets/Img/Spice.png",
-      categoryName: "ادویه و چاشنی",
-      categoryLink: "#",
-    },
-    {
-      imageSrc: "./src/assets/Img/cannedfood.png",
-      categoryName: " غذای آماده",
-      categoryLink: "#",
-    },
-    {
-      imageSrc: "./src/assets/Img/kharbar.png",
-      categoryName: "خواربار",
-      categoryLink: "#",
-    },
-    {
-      imageSrc: "./src/assets/Img/cannedfood.png",
-      categoryName: " غذای آماده",
-      categoryLink: "#",
-    },
-    {
-      imageSrc: "./src/assets/Img/nezafat.png",
-      categoryName: "نظافت خانه",
-      categoryLink: "#",
-    },
-    {
-      imageSrc: "./src/assets/Img/kharbar.png",
-      categoryName: "خواربار",
-      categoryLink: "#",
-    },
-    {
-      imageSrc: "./src/assets/Img/cannedfood.png",
-      categoryName: " غذای آماده",
-      categoryLink: "#",
-    },
-    {
-      imageSrc: "./src/assets/Img/kharbar.png",
-      categoryName: "خواربار",
-      categoryLink: "#",
-    },
-    {
-      imageSrc: "./src/assets/Img/tanagholat.png",
-      categoryName: "تنقلات",
-      categoryLink: "#",
-    },
-    {
-      imageSrc: "./src/assets/Img/labaniat.png",
-      categoryName: "لبنیات",
-      categoryLink: "#",
-    },
-    {
-      imageSrc: "./src/assets/Img/behdashti.png",
-      categoryName: " بهداشتی",
-      categoryLink: "#",
-    },
-  ];
+
+
+
+  // const categories = [
+  //   {
+  //     imageSrc: "./src/assets/Img/kharbar.png",
+  //     categoryName: "خواربار",
+  //     categoryLink: "#",
+  //   },
+  //   {
+  //     imageSrc: "./src/assets/Img/Spice.png",
+  //     categoryName: "ادویه و چاشنی",
+  //     categoryLink: "#",
+  //   },
+  //   {
+  //     imageSrc: "./src/assets/Img/cannedfood.png",
+  //     categoryName: " غذای آماده",
+  //     categoryLink: "#",
+  //   },
+  //   {
+  //     imageSrc: "./src/assets/Img/kharbar.png",
+  //     categoryName: "خواربار",
+  //     categoryLink: "#",
+  //   },
+  //   {
+  //     imageSrc: "./src/assets/Img/cannedfood.png",
+  //     categoryName: " غذای آماده",
+  //     categoryLink: "#",
+  //   },
+  //   {
+  //     imageSrc: "./src/assets/Img/nezafat.png",
+  //     categoryName: "نظافت خانه",
+  //     categoryLink: "#",
+  //   },
+  //   {
+  //     imageSrc: "./src/assets/Img/kharbar.png",
+  //     categoryName: "خواربار",
+  //     categoryLink: "#",
+  //   },
+  //   {
+  //     imageSrc: "./src/assets/Img/cannedfood.png",
+  //     categoryName: " غذای آماده",
+  //     categoryLink: "#",
+  //   },
+  //   {
+  //     imageSrc: "./src/assets/Img/kharbar.png",
+  //     categoryName: "خواربار",
+  //     categoryLink: "#",
+  //   },
+  //   {
+  //     imageSrc: "./src/assets/Img/tanagholat.png",
+  //     categoryName: "تنقلات",
+  //     categoryLink: "#",
+  //   },
+  //   {
+  //     imageSrc: "./src/assets/Img/labaniat.png",
+  //     categoryName: "لبنیات",
+  //     categoryLink: "#",
+  //   },
+  //   {
+  //     imageSrc: "./src/assets/Img/behdashti.png",
+  //     categoryName: " بهداشتی",
+  //     categoryLink: "#",
+  //   },
+  // ];
 
 
   const brandData = [
@@ -178,7 +182,7 @@ const MainPage: React.FC = () => {
           <Header />
           <div className="mp">
             <Banner />
-            <Categories categories={categories} />
+            <Categories />
             <div className="mainproductcard">
               {/* <HeaderProductGrid /> */}
               <div className="products-card">
@@ -187,21 +191,19 @@ const MainPage: React.FC = () => {
                   <p className="ptabe">محصولات ویژه</p>
                 </div>
                 <div className="grid">
-                  {products.map((product) => {
-                    const cartItem = cart.find((item) => item.id === product.id);
+                  {products.map((products) => {
+                    const cartItem = cart.find((item) => item.id === products.id);
                     const quantity = cartItem?.quantity || 0;
                     return (
-
-
                       <ProductGrid
-                        idslm={product.id}
-                        key={product.id}
-                        id={product.id}
-                        title={product.productName}
-                        price={product.finalPrice}
-                        imageUrl={product.SubproductImages[0]?.productImageSrc}
-                        addition={() => increaseQuantity(product.id)}
-                        reduce={() => decreaseQuantity(product.id)}
+                        idslm={products.id}
+                        key={products.id}
+                        id={products.id}
+                        title={products.product_name}
+                        price={products.final_price}
+                        imageUrl={products.productImageSrc[0]?.productImageSrc}
+                        addition={() => increaseQuantity(products.id)}
+                        reduce={() => decreaseQuantity(products.id)}
                         num={quantity}
                       />
                     );
