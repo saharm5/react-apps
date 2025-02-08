@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./AboutProduct.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { fetchProducts } from "../server/api"; // Assume this function exists
+import { fetchProducts, submitForm } from "../server/api"; // Assume this function exists
 import CartButton from "./CartButton"; // Importing the new component
 import { useSearchParams } from "react-router-dom";
 import FreeDelivery from "../assets/svg/FreeDelivery";
@@ -13,25 +12,24 @@ import Payment from "../assets/svg/Payment"
 
 
 interface Image {
-  productName: string;
+  product_name: string;
   productImageSrc: string;
 }
 
-interface Product {
-  Production: string | null;
-  Expiration: string | null;
+interface Products {
+  production_date: string | null;
+  expiration_date: string | null;
   size: string | null;
   id: number;
-  productImageSrc: string | null;
-  productName: string;
+  product_name: string;
   category: string | null;
-  subCategory: string | null;
-  productDetails: string | null;
+  sub_category: string | null;
+  product_details: string | null;
   brand: string;
-  mainPrice: number;
-  discount: number;
-  finalPrice: number;
-  SubproductImages: Image[];
+  main_price: number;
+  Discount: number;
+  final_price: number;
+  productImageSrc: Image[];
 }
 
 interface AboutProductProps {
@@ -43,7 +41,7 @@ interface AboutProductProps {
 const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) => {
   const [favorit, setFavorit] = useState<boolean>(false);
   const [isCopied, setIsCopied] = useState<boolean>(false);
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Products[]>([]);
   const [expandedImgIndex, setExpandedImgIndex] = useState<number | null>(null);
   const [imgText, setImgText] = useState<string>("");
   const [params, setParams] = useSearchParams()
@@ -74,21 +72,25 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
     }
   };
 
-  //  خرایههههه Handle adding a product to favorites
+
   const handleAddFavorit = async (id: number) => {
-    setFavorit(!favorit);
-    if (!favorit) {
-      try {
-        const response = await axios.get("http://192.168.110.104:5000/save-data/", {
-          params: { url: window.location.href, id },
-        });
-        console.log(`Product ${id} added to favorites`, response.data);
-      } catch (error) {
-        alert("Error saving data");
-        console.error(error);
-      }
+    setFavorit(prev => !prev); 
+  
+    try {
+      const formData = {
+        url: window.location.href,
+        id,
+        is_favorite: !favorit, 
+      };
+  
+      const response = await submitForm("/save-data/", formData); 
+      console.log(`Product ${id} ${!favorit ? "added to" : "removed from"} favorites`, response);
+    } catch (error) {
+      alert("Error saving data");
+      console.error(error);
     }
   };
+  
   
 
   // Handle copying the product link
@@ -169,7 +171,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                           </span>
                           <img
                             src={
-                              product.SubproductImages[expandedImgIndex]?.productImageSrc || ""
+                              product.productImageSrc[expandedImgIndex]?.productImageSrc || ""
                             }
                             alt={imgText}
                             style={{ height: "750px", width: "750px" }}
@@ -180,14 +182,14 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                               <button
                                 className="btn btn-outline position-absolute top-50 translate-middle-y"
                                 style={{ left: "0", height: "600px", border: "none" }}
-                                onClick={() => handlePrevImage(product.SubproductImages)}
+                                onClick={() => handlePrevImage(product.productImageSrc)}
                               >
                                 <i className="bi bi-chevron-left" style={{ fontSize: "20px" }}></i>
                               </button>
                               <button
                                 className="btn btn-outline position-absolute top-50 translate-middle-y"
                                 style={{ right: "0", height: "600px", border: "none" }}
-                                onClick={() => handleNextImage(product.SubproductImages)}
+                                onClick={() => handleNextImage(product.productImageSrc)}
                               >
                                 <i className="bi bi-chevron-right" style={{ fontSize: "20px" }}></i>
                               </button>
@@ -201,24 +203,24 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                     <div className="mb-3 shadow-lg rounded-5 ">
                       <img
                         src={
-                          product.SubproductImages[0]?.productImageSrc ||
+                          product.productImageSrc[0]?.productImageSrc ||
                           "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
                         }
-                        alt={product.productName || "Product"}
+                        alt={product.product_name || "Product"}
                         className="card-img-top"
-                        onClick={() => handleImageClick(0, product.productName || "Product")}
+                        onClick={() => handleImageClick(0, product.product_name || "Product")}
                       />
                     </div>
                     <div className="Products-imgs d-flex flex-row gap-3 rounded">
-                      {product.SubproductImages.map((img, i) => (
+                      {product.productImageSrc.map((img, i) => (
                         <img
                           key={i}
                           src={
                             img.productImageSrc ||
                             "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
                           }
-                          alt={img.productName || "Product Image"}
-                          onClick={() => handleImageClick(i, img.productName || "Product Image")}
+                          alt={img.product_name || "Product Image"}
+                          onClick={() => handleImageClick(i, img.product_name || "Product Image")}
                           className="card-imgs shadow rounded border"
                         />
                       ))}
@@ -228,12 +230,12 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                 {/* center Section */}
                 <div className="d-flex flex-column mx-5 gap-1 p-4">
                   <div>
-                    <p id="productName" className="fw-bold productName">
-                      {product.productName}
+                    <p id="product_name" className="fw-bold product_name">
+                      {product.product_name}
                     </p>
-                    <p id="productDetails" className="productDetails">
+                    <p id="product_details" className="productDetails">
                       <strong>توضیحات محصول : </strong>
-                      {product.productDetails}
+                      {product.product_details}
                     </p>
                     <p id="category" className="productcategory">
                       <strong> دسته بندی : </strong>
@@ -247,10 +249,10 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                     <p className="my-2 fw-bold">ویژگی های محصول:</p>
                     <ul className="px-2 ulsize">
                       <li className="d-block ">
-                        <p className="m-0"> تاریخ تولید: {product.Production || "ثبت نشده"}</p>
+                        <p className="m-0"> تاریخ تولید: {product.production_date || "ثبت نشده"}</p>
                       </li>
                       <li className="d-block">
-                        <p className="m-0"> تاریخ انقضا: {product.Expiration || "ثبت نشده"}</p>
+                        <p className="m-0"> تاریخ انقضا: {product.expiration_date || "ثبت نشده"}</p>
                       </li>
                       <li className="d-block">
                         <p className="m-0"> ابعاد بسته بندی: {product.size || "ثبت نشده"}</p>
@@ -281,12 +283,12 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                   <div className="d-flex flex-column align-items-end gap-2 m-3">
                     <div className="d-flex flex-row gap-2">
                       <p className="text-decoration-line-through text-muted m-0" style={{ fontSize: " 12px" }}>
-                        {product.mainPrice.toLocaleString()} تومان
+                        {product.main_price.toLocaleString()} تومان
                       </p>
-                      <p className="badge mb-1 p-1" style={{ backgroundColor: "#d32f2f" }}>% {product.discount}</p>
+                      <p className="badge mb-1 p-1" style={{ backgroundColor: "#d32f2f" }}>% {product.Discount}</p>
                     </div>
                     <p className=" m-0">
-                      <strong style={{ fontSize: " 17px" }}>{product.finalPrice.toLocaleString()} تومان</strong>
+                      <strong style={{ fontSize: " 17px" }}>{product.final_price.toLocaleString()} تومان</strong>
                     </p>
                   </div>
                   <CartButton
