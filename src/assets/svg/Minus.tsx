@@ -6,7 +6,7 @@ interface MinusProps {
     height?: number;
 }
 
-export default function Minus({ color = "white", width = 20, height = 25 }: MinusProps) {
+export default function Minus({ color = "rgb(19 62 135)", width = 20, height = 25 }: MinusProps) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={width} height={height} fill={color}>
             <rect x="4" y="11" width="15" height="3" rx="1" />

@@ -6,7 +6,7 @@ interface PlusProps {
     height?: number;
 }
 
-export default function Plus({ color = "white", width = 24, height = 25 }: PlusProps) {
+export default function Plus({ color = "rgb(19 62 135)", width = 20, height = 20  }: PlusProps) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={width} height={height} fill={color}>
             <rect x="3" y="10" width="16" height="2" rx="1" />

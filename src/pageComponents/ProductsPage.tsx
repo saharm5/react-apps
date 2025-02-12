@@ -4,7 +4,7 @@ import { fetchProducts } from '../server/api';
 import "../styles/global.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import SearchProductPage from "../components/SearchProductPage";
+import ProductGrid from "../components/ProductGrid";
 import Header from "../components/Header";
 import HeaderSearchProducts from "../components/HeaderSearchProducts";
 import Filter from "../components/Filters";
@@ -27,7 +27,6 @@ interface Products {
   rating: number;
   category: string;
   productImageSrc: Image[];
-
 }
 
 const ProductsPage: React.FC = () => {
@@ -143,30 +142,24 @@ const ProductsPage: React.FC = () => {
 
         </div>
         <div className="boxLeft">
-          <div className="SearchProductGridContainer">
-            <div className="CardGrid">
-              {!hasLoadedOnce ? (
-                <p>Loading...</p>
-              ) : (
-                filteredProducts.map((product) => {
-                  const cartItem = cart.find((item) => item.id === product.id);
-                  const quantity = cartItem?.quantity || 0;
+          <div className="mainproductcard" style={{margin:"5px ", paddingInline:"30px"}}>
+            {!hasLoadedOnce ? (
+              <p>Loading...</p>
+            ) : (
+              <ProductGrid
+                products={products.map((product) => ({
+                  id: product.id,
+                  title: product.product_name,
+                  price: product.final_price,
+                  imageUrl: product.productImageSrc[0]?.productImageSrc || ""
+                }))}
+                carts={cart}
+                addition={increaseQuantity}
+                reduce={decreaseQuantity}
 
-                  return (
-                    <SearchProductPage
-                      key={product.id}
-                      idslm={product.id}
-                      title={product.product_name}
-                      price={product.final_price}
-                      imageUrl={product.productImageSrc[0]?.productImageSrc}
-                      addition={() => increaseQuantity(product.id)}
-                      reduce={() => decreaseQuantity(product.id)}
-                      num={quantity}
-                    />
-                  );
-                })
-              )}
-            </div>
+              />
+
+            )}
           </div>
         </div>
       </div>

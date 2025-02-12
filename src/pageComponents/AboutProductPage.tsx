@@ -120,24 +120,25 @@ const ProductDetails: React.FC = () => {
                     />
                     <div className=" shadow-lg rounded mainproductcard" style={{ margin: "0px", overflow: "auto" }}>
                         {/* <HeaderProductGrid /> */}
-                        <div className="products-card">
-                            {/* Tabs */}
-                            <div className="maintabe">
-                                <h5 className="ptabe" style={{ fontSize: "20px" }}>محصولات مشابه</h5>
-                            </div>
-                            <div className="d-flex flex-row">
-                                <ProductGrid
-                                    products={products.map((product) => ({
-                                        id: product.id,
-                                        title: product.product_name,
-                                        price: product.final_price,
-                                        imageUrl: product.productImageSrc[0]?.productImageSrc || ""
-                                    }))}
-                                    carts={cart}
-                                    addition={increaseQuantity}
-                                    reduce={decreaseQuantity} />
-                            </div>
+
+                        {/* Tabs */}
+                        <div className="maintabe">
+                            <h5 className="ptabe" style={{ fontSize: "20px" }}>محصولات مشابه</h5>
                         </div>
+
+                        <ProductGrid
+                            products={products.map((product) => ({
+                                id: product.id,
+                                title: product.product_name,
+                                price: product.final_price,
+                                imageUrl: product.productImageSrc[0]?.productImageSrc || ""
+                            }))}
+                            carts={cart}
+                            addition={increaseQuantity}
+                            reduce={decreaseQuantity}
+                        />
+
+
                     </div>
                 </div>
             </div>

@@ -68,12 +68,12 @@ const MainPage: React.FC = () => {
     });
   };
 
-  const limit = 10;
+  const limit = 12;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchProducts(`/data/?limit=${limit}`);
+        const data = await fetchProducts(`/data/`);
         setProducts(data);
       } catch (error) {
         console.error("Failed to fetch products:", error);
@@ -95,23 +95,21 @@ const MainPage: React.FC = () => {
             <Banner />
             <Categories />
             <div className="mainproductcard">
-              <div className="products-card">
-                <div className="maintabe">
-                  <p className="ptabe">محصولات ویژه</p>
-                </div>
-                <div className="grid">
-                  <ProductGrid
-                    products={products.map((product) => ({
-                      id: product.id,
-                      title: product.product_name,
-                      price: product.final_price,
-                      imageUrl: product.productImageSrc[0]?.productImageSrc || ""
-                    }))}
-                    carts={cart}
-                    addition={increaseQuantity}
-                    reduce={decreaseQuantity}
-                  />
-                </div>
+
+              <div className="maintabe">
+                <p className="ptabe">محصولات ویژه</p>
+              </div>
+                <ProductGrid
+                  products={products.map((product) => ({
+                    id: product.id,
+                    title: product.product_name,
+                    price: product.final_price,
+                    imageUrl: product.productImageSrc[0]?.productImageSrc || ""
+                  }))}
+                  carts={cart}
+                  addition={increaseQuantity}
+                  reduce={decreaseQuantity}
+                />
               </div>
             </div>
 

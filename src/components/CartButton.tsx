@@ -18,7 +18,7 @@ const CartButton: React.FC<CartButtonProps> = ({ quantity, onAdd, onReduce, addc
             className="d-flex align-items-center text-white rounded"
             style={{
                 width: "100%",
-                height: "45px",
+                height: "35px",
                 justifyContent: "center",
                 maxWidth: "100%",
             }}
@@ -28,35 +28,36 @@ const CartButton: React.FC<CartButtonProps> = ({ quantity, onAdd, onReduce, addc
                 <button
                     className="btn d-flex align-items-center"
                     style={{
-                        backgroundColor: "rgb(19 62 135)",
+                        backgroundColor: "rgb(214 230 242)",
                         width: "100%",
-                        height: "45px",
+                        height: "35px",
                         justifyContent: "center",
                         lineHeight: "1.5",
                     }}
                     onClick={onAdd}
                 >
                     <span className="m-2"><AddToCart /></span>
-                    <span style={{color:"white"}}>{addcard}</span>
+                    <span style={{ color: "rgb(19 62 135)" }}>{addcard}</span>
                 </button>
             ) : (
-                    <div className="d-flex rounded align-items-center  justify-content-evenly" style={{
+                <div className="d-flex rounded align-items-end  justify-content-evenly" style={{
                     width: "100%",
-                    height: "45px",
+                    height: "35px",
                     padding: "0",
-                    backgroundColor: "rgb(19 62 135)",
+                    backgroundColor: "rgb(214 230 242)",
+                    border: "rgb(19 62 135) solid 1px"
+
 
                 }}>
                     <button
                         className="d-flex justify-content-center align-items-center btn text-light fw-bold"
                         style={{
-                            backgroundColor: "پ rgb(19 62 135)",
+                            backgroundColor: "",
                             boxShadow: "none",
                             border: "none",
                             height: "30px",
-                            width: "30px",
+                            width: "35px",
                             padding: "0",
-                            margin: "5px"
                         }}
                         onClick={onAdd}
                     >
@@ -65,13 +66,14 @@ const CartButton: React.FC<CartButtonProps> = ({ quantity, onAdd, onReduce, addc
                     <span
                         className="fw-bold d-flex align-items-center justify-content-center"
                         style={{
-                            backgroundColor: "inherit",
+                            backgroundColor: "",
                             boxShadow: "none",
                             border: "none",
-                            height: "30px",
-                            width: "auto",
-                            margin: "0 10px",
-                            padding: "3px 0 0"
+                            height: "28px",
+                            width: "35px",
+                            fontSize: "16px",
+                            padding: "0",
+                            color: "rgb(19 62 135)"
                         }}
                     >
                         {quantity}
@@ -79,13 +81,12 @@ const CartButton: React.FC<CartButtonProps> = ({ quantity, onAdd, onReduce, addc
                     <button
                         className="d-flex justify-content-center align-items-center btn text-light fw-bold"
                         style={{
-                            backgroundColor: "rgb(19 62 135)",
+                            backgroundColor: "",
                             boxShadow: "none",
                             border: "none",
-                            height: "30px",
-                            width: "30px",
+                            height: "32px",
+                            width: "35px",
                             padding: "0",
-                            margin: "5px"
                         }}
                         onClick={onReduce}
                     >
