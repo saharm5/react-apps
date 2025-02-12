@@ -37,7 +37,7 @@
   /* Adjust card width */
   /* width: 148px; */
   text-align: center;
-  background-color: #b9ddf86e;
+  background-color:rgb(221 239 253 / 76%) ;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(96, 140, 193, 0.144);
   padding: 10px;
@@ -56,7 +56,7 @@
   height: 45px;
   /* Maintain the aspect ratio */
   border-radius: 8px;
-  background-color: #cbdceb;
+  background-color: rgb(221 239 253 / 76%);
   /* Light blue background matching the design */
 
 }

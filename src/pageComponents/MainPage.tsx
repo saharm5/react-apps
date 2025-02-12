@@ -99,6 +99,7 @@ const MainPage: React.FC = () => {
               <div className="maintabe">
                 <p className="ptabe">محصولات ویژه</p>
               </div>
+                <div className="scroll-container">
                 <ProductGrid
                   products={products.map((product) => ({
                     id: product.id,

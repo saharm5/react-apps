@@ -3,7 +3,7 @@ body {
   font-family: Vazirmatn, sans-serif !important;
   /* src/index.css or src/App.css */
   /* font-family: 'Vazir', sans-serif ; */
-  color:#133e87;
+  color: #133e87;
 }
 
 .body-main {
@@ -79,10 +79,11 @@ body {
 
 
 
-.bodyproductcard{
+.bodyproductcard {
   display: flex;
   justify-content: space-between;
 }
+
 /* General Styles */
 
 /* @media (max-width: 1024px) {
@@ -133,6 +134,21 @@ body {
     font-size: 12px;
   }
 } */
+.scroll-container {
+  height: 280px;
+  overflow-y: auto;
+  padding-top: 10px;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+
+}
+
+.productCards {
+  scroll-snap-align: start;
+  margin-bottom: 270px;
+}
+
 @media (max-width: 950px) {
   .row-container {
     gap: 0;
