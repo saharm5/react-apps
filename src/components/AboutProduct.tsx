@@ -74,24 +74,24 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
 
 
   const handleAddFavorit = async (id: number) => {
-    setFavorit(prev => !prev); 
-  
+    setFavorit(prev => !prev);
+
     try {
       const formData = {
         url: window.location.href,
         id,
-        is_favorite: !favorit, 
+        is_favorite: !favorit,
       };
-  
-      const response = await submitForm("/save-data/", formData); 
+
+      const response = await submitForm("/save-data/", formData);
       console.log(`Product ${id} ${!favorit ? "added to" : "removed from"} favorites`, response);
     } catch (error) {
       alert("Error saving data");
       console.error(error);
     }
   };
-  
-  
+
+
 
   // Handle copying the product link
   const handleCopyLink = () => {
@@ -291,11 +291,13 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                       <strong style={{ fontSize: " 17px" }}>{product.final_price.toLocaleString()} تومان</strong>
                     </p>
                   </div>
-                  <CartButton
-                    quantity={quantity}
-                    onAdd={() => addition(product.id)}
-                    onReduce={() => reduce(product.id)}
-                  />
+                  <div style={{
+                    width: "186.53px",
+                  }}>
+                    <CartButton
+                      quantity={quantity}
+                      onAdd={() => addition(product.id)}
+                      onReduce={() => reduce(product.id)} addcard={"افزودن به سبد خرید"} /></div>
                 </div>
               </div>
             </div>

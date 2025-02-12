@@ -1,7 +1,7 @@
 
 
 
-const BASE_URL = "http://127.0.0.1:8000/";
+const BASE_URL = "  http://127.0.0.1:8000/";
 
 export const fetchProducts = async (url: string) => {
     try {
@@ -30,7 +30,7 @@ export const fetchProducts = async (url: string) => {
 
 // برای درخواست POST
 export const submitForm = async (url: string, formData: object) => {
-const BASE_URL = "http://127.0.0.1:8000/";
+const BASE_URL = "  http://127.0.0.1:8000/";
 
     try {
         // const csrfToken = getCsrfToken();

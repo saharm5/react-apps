@@ -9,34 +9,31 @@ import FooterResponsive from "../components/FooterResponsive";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../styles/global.css";
-import { fetchProducts } from '../server/api';
-import useBodyClass from "../components/useBodyClass"
+import { fetchProducts } from "../server/api";
+import useBodyClass from "../components/useBodyClass";
 
+// Interfaces
 interface Image {
   product_name: string;
   productImageSrc: string;
 }
-interface products {
+
+interface Product {
   id: number;
   product_name: string;
   final_price: number;
   description: string;
   rating: number;
   productImageSrc: Image[];
-
 }
 
-
 const MainPage: React.FC = () => {
-
   const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState<products[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [cart, setCart] = useState<{ id: number; quantity: number }[]>([]);
 
-
   useBodyClass("body-main");
-
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -46,8 +43,6 @@ const MainPage: React.FC = () => {
 
     return () => clearTimeout(timer);
   }, []);
-
-
 
   const increaseQuantity = (id: number) => {
     setCart((prev) => {
@@ -73,28 +68,26 @@ const MainPage: React.FC = () => {
     });
   };
 
-  const limit = 10
-
+  const limit = 10;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchProducts('/data/?limit=' + limit);
+        const data = await fetchProducts(`/data/?limit=${limit}`);
         setProducts(data);
       } catch (error) {
-        setError('Failed to fetch products');
+        console.error("Failed to fetch products:", error);
+        setError("Failed to fetch products");
       }
     };
 
     fetchData();
   }, []);
 
-
-
   return (
     <div>
       {isLoading ? (
-        <p>Loading...</p> // Show loading state
+        <p>Loading...</p>
       ) : (
         <div>
           <Header />
@@ -102,39 +95,29 @@ const MainPage: React.FC = () => {
             <Banner />
             <Categories />
             <div className="mainproductcard">
-              {/* <HeaderProductGrid /> */}
               <div className="products-card">
-                {/* Tabs */}
                 <div className="maintabe">
                   <p className="ptabe">محصولات ویژه</p>
                 </div>
                 <div className="grid">
-                  {products.map((products) => {
-                    const cartItem = cart.find((item) => item.id === products.id);
-                    const quantity = cartItem?.quantity || 0;
-                    return (
-                      <ProductGrid
-                        idslm={products.id}
-                        key={products.id}
-                        id={products.id}
-                        title={products.product_name}
-                        price={products.final_price}
-                        imageUrl={products.productImageSrc[0]?.productImageSrc}
-                        addition={() => increaseQuantity(products.id)}
-                        reduce={() => decreaseQuantity(products.id)}
-                        num={quantity}
-                      />
-                    );
-                  })}
+                  <ProductGrid
+                    products={products.map((product) => ({
+                      id: product.id,
+                      title: product.product_name,
+                      price: product.final_price,
+                      imageUrl: product.productImageSrc[0]?.productImageSrc || ""
+                    }))}
+                    carts={cart}
+                    addition={increaseQuantity}
+                    reduce={decreaseQuantity}
+                  />
                 </div>
               </div>
             </div>
 
             <Brands />
-
           </div>
           <FooterResponsive />
-
           <Footer />
         </div>
       )}

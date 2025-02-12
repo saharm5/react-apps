@@ -9,6 +9,7 @@ import ReviewPage from "./pageComponents/ReviewPage";
 import "./styles/global.css";
 import NotFoundPage from "./pageComponents/NotFoundPage";
 // import Header from "./components/Header";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 

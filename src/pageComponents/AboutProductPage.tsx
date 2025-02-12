@@ -63,13 +63,13 @@ const ProductDetails: React.FC = () => {
     };
 
 
-    const limit =9
-    
+    const limit = 9
+
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await fetchProducts('/data/?limit='+limit);
+                const data = await fetchProducts('/data/?limit=' + limit);
 
                 setProducts(data);
             } catch (error) {
@@ -106,7 +106,7 @@ const ProductDetails: React.FC = () => {
     };
     useBodyClass("body-main");
 
-    
+
 
     return (
         <div>
@@ -123,27 +123,19 @@ const ProductDetails: React.FC = () => {
                         <div className="products-card">
                             {/* Tabs */}
                             <div className="maintabe">
-                                <h5 className="ptabe" style={{fontSize:"20px"}}>محصولات مشابه</h5>
+                                <h5 className="ptabe" style={{ fontSize: "20px" }}>محصولات مشابه</h5>
                             </div>
-                            <div className="grid">
-                                {products.map((product) => {
-                                    const cartItem = cart.find((item) => item.id === product.id);
-                                    const quantity = cartItem?.quantity || 0;
-                                    return (
-                                        <ProductGrid
-                                            idslm={product.id}
-                                            key={product.id}
-                                            id={product.id}
-                                            title={product.product_name}
-                                            price={product.final_price}
-                                            imageUrl={product.productImageSrc[0]?.productImageSrc}
-                                            addition={() => increaseQuantity(product.id)}
-                                            reduce={() => decreaseQuantity(product.id)}
-                                            num={quantity}
-                                        />
-                                    );
-                                })}
-
+                            <div className="d-flex flex-row">
+                                <ProductGrid
+                                    products={products.map((product) => ({
+                                        id: product.id,
+                                        title: product.product_name,
+                                        price: product.final_price,
+                                        imageUrl: product.productImageSrc[0]?.productImageSrc || ""
+                                    }))}
+                                    carts={cart}
+                                    addition={increaseQuantity}
+                                    reduce={decreaseQuantity} />
                             </div>
                         </div>
                     </div>

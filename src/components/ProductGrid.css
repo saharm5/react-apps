@@ -114,6 +114,7 @@
   justify-content: space-between;
   flex-wrap: nowrap;
   align-items: center;
+  border: solid 1px rgb(186, 208, 233);
 }
 
 .productCards:hover {

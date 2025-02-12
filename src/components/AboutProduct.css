@@ -206,6 +206,7 @@
   left: 50%;
   /* Center horizontally */
   bottom: 25px;
+  width: 186.53px;
   /* Align to the bottom */
  
   transform: translateX(-50%);
