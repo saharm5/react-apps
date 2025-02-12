@@ -41,7 +41,7 @@
 
 }
 
-.form-group-login i {
+.form-Icom-login {
   position: absolute;
   left: 14px;
   top: 50%;
@@ -51,7 +51,7 @@
 
 }
 
-input[type="password"] {
+/* input[type="password"] {
   width: 100%;
   padding: 12px 80px 12px;
   border: 1px #0011ff;
@@ -71,9 +71,31 @@ input[type="password"]::placeholder {
   color: #344772a2;
   position: absolute;
   right: 14px;
+} */
+
+.login-form input {
+  direction: ltr;
+  width: 100%;
+  padding: 12px 80px 12px;
+  border: 1px #0011ff;
+  border-radius: 25px;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  background-color: rgba(231, 247, 251, 0.9);
 }
 
+.login-form input:focus {
 
+  box-shadow: 0 0 4px rgba(15, 52, 96, 0.2);
+}
+
+.login-form input::placeholder {
+  color: #344772a2;
+  position: absolute;
+  right: 14px;
+}
+/* 
 input[type="tel"] {
   width: 100%;
   padding: 12px 80px 12px;
@@ -94,7 +116,7 @@ input[type="tel"]::placeholder {
   color: #344772a2;
   position: absolute;
   right: 14px;
-}
+} */
 
 .telephone {
   margin: 25px 0px;
