@@ -146,7 +146,6 @@ body {
 
 .productCards {
   scroll-snap-align: start;
-  margin-bottom: 270px;
 }
 
 @media (max-width: 950px) {

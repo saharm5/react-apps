@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 import Inputmask from "inputmask";
 import "./Review.css";
-import { submitForm } from '../server/api';
+import { submitForm } from '../../server/api';
 
 const Review: React.FC = () => {
 

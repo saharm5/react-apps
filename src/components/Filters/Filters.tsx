@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Filters.css";
-import { fetchProducts } from '../server/api';
+import { fetchProducts } from '../../server/api';
 
 
 interface FilterProps {

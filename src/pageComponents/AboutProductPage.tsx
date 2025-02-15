@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import FooterResponsive from "../components/FooterResponsive";
+import FooterResponsive from "../components/FooterResponsive/FooterResponsive";
 import "../styles/global.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "../components/Header";
-import ProductGrid from "../components/ProductGrid";
+import Header from "../components/Header/Header";
+import ProductGrid from "../components/ProductGrid/ProductGrid";
 import { fetchProducts } from '../server/api';
-import useBodyClass from "../components/useBodyClass"
+import useBodyClass from "../components/useBodyClass/useBodyClass"
 
-import Footer from "../components/Footer";
-import AboutProduct from "../components/AboutProduct";
+import Footer from "../components/Footer/Footer";
+import AboutProduct from "../components/AboutProduct/AboutProduct";
 
 interface Image {
     product_name: string;

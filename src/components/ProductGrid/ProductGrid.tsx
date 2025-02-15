@@ -1,6 +1,6 @@
 import React from "react";
 import "./ProductGrid.css";
-import CartButton from "./CartButton";
+import CartButton from "../CartButton/CartButton";
 
 // Product Interface
 interface Product {

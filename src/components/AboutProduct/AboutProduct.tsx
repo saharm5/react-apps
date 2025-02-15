@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./AboutProduct.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { fetchProducts, submitForm } from "../server/api"; // Assume this function exists
-import CartButton from "./CartButton"; // Importing the new component
+import { fetchProducts, submitForm } from "../../server/api"; // Assume this function exists
+import CartButton from "../CartButton/CartButton"; // Importing the new component
 import { useSearchParams } from "react-router-dom";
-import FreeDelivery from "../assets/svg/FreeDelivery";
-import CheckShield from "../assets/svg/CheckShield";
-import Star from "../assets/svg/Star";
-import Payment from "../assets/svg/Payment"
+import FreeDelivery from "../../assets/svg/FreeDelivery";
+import CheckShield from "../../assets/svg/CheckShield";
+import Star from "../../assets/svg/Star";
+import Payment from "../../assets/svg/Payment"
 
 
 

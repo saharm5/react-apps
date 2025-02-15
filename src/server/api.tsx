@@ -30,11 +30,11 @@ export const fetchProducts = async (url: string) => {
 
 // برای درخواست POST
 export const submitForm = async (url: string, formData: object) => {
-const BASE_URL = "  http://127.0.0.1:8000/";
+    const BASE_URL = "http://127.0.0.1:8000/";
 
     try {
         // const csrfToken = getCsrfToken();
-        const response = await fetch(new URL(url, BASE_URL).toString(),{
+        const response = await fetch(new URL(url, BASE_URL).toString(), {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -43,14 +43,14 @@ const BASE_URL = "  http://127.0.0.1:8000/";
             // credentials: "include",  
             body: JSON.stringify(formData),
         });
- 
-        const text = await response.text(); 
+
+        const text = await response.text();
         console.log("Response:", text);
- 
+
         if (!response.ok) {
             throw new Error("Failed to submit form");
         }
- 
+
 
         if (text.trim() === 'ok') {
             return { message: 'Form submitted successfully!' };
@@ -67,5 +67,4 @@ const BASE_URL = "  http://127.0.0.1:8000/";
         console.error("Error submitting form:", error);
         throw error;
     }
- };
- 
+};

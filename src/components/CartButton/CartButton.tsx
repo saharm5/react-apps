@@ -1,9 +1,9 @@
 import React from "react";
-import AddToCart from "../assets/svg/AddToCart";
-import Trash from "../assets/svg/TrashX";
+import AddToCart from "../../assets/svg/AddToCart";
+import Trash from "../../assets/svg/TrashX";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Minus from "../assets/svg/Minus";
-import Plus from "../assets/svg/Plus";
+import Minus from "../../assets/svg/Minus";
+import Plus from "../../assets/svg/Plus";
 
 interface CartButtonProps {
     quantity: number;

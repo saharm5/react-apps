@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { submitForm } from "../server/api";
-import Phone from "../assets/svg/Phone";
-import VerificationCode from "../assets/svg/VerificationCode";
+import { submitForm } from "../../server/api";
+import Phone from "../../assets/svg/Phone";
+import VerificationCode from "../../assets/svg/VerificationCode";
 
-const Signin: React.FC = () => {
+const Login: React.FC = () => {
   const [phone_number, setphone_number] = useState<string>("");
-  const [confirmCode, setconfirmCode] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
@@ -15,8 +15,8 @@ const Signin: React.FC = () => {
     setError("");
   };
 
-  const handleconfirmCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setconfirmCode(e.target.value);
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
     setError("");
   };
 
@@ -37,18 +37,18 @@ const Signin: React.FC = () => {
       return;
     }
 
-    if (!confirmCode) {
-      setError("کد تایید الزامی است.");
+    if (!password) {
+      setError("رمز عبور الزامی است.");
       setTimeout(() => setIsSubmitting(false), 2000);
       return;
     }
 
-    const formData = { phone_number, confirmCode };
+    const formData = { phone_number, password };
 
     try {
       await submitForm("api/auth/login/", formData);
       setphone_number("");
-      setconfirmCode("");
+      setPassword("");
       setError("");
     } catch (err) {
       setError("ارسال با خطا مواجه شد. لطفاً دوباره امتحان کنید.");
@@ -61,15 +61,15 @@ const Signin: React.FC = () => {
     <div className="login-container">
       <h2>بقالی</h2>
       <div>
-        <h3>ثبت نام</h3>
+        <h3>ورود</h3>
         <p className="login-container-p">
-          برای ثبت‌ نام شماره موبایل خود را وارد کنید.
+          برای ورود شماره موبایل خود را وارد کنید.
         </p>
       </div>
       <form className="login-form " onSubmit={handleSubmit}>
         <div className="form-group-login">
           <div className="form-Icom-login">
-            <Phone />
+          <Phone />
           </div>
           <input
             className={`phone-input ${error ? "input-error" : ""}`}
@@ -83,24 +83,24 @@ const Signin: React.FC = () => {
         </div>
         <div className="form-group-login" style={{ marginBottom: "25px" }}>
           <div className="form-Icom-login">
-            <VerificationCode />
+          <VerificationCode />
           </div>
           <input
-            type="text"
+            type="password"
             className={`password-input ${error ? "input-error" : ""}`}
-            value={confirmCode}
-            onChange={handleconfirmCodeChange}
-            placeholder="کد تایید"
+            value={password}
+            onChange={handlePasswordChange}
+            placeholder="رمز ورود"
             required
           />
         </div>
         {error && <p className="validation-error">{error}</p>}
         <button className="button-login" disabled={isSubmitting} type="submit">
-          ثبت نام
+          ورود
         </button>
       </form>
       <p className="disclaimer-login">
-        تایید شما به معنی پذیرش
+        ورود شما به معنی پذیرش
         <a href="#" className="ColorRoll-login"> قوانین و مقررات </a>
         است.
       </p>
@@ -108,4 +108,4 @@ const Signin: React.FC = () => {
   );
 };
 
-export default Signin;
+export default Login;

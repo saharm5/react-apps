@@ -1,5 +1,5 @@
 // Categories.tsx
-import { fetchProducts } from "../server/api";
+import { fetchProducts } from "../../server/api";
 import "./Categories.css";
 import React, { useEffect, useRef, useState } from "react";
 

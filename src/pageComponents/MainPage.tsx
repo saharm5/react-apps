@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import Header from "../components/Header";
-import Banner from "../components/Banner";
-import Categories from "../components/Categories";
-import ProductGrid from "../components/ProductGrid";
-import Brands from "../components/Brands";
-import Footer from "../components/Footer";
-import FooterResponsive from "../components/FooterResponsive";
+import Header from "../components/Header/Header";
+import Banner from "../components/Banner/Banner";
+import Categories from "../components/Categories/Categories";
+import ProductGrid from "../components/ProductGrid/ProductGrid";
+import Brands from "../components/Brands/Brands";
+import Footer from "../components/Footer/Footer";
+import FooterResponsive from "../components/FooterResponsive/FooterResponsive";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../styles/global.css";
 import { fetchProducts } from "../server/api";
-import useBodyClass from "../components/useBodyClass";
+import useBodyClass from "../components/useBodyClass/useBodyClass";
 
 // Interfaces
 interface Image {

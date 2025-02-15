@@ -1,5 +1,5 @@
 //Brand.tsx
-import { fetchProducts } from "../server/api";
+import { fetchProducts } from "../../server/api";
 import "./Brands.css";
 import React, { useEffect, useState } from "react";
 
