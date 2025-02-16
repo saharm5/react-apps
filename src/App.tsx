@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./pageComponents/MainPage";
 import LoginPage from "./pageComponents/LoginPage";
+import RegisterPage from "./pageComponents/RegisterPage";
 import SigninPage from "./pageComponents/SigninPage";
 import ProductsPage from "./pageComponents/ProductsPage";
 import ProductDetails from "./pageComponents/AboutProductPage";
@@ -23,6 +24,7 @@ export default function App() {
       <Routes>
         <Route index element={<MainPage />} />
         <Route path="login" element={<LoginPage />} />
+        <Route path="Register" element={<RegisterPage />} />
         <Route path="Signin" element={<SigninPage />} />
         {/* <Route path="Page" element={<HeaderResponsive />} /> */}
         <Route path="Products" element={<ProductsPage />} />

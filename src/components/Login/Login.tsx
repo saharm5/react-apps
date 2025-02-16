@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./Login.css";
 import { submitForm } from "../../server/api";
 import Phone from "../../assets/svg/Phone";
-import VerificationCode from "../../assets/svg/VerificationCode";
+import Key from "../../assets/svg/key";
+
 
 const Login: React.FC = () => {
   const [phone_number, setphone_number] = useState<string>("");
@@ -43,10 +44,13 @@ const Login: React.FC = () => {
       return;
     }
 
-    const formData = { phone_number, password };
+    const formData = {
+      "phone_number": phone_number,
+      "password": password
+    };
 
     try {
-      await submitForm("api/auth/login/", formData);
+      await submitForm("/api/auth/login-with-password/", formData);
       setphone_number("");
       setPassword("");
       setError("");
@@ -69,7 +73,7 @@ const Login: React.FC = () => {
       <form className="login-form " onSubmit={handleSubmit}>
         <div className="form-group-login">
           <div className="form-Icom-login">
-          <Phone />
+            <Phone />
           </div>
           <input
             className={`phone-input ${error ? "input-error" : ""}`}
@@ -83,7 +87,7 @@ const Login: React.FC = () => {
         </div>
         <div className="form-group-login" style={{ marginBottom: "25px" }}>
           <div className="form-Icom-login">
-          <VerificationCode />
+            <Key />
           </div>
           <input
             type="password"

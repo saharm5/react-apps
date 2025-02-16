@@ -3,13 +3,19 @@ import "../Login/login.css";
 import { submitForm } from "../../server/api";
 import Phone from "../../assets/svg/Phone";
 import VerificationCode from "../../assets/svg/VerificationCode";
+import Key from "../../assets/svg/key";
 
 const Signin: React.FC = () => {
   const [phone_number, setphone_number] = useState<string>("");
   const [confirm_code, setconfirm_code] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+    setError("");
+  };
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setphone_number(e.target.value);
     setError("");
@@ -42,11 +48,19 @@ const Signin: React.FC = () => {
       setTimeout(() => setIsSubmitting(false), 2000);
       return;
     }
-
-    const formData = { phone_number, confirm_code };
+    if (!password) {
+      setError("رمز عبور الزامی است.");
+      setTimeout(() => setIsSubmitting(false), 2000);
+      return;
+    }
+    const formData = {
+      "phone_number": phone_number,
+      "otp": confirm_code,
+      "password": password
+    };
 
     try {
-      await submitForm("api/auth/confirm-code/", formData);
+      await submitForm("/api/auth/verify-otp/", formData);
       setphone_number("");
       setconfirm_code("");
       setError("");
@@ -57,8 +71,10 @@ const Signin: React.FC = () => {
     }
   };
 
+
+
   return (
-    <div className="login-container">
+    <div className="login-container" style={{ height: "500px" }}>
       <h2>بقالی</h2>
       <div>
         <h3>ثبت نام</h3>
@@ -81,7 +97,7 @@ const Signin: React.FC = () => {
             required
           />
         </div>
-        <div className="form-group-login" style={{ marginBottom: "25px" }}>
+        <div className="form-group-login">
           <div className="form-Icom-login">
             <VerificationCode />
           </div>
@@ -91,6 +107,19 @@ const Signin: React.FC = () => {
             value={confirm_code}
             onChange={handleconfirm_codeChange}
             placeholder="کد تایید"
+            required
+          />
+        </div>
+        <div className="form-group-login" style={{ marginBottom: "25px" }}>
+          <div className="form-Icom-login">
+            <Key />
+          </div>
+          <input
+            type="password"
+            className={`password-input ${error ? "input-error" : ""}`}
+            value={password}
+            onChange={handlePasswordChange}
+            placeholder="رمز ورود"
             required
           />
         </div>

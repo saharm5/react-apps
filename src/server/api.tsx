@@ -1,7 +1,7 @@
 
 
 
-const BASE_URL = "  http://127.0.0.1:8000/";
+const BASE_URL = "http://127.0.0.1:8000/";
 
 export const fetchProducts = async (url: string) => {
     try {
@@ -51,11 +51,18 @@ export const submitForm = async (url: string, formData: object) => {
             throw new Error("Failed to submit form");
         }
 
-
         if (text.trim() === 'ok') {
-            return { message: 'Form submitted successfully!' };
+            return { text };
         }
-
+   
+        const responseData = JSON.parse(text);
+        if (responseData.isregister === 1) {
+          
+            window.location.href = "http://localhost:5173/Signin";
+        } else if (responseData.isregister === 2) {
+          
+            window.location.href = "http://localhost:5173/login";
+        }
         try {
             const result = JSON.parse(text);
             return result;
@@ -63,6 +70,7 @@ export const submitForm = async (url: string, formData: object) => {
             console.error("Failed to parse JSON:", e);
             throw new Error("Response is not valid JSON");
         }
+
     } catch (error) {
         console.error("Error submitting form:", error);
         throw error;
