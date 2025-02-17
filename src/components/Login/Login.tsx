@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import { submitForm } from "../../server/api";
 import Phone from "../../assets/svg/Phone";
-import Key from "../../assets/svg/key";
+import Key from "../../assets/svg/Key";
 
 
 const Login: React.FC = () => {
@@ -73,7 +73,7 @@ const Login: React.FC = () => {
       <form className="login-form " onSubmit={handleSubmit}>
         <div className="form-group-login">
           <div className="form-Icom-login">
-            <Phone />
+          <Phone />
           </div>
           <input
             className={`phone-input ${error ? "input-error" : ""}`}

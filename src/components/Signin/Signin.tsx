@@ -3,7 +3,7 @@ import "../Login/login.css";
 import { submitForm } from "../../server/api";
 import Phone from "../../assets/svg/Phone";
 import VerificationCode from "../../assets/svg/VerificationCode";
-import Key from "../../assets/svg/key";
+import Key from "../../assets/svg/Key";
 
 const Signin: React.FC = () => {
   const [phone_number, setphone_number] = useState<string>("");
