@@ -147,7 +147,7 @@ const ProductsPage: React.FC = () => {
               <p>Loading...</p>
             ) : (
               <ProductGrid
-                products={products.map((product) => ({
+                products={filteredProducts.map((product) => ({
                   id: product.id,
                   title: product.product_name,
                   price: product.final_price,
