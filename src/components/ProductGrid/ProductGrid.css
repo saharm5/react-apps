@@ -1,32 +1,19 @@
 .mainproductcard {
-  margin: 50px 0px;
-  padding: 20px;
+  padding:1%;
 }
 
 .maintabe {
   display: flex;
   justify-content: space-between;
-  /* gap: 250px; */
-  /* margin-bottom: 25px; */
   width: 100%;
   flex-direction: row;
-  /* flex-wrap: nowrap; */
-  /* align-items: center; */
 }
 
 .ptabe {
   font-size: 24px;
   font-weight: bold;
-  padding: 12px 0px;
   color: #133e87;
-}
-
-.tabs {
-  display: flex;
-  justify-content: space-around;
-  gap: 16px;
-  margin-bottom: 24px;
-  /* width: 100%; */
+  margin-bottom: 20px;
 }
 
 .tab {
@@ -89,7 +76,7 @@
 
 .grid {
   display: grid;
-
+  padding-bottom: 15px;
   grid-template-columns: repeat(auto-fit,
       minmax(145px, 1fr));
   /* Responsive layout */

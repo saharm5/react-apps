@@ -84,7 +84,6 @@ const Categories: React.FC = () => {
           </button>
         </div>
       </div>
-
       {/* Scrollable container */}
       <div ref={carouselRef} className="categories-carousel">
         {Category.map((category, index) => (

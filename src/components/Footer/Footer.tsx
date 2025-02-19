@@ -66,19 +66,19 @@ const Footer: React.FC = () => {
               <div>
                 <h3>راهنمای خرید از بقالی</h3>
                 <ul>
-                  <li>نحوه ثبت سفارش</li>
-                  <li>رویه ارسال سفارش</li>
-                  <li>شیوه پرداخت</li>
-                  <li>پیگیری سفارش</li>
+                  <li><a className="helplink" href="#"> نحوه ثبت سفارش</a></li>
+                  <li><a className="helplink" href="#"> رویه ارسال سفارش</a></li>
+                  <li><a className="helplink" href="#"> شیوه پرداخت</a></li>
+                  <li><a className="helplink" href="#"> پیگیری سفارش</a></li>
                 </ul>
               </div>
               <div>
                 <h3>درباره بقالی</h3>
                 <ul>
-                  <li>درباره ما</li>
-                  <li>تماس با ما</li>
-                  <li>سوالات متداول</li>
-                  <li>تماس با پشتیبانی</li>
+                  <li><a className="helplink" href="#"> درباره ما</a></li>
+                  <li><a className="helplink" href="#"> تماس با ما</a></li>
+                  <li><a className="helplink" href="#"> سوالات متداول</a></li>
+                  <li><a className="helplink" href="#"> تماس با پشتیبانی</a></li>
                 </ul>
               </div>
             </div>

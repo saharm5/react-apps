@@ -10,72 +10,42 @@ header {
 .HeaderNav {
   display: flex;
   justify-content: space-between;
-  /*  */
-  /* Note */
   align-items: center;
   background-color: rgb(17, 45, 78);
-  padding: 8px 22px 8px 35px;
+  padding: 5px 22px 5px 35px;
   position: fixed;
-  top: 25px;
-  left: 61px;
-  right: 61px;
+  top: 20px;
+  left: 3%;
+  right: 3%;
   z-index: 10;
-  /*gap: 80px;*/
-  /* Note */
-  border-radius: 20px;
+  border-radius: 10px;
   color: #f9f7f7;
-  /* margin-bottom: 25px; */
-  /* Note */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  /* Subtle shadow for depth */
-
 }
 
-/* Main Dropdown Container */
 .HeaderMainDropdown {
   position: relative;
-  /* Position relative to the parent container for dropdown positioning */
-  /* background-color: #f4f9ff; Light blue background for the container */
-  /* padding: 10px; Add padding inside the dropdown container */
   border-radius: 8px;
-  /* Rounded corners for the container */
-  width: 250px;
-  /* Set a fixed width for the dropdown container */
+  width: 15%;
 }
 
 /* Dropdown Button */
 .HeaderMainDropdownBtn {
   background: rgb(17, 45, 78);
-  /* Dark blue background for the button */
   color: white;
-  /* White text color */
   border: none;
-  /* No border around the button */
   padding: 10px;
-  /* Add padding inside the button */
   cursor: pointer;
-  /* Change the cursor to a pointer when hovering */
   text-align: right;
-  /* Align text to the right */
   border-radius: 5px;
-  /* Rounded corners for the button */
   display: flex;
-  /* Flexbox to align items inside the button */
   align-items: center;
-  /* Vertically align items inside the button */
   justify-content: space-between;
-  /* Distribute space between the text and icon */
 }
 
-/* Padding for the Icon inside the button */
 .HeaderMainDropdownIconPadding {
-  margin-left: 10px;
-  /* Add space to the left of the icon inside the button */
+  margin-left: 5px;
 }
-
-
-
-
 
 .HeaderMainDropdownContainer {
   margin: 0;
@@ -87,156 +57,92 @@ header {
 
 }
 
-
-/* Dropdown List (hidden initially) */
 .HeaderMainDropdownUl {
-
   list-style: none;
-  /* Remove default list bullet points */
   margin: 0;
-  /* Remove margin */
   display: none;
-  /* Hide the dropdown list by default */
   position: absolute;
-  /* Position it absolutely relative to the parent container */
   top: 100%;
-  /* Position it just below the button */
   right: 0;
-  /* Align it to the left of the parent */
   background-color: rgb(17, 45, 78);
-  /* White background for the dropdown */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* Add a shadow for better visibility */
   border-radius: 5px;
-  /* Rounded corners for the dropdown */
   z-index: 100;
-  /* Make sure the dropdown appears above other elements */
 }
 
-/* Show the dropdown when hovering over the main button */
 .HeaderMainDropdown:hover .HeaderMainDropdownUl {
   display: block;
-  /* Display the dropdown list when hovering */
 }
 
-/* List Item in the Main Dropdown */
 .HeaderMainDropdownLi {
   padding: 10px;
-  /* Add padding inside each list item */
   text-decoration: none;
   text-align: right;
-  /* Align text to the right */
   font-size: 14px;
-  /* Set the font size */
   color: #ffffff;
-  /* Dark blue text color */
   cursor: pointer;
-  /* Change cursor to pointer for interactivity */
   transition: transform 0.2s;
 }
 
-/* Hover effect for main dropdown items */
 .HeaderMainDropdownLi:hover {
   transform: scale(1.1);
-  /* Change background color on hover */
 }
 
-/* Dropdown Container for Subcategories (nested dropdown) */
 .HeaderDropdown {
   width: 100%;
   position: relative;
-  /* Set relative position for the nested dropdown */
 }
 
-/* Button for each subcategory */
 .HeaderDropdownBtn {
   background: none;
-  /* No background for the subcategory button */
   border: none;
-  /* Remove the border */
   padding: 0;
-  /* Remove padding */
   cursor: pointer;
-  /* Change cursor to pointer */
   text-align: right;
-  /* Align text to the right */
 }
 
-/* Dropdown List for Subcategories (hidden by default) */
 .HeaderDropdownUl {
-
   list-style: none;
-  /* Remove default list style */
   padding: 0;
-  /* Remove padding */
   margin: 0;
-  /* Remove margin */
   display: none;
-  /* Initially hide the subcategory dropdown */
   position: absolute;
-  /* Position it absolutely to the right of the parent item */
   top: 0;
-  /* Align it to the top */
   right: 100%;
-  /* Position it to the right of the parent item */
   background-color: rgb(17, 45, 78);
-  /* White background */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* Add shadow for visibility */
   border-radius: 5px;
-  /* Rounded corners */
   z-index: 200;
-  /* Ensure the nested dropdown appears above the main menu */
 }
 
-/* Show subcategory dropdown when hovering over the parent item */
 .HeaderDropdown:hover .HeaderDropdownUl {
   display: block;
-  /* Show the nested dropdown */
 }
 
-/* List Items in Subcategory Dropdown */
 .HeaderDropdownLi {
   width: 200px;
   text-decoration: none;
   padding: 10px;
-  /* Add padding inside each list item */
   text-align: right;
-  /* Align text to the right */
   font-size: 13px;
-  /* Slightly smaller font size for subcategory items */
   color: #ffffff;
-  /* Dark blue text color */
   cursor: pointer;
-  /* Change cursor to pointer */
 }
 
-
-
-
-/* Note */
-/* Center Section - Search Bar */
 .HeaderSearchContainer {
-  display: inline-flex;
-  justify-content: center;
-  flex: 1;
-  /* Take available space */
+  display: flex;
   position: relative;
-  /* table-layout: fixed; */
-  /* Note */
-  /* flex: auto;*/
-  /* Note */
-  max-width: 30%;
+  width: 35%;
+  border-radius: 15px;
+  padding-inline: 10px;
 }
-
-.HeaderSearchForm {
-
-  /* margin: 10px; */
-  /* align-items: center; */
+.HeaderSearchdiv {
+  display: flex;
+  justify-content: center;
+  position: relative;
   width: 100%;
-  display: inline-flex;
-  flex-direction: row-reverse;
-  border-radius: 20px;
+  flex-direction: row;
+  border-radius: 15px;
   overflow: hidden;
 }
 
@@ -245,9 +151,9 @@ header {
   padding: 8px 20px;
   font-size: 14px;
   border: none;
-
   outline: none;
   border-radius: 0;
+  width: 100%;
   /* Removed redundant radius */
 }
 
@@ -271,7 +177,6 @@ header {
   color: #f9f7f7;
   gap: 8px;
   font-size: 14px;
-
 }
 
 /* Left Section - Icons */
@@ -303,7 +208,9 @@ header {
 .HeaderHaertIcon:hover {
   color: rgba(255, 0, 0, 0.78);
 }
-
+.btnsumbit{
+  color: rgb(17, 45, 78);
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   .HeaderNav {

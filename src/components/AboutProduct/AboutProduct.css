@@ -1,3 +1,28 @@
+.AboutPmaindiv {
+  width: 100%;
+}
+
+.AboutProductbtnR {
+  right: 0;
+  height: 80%;
+  border: none;
+}
+
+.AboutProductbtnL {
+  left: 0;
+  height: 80%;
+  border: none;
+}
+
+.imgsS {
+  height: 500px;
+  width: 500px;
+}
+
+.AboutProductbtnicon {
+  font-size: 20px;
+}
+
 /* .bg-img {
     background-image: url("https://asset.okala.com/unsigned/rs:fill/size:192:192/quality:100/plain/s3://cdn/product/379324.png");
     min-height: 380px;
@@ -7,6 +32,18 @@
     position: relative;
   }
    */
+.AboutProductpS {
+  font-size: 12px;
+}
+
+.AboutProductpB {
+  background-color: #d32f2f;
+}
+
+.AboutProductpSS strong {
+  font-size: 17px;
+}
+
 .expanded-image-overlay {
   position: fixed;
   top: 0;
@@ -26,6 +63,7 @@
 }
 
 .close-btn {
+  background-color: rgba(63, 91, 122, 0.226);
   position: absolute;
   top: 10px;
   right: 15px;
@@ -35,8 +73,7 @@
 }
 
 .card-imgs {
-  width: 100px;
-  height: 100px;
+  width: 100%;
   object-fit: contain;
   cursor: pointer;
 }
@@ -56,7 +93,7 @@
 .card {
   border-radius: 12px;
   border: none;
-  max-width: 400px;
+  max-width: 86%;
 }
 
 
@@ -195,12 +232,12 @@
 
 
 .LeftSection {
-  position: relative;
-  height: 100vh;
   border: solid 1px rgb(186, 226, 233);
-  max-height: 350px;
+  min-height: 80%;
+  max-height: 400px;
   font-size: 15px;
 }
+
 .btncard {
   position: absolute;
   left: 50%;
@@ -208,6 +245,6 @@
   bottom: 25px;
   width: 186.53px;
   /* Align to the bottom */
- 
+
   transform: translateX(-50%);
 }

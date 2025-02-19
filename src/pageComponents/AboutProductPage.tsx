@@ -112,13 +112,13 @@ const ProductDetails: React.FC = () => {
         <div>
             <Header />
             <div className=" d-flex flex-column align-items-center bodyproductcard">
-                <div>
+                <div className="productcarddiv">
                     <AboutProduct
                         addition={increasesQuantity}
                         reduce={decreasesQuantity}
                         carts={carts}
                     />
-                    <div className=" shadow-lg rounded mainproductcard" style={{ margin: "0px", overflow: "auto" }}>
+                    <div className=" shadow-lg rounded mainproductcard" style={{ margin: "1% 0 " , padding:"1.5%", overflow: "auto" }}>
                         {/* <HeaderProductGrid /> */}
 
                         {/* Tabs */}

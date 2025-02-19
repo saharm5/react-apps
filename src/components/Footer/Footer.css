@@ -3,10 +3,10 @@ footer {
   direction: rtl;
   /* RTL layout */
   background-color: #fff;
-  padding: 20px 40px;
+  padding: 20px 40px 0;
   color: #333;
   border-top: 1px solid #ddd;
-
+  margin-top: 30px;
 }
 
 /* Back to Top Section */
@@ -39,6 +39,9 @@ footer {
 /* Left Column: Social Media + Email Subscription */
 .footer-left-column {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   /* Takes up equal space */
   max-width: 40%;
   /* Restricts width */
@@ -56,10 +59,11 @@ footer {
 .social-icons {
   display: flex;
   gap: 15px;
+  padding-right: 5px;
 }
 
 .social-icons a {
-  font-size: 32px;
+  font-size: 25px;
   color: rgb(1, 25, 79, 0.8);
   transition: color 0.3s;
 }
@@ -69,7 +73,7 @@ footer {
 }
 
 .email-subscription {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .email-subscription p {
@@ -86,6 +90,12 @@ footer {
 .boldpfooter {
   font-weight: bold;
   padding-inline: 4px;
+}
+
+.helplink {
+  padding-right: 5px;
+  text-decoration: none;
+  color: #244592;
 }
 
 .email-subscription input {
@@ -111,6 +121,9 @@ footer {
 /* Right Column: Footer Links + Certifications */
 .footer-right-column {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   /* Takes up equal space */
   max-width: 50%;
 }
@@ -152,7 +165,8 @@ footer {
 }
 
 .certifications img {
-  height: 50px;
+  height: 55px;
+  width: 55px;
   object-fit: contain;
 }
 

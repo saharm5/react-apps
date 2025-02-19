@@ -1,28 +1,18 @@
-/* Main container styling for review section */
 .ReviewMain {
   display: flex;
   justify-content: center;
-  gap: 50px;
+  gap: 30px;
   flex-direction: column;
-  padding: 20px;
   align-items: stretch;
   align-content: center;
   flex-wrap: wrap;
 }
-
-/* Form container styling for email and telephone forms */
 .ReviewEmailSubscription form {
   display: flex;
-  /* Use flexbox for form layout */
   align-items: center;
-  /* Align elements vertically in the center */
   justify-content: center;
-  /* Center the form items horizontally */
-  gap: 10px;
-  /* Space between form elements */
+  gap: 5px;
   width: 100%;
-  /* Ensure forms take the full available width */
-  height: 45px;
 }
 
 .ReviewInLine {
@@ -32,166 +22,88 @@
   justify-content: center;
 }
 
-
-
-/* Style for email subscription input container */
 .ReviewEmailSubscription {
   display: flex;
-  /* Use flexbox for form layout */
   align-items: flex-start;
   flex-direction: column;
-  gap: 10px;
-
+  gap: 5px;
   font-weight: bold;
   font-size: 16px;
-  /* Full width for responsive layout */
-  height: 45px;
-  max-width: 400px;
-  /* Limit the maximum width of the container */
 }
-
-
-
-
-
-
-
 .ReviewdateInput::-webkit-calendar-picker-indicator {
   filter: invert(12%) sepia(90%) saturate(700%) hue-rotate(200deg);
   opacity: 1;
   cursor: pointer;
 }
-
-
 .ReviewEmailSubscriptionInput {
   position: relative;
 }
-
 .ReviewEmailSubscriptionInput i {
   position: absolute;
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  /* color: #01194f; */
   font-size: 18px;
 }
-
-/* Styling for email input field */
 .ReviewEmailSubscriptionInput input[type="email"] {
   padding: 12px 80px 12px;
-  /* Add padding inside the input */
   width: 100%;
-  /* Make input take full width of its container */
-  max-width: 400px;
-  /* Limit the maximum width of the input */
-  height: 45px;
   direction: ltr;
   border: 1px solid #b3b8fd7e;
-  /* Blue border for input field */
-  /*border-radius: 25px;  Rounded corners */
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  /* Smooth transition for focus effect */
   outline: none;
-  /* Remove outline on focus */
   font-size: 14px;
   background-color: rgba(255, 255, 255, 0.9);
-  /* Slightly transparent background */
 }
 
-/* Focus effect for email input field */
 .ReviewEmailSubscriptionInput input[type="email"]:focus {
   box-shadow: 0 0 4px rgba(15, 52, 96, 0.2);
-  /* Subtle shadow on focus */
 }
 
-/* Placeholder styling for email input field */
 .ReviewEmailSubscriptionInput input[type="email"]::placeholder {
-
   color: #000000;
   position: relative;
-  /* Positioning to slightly shift placeholder */
 }
 
-/* Styling for the subscription button */
 .ReviewEmailSubscriptionDiv {
-  padding: 10px 15px;
-  /* Padding around the button */
   border: none;
-  /* Remove border */
   background-color: #01194f;
-  /* Dark blue background */
   color: white;
-  /* White text color */
-  /* border-radius: 5px; Rounded corners */
 
   transition: background-color 0.2s ease;
-  /* Smooth transition for hover effect */
 }
 
-/* Hover effect for subscription button */
 .ReviewEmailSubscription a:hover {
   background-color: #163f9c;
-  /* Darker blue on hover */
 }
 
-
-/* Placeholder styling for telephone input field */
-
-
-/* Error state styling for inputs */
-
-
-
-/* Error message styling */
-
-
-/* Styling for the submit button */
 .ReviewButton {
   background-color: #01194f;
-  /* Dark blue background */
   color: #ffffff;
-  /* White text color */
   border: none;
-  /* No border */
-  /*  border-radius: 25px;  Rounded corners */
-  padding: 10px;
-  /* Padding inside the button */
-
-
+  padding: 5px;
   font-size: 16px;
   cursor: pointer;
-  /* Pointer cursor on hover */
   width: 100%;
-  /* Full width button */
-  max-width: 400px;
-  /* Limit max width */
   height: 45px;
   transition: background-color 0.2s ease, transform 0.2s ease;
-  /* Smooth transition for hover effect */
 }
 
-/* Hover effect for submit button */
 .ReviewButton:hover {
   background-color: #083499;
-  /* Lighter blue on hover */
   transform: translateY(-1px);
-  /* Slight lift on hover */
 }
 
-/* Active state for submit button */
 .ReviewButton:active {
   transform: translateY(0);
-  /* Return to original position */
 }
 
-/* Button container for alignment */
 .ReviewDivButtonSubmit {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   justify-content: center;
-  /* Center the submit button */
 }
 
 
@@ -211,7 +123,7 @@
   font-size: 16px;
   margin: 0px 0px;
   display: flex;
-  gap: 10px;
+  gap: 5px;
   flex-direction: column;
   align-items: flex-start;
 
@@ -224,7 +136,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 5px;
 }
 
 .ReviewFormGroupPhone input[type="tel"] {
@@ -275,7 +187,7 @@
   font-size: 12px;
   color: #dc3545;
   /* Red for error text */
-  margin: 10px 10px 0px 10px !important;
+  margin: 5px 5px 0px 5px !important;
   text-align: right;
 }
 
@@ -283,7 +195,7 @@
 .Reviewdate {
   max-width: 400px;
   display: flex;
-  gap: 10px;
+  gap: 5px;
   flex-direction: column;
   align-items: flex-start;
 
@@ -336,7 +248,7 @@
 
 .ReviewComments {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   flex-direction: column;
   /* border-radius: 5px; */
   max-width: 400px;
@@ -353,13 +265,13 @@
 .ReviewComments textarea {
   height: 200px;
   width: 100%;
-  padding: 5px 10px;
+  padding: 5px 5px;
   /* تنظیم فاصله داخلی */
   padding-top: 5px;
   /* فاصله از بالا */
   padding-right: 5px;
   /* فاصله از راست */
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   border: 1px solid #01184f28;
   /* border-radius: 4px; */
   transition: border-color 0.2s ease, box-shadow 0.2s ease;

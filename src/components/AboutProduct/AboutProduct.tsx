@@ -119,7 +119,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
   }, []);
 
   return (
-    <div className="product-list d-flex flex-column align-items-center">
+    <div className="d-flex flex-column align-items-center">
       {products.length === 0 ? (
         <div>No products available. Please try again later.</div>
       ) : (
@@ -130,8 +130,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
           return (
             <div
               key={product.id}
-              className="d-flex flex-row mb-5 p-5 rounded shadow-lg"
-              style={{ justifyContent: "space-between", width: "1500px" }}
+              className="d-flex flex-row my-4 p-5 rounded shadow justify-content-between AboutPmaindiv"
             >
               <div className="d-flex flex-row">
                 {/* Right Section */}
@@ -164,7 +163,6 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                         <div className="expanded-image-container d-flex flex-column align-items-center">
                           <span
                             className="close-btn px-3 rounded-4 mb-2"
-                            style={{ backgroundColor: "rgba(63, 91, 122, 0.226)" }}
                             onClick={closeImage}
                           >
                             &times;
@@ -174,24 +172,21 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                               product.productImageSrc[expandedImgIndex]?.productImageSrc || ""
                             }
                             alt={imgText}
-                            style={{ height: "750px", width: "750px" }}
-                            className="img-fluid rounded"
+                            className="img-fluid rounded imgsS"
                           />
                           <div className="d-flex justify-content-center gap-3 mt-3">
                             <div className="d-flex justify-content-between">
                               <button
-                                className="btn btn-outline position-absolute top-50 translate-middle-y"
-                                style={{ left: "0", height: "600px", border: "none" }}
+                                className="btn btn-outline position-absolute top-50 translate-middle-y AboutProductbtnL"
                                 onClick={() => handlePrevImage(product.productImageSrc)}
                               >
-                                <i className="bi bi-chevron-left" style={{ fontSize: "20px" }}></i>
+                                <i className="bi bi-chevron-left AboutProductbtnicon" ></i>
                               </button>
                               <button
-                                className="btn btn-outline position-absolute top-50 translate-middle-y"
-                                style={{ right: "0", height: "600px", border: "none" }}
+                                className="btn btn-outline position-absolute top-50 translate-middle-y AboutProductbtnR"
                                 onClick={() => handleNextImage(product.productImageSrc)}
                               >
-                                <i className="bi bi-chevron-right" style={{ fontSize: "20px" }}></i>
+                                <i className="bi bi-chevron-right AboutProductbtnicon"></i>
                               </button>
                             </div>
 
@@ -200,7 +195,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                       </div>
                     )}
 
-                    <div className="mb-3 shadow-lg rounded-5 ">
+                    <div className="mb-3 shadow rounded-5 ">
                       <img
                         src={
                           product.productImageSrc[0]?.productImageSrc ||
@@ -262,33 +257,34 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                 </div>
               </div>
               {/* Left Section */}
-              <div className="LeftSection rounded shadow m-3 gap-5 p-4">
-                <div className="d-flex  flex-row mb-3 gap-2">
-                  <FreeDelivery /> ارسال رایگان
+              <div className="LeftSection position-relative rounded shadow m-3 gap-5 p-4">
+                <div>
+                  <div className="d-flex  flex-row mb-3 gap-2">
+                    <FreeDelivery /> ارسال رایگان
+                  </div>
+                  <div className="d-flex  flex-row mb-3 gap-2">
+                    <CheckShield />
+                    گارانتی سلامت فیزیکی کالا
+                  </div>
+                  <div className="d-flex  flex-row mb-3 gap-2">
+                    <Star />
+                    امتیاز های این محصول: 4.5
+                  </div>
+                  <div className="d-flex  flex-row mb-3 gap-2">
+                    <Payment />
+                    پرداخت درب منزل
+                  </div>
                 </div>
-                <div className="d-flex  flex-row mb-3 gap-2">
-                  <CheckShield />
-                  گارانتی سلامت فیزیکی کالا
-                </div>
-                <div className="d-flex  flex-row mb-3 gap-2">
-                  <Star />
-                  امتیاز های این محصول: 4.5
-                </div>
-                <div className="d-flex  flex-row mb-3 gap-2">
-                  <Payment />
-                  پرداخت درب منزل
-                </div>
-
                 <div className="btncard">
                   <div className="d-flex flex-column align-items-end gap-2 m-3">
                     <div className="d-flex flex-row gap-2">
-                      <p className="text-decoration-line-through text-muted m-0" style={{ fontSize: " 12px" }}>
+                      <p className="text-decoration-line-through text-muted m-0 AboutProductpS ">
                         {product.main_price.toLocaleString()} تومان
                       </p>
-                      <p className="badge mb-1 p-1" style={{ backgroundColor: "#d32f2f" }}>% {product.Discount}</p>
+                      <p className="badge mb-1 p-1 AboutProductpB" >% {product.Discount}</p>
                     </div>
-                    <p className=" m-0">
-                      <strong style={{ fontSize: " 17px" }}>{product.final_price.toLocaleString()} تومان</strong>
+                    <p className=" m-0 AboutProductpSS">
+                      <strong>{product.final_price.toLocaleString()} تومان</strong>
                     </p>
                   </div>
                   <div style={{

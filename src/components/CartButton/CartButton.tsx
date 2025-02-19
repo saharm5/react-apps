@@ -37,7 +37,7 @@ const CartButton: React.FC<CartButtonProps> = ({ quantity, onAdd, onReduce, addc
                     onClick={onAdd}
                 >
                     <span className="m-2"><AddToCart /></span>
-                    <span style={{ color: "rgb(19 62 135)" }}>{addcard}</span>
+                    <span style={{ color: "rgb(19 62 135)",fontSize:"15px" }}>{addcard}</span>
                 </button>
             ) : (
                 <div className="d-flex rounded align-items-end  justify-content-evenly" style={{

@@ -1,7 +1,7 @@
 .HeaderSearchProductsMain {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 98%;
   flex-direction: row;
   align-items: baseline;
   background-color: #ffffff;
@@ -9,25 +9,24 @@
 
 .HeaderSearchProductsPTabe {
   font-size: 14px;
-  padding: 12px;
-  width: 20%;
+  width: 18%;
   color: #485874;
 }
 
 .HeaderSearchProductsTabes {
+  margin-bottom: 10px;
   display: flex;
-  padding: 0 10px 3px;
-  margin: 0 50px;
+  padding: 0 1% 5px;
   align-items: flex-end;
-  width: 80%;
+  width: 78%;
   background-color: #ffffff;
   border-bottom: 1px solid rgba(136, 147, 180, 0.664);
   justify-content: space-between;
 }
 
 .tab {
-  width: 110px;
-  height: 45px;
+  max-width: 110px;
+  max-height: 45px;
   background-color: #ffffff;
   color: #133e87;
   border: none;

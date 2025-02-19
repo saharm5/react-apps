@@ -211,14 +211,14 @@ const Header: React.FC = () => {
       <nav className="HeaderNav">
         {/* Right Section */}
         <div className="HeaderMainDropdown">
-          <div>
-            <button className="HeaderMainDropdownBtn">
-              <h4>
-                <i className="bi bi-list HeaderMainDropdownIconPadding"></i>
-                <a href="http://localhost:5173/" style={{ textDecoration: "none", color: "#fff" }}>بقالی</a>
-              </h4>
-            </button>
-          </div>
+
+          <button className="HeaderMainDropdownBtn">
+            <h4>
+              <i className="bi bi-list HeaderMainDropdownIconPadding"></i>
+              <a href="http://localhost:5173/" style={{ textDecoration: "none", color: "#fff" }}>بقالی</a>
+            </h4>
+          </button>
+
 
           <div className="HeaderMainDropdownContainer">
             <ul className="HeaderMainDropdownUl">
@@ -256,20 +256,18 @@ const Header: React.FC = () => {
         </div>
 
         {/* Center Section - Search */}
-        <div className="HeaderSearchContainer">
-          
-          <form className="HeaderSearchForm">
-            <button className="HeaderSearchBtn" type="submit">
-              
-                <i className="bi bi-search"></i>
-              </button>
+        <div className=" HeaderSearchContainer">
+          <div className=" HeaderSearchdiv">
             <input
               className="HeaderSearchInput"
               type="search"
               placeholder="به دنبال چه می‌گردی؟"
               aria-label="Search"
             />
-          </form>
+            <button className="HeaderSearchBtn" type="submit">
+              <a className="btnsumbit" href="http://localhost:5173/Products"><i className="bi bi-search"></i></a>
+            </button>
+          </div>
         </div>
 
         {/* location Section */}

@@ -7,19 +7,13 @@ body {
 }
 
 .body-main {
-  margin: 112px 61px 0px 61px;
-  max-width: 1798px;
-  padding: 0px 20px;
-  margin: 150px 61px 0px 61px;
-  left: 61px;
-  right: 61px;
+  max-width: 100%;
+  margin: 5% 3% 4%;
   direction: rtl !important;
 }
 
 .body-login {
   background-color: rgba(231, 247, 251, 0.9);
-  margin: 0;
-  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,11 +26,8 @@ body {
   background-color: rgba(231, 247, 251, 0.9);
   display: flex;
   direction: rtl !important;
-  margin: 90px 61px 0px 61px;
-  max-width: 1798px;
-  padding: 0px 20px;
-  left: 61px;
-  right: 61px;
+  margin: 7% 4%;
+  max-width: 100%;
   justify-content: center;
   align-items: center;
 
@@ -61,7 +52,7 @@ body {
   /* Make the container a flexbox */
   justify-content: space-between;
   /* Space components evenly */
-  gap: 20px;
+  gap: 10px;
   /* Space between components */
 }
 
@@ -78,6 +69,9 @@ body {
 }
 
 
+.productcarddiv {
+  width: 85%;
+}
 
 .bodyproductcard {
   display: flex;
