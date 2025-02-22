@@ -43,7 +43,7 @@ const Brands: React.FC = () => {
       {/* Carousel */}
       <div className="Brands-carousel">
         {Brand.map((brand, index) => (
-          <div className="Brand-circle">
+          <div key={index} className="Brand-circle">
             <img
               src={brand.brand_image_src}
               alt={brand.brand}
