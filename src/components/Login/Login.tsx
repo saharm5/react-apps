@@ -5,14 +5,13 @@ import Phone from "../../assets/svg/Phone";
 import Key from "../../assets/svg/Key";
 
 const Login: React.FC = () => {
-
-  const [phone_number, setphone_number] = useState<string>("");
+  const [phone_number, setPhoneNumber] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setphone_number(e.target.value);
+    setPhoneNumber(e.target.value);
     setError("");
   };
 
@@ -22,12 +21,11 @@ const Login: React.FC = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Prevents default form submission behavior
+    e.preventDefault();
     setIsSubmitting(true);
     setError("");
 
     const phone_numberRegex = /^[0-9]{11}$/;
-
     if (!phone_number) {
       setError("شماره موبایل وارد نشده است.");
       setTimeout(() => setIsSubmitting(false), 2000);
@@ -37,7 +35,6 @@ const Login: React.FC = () => {
       setTimeout(() => setIsSubmitting(false), 2000);
       return;
     }
-
     if (!password) {
       setError("رمز عبور الزامی است.");
       setTimeout(() => setIsSubmitting(false), 2000);
@@ -45,13 +42,17 @@ const Login: React.FC = () => {
     }
 
     const formData = {
-      "phone_number": phone_number,
-      "password": password
+      phone_number,
+      password,
     };
 
     try {
-      await submitForm("/api/auth/login-with-password/", formData);
-      setphone_number("");
+      const result = await submitForm("/api/auth/login-with-password/", formData, false);
+      // در صورت موفقیت، توکن دریافتی (در فیلد access) را ذخیره می‌کنیم
+      if (result && result.access) {
+        localStorage.setItem("token", result.access);
+      }
+      setPhoneNumber("");
       setPassword("");
       setError("");
     } catch (err) {
@@ -70,10 +71,10 @@ const Login: React.FC = () => {
           برای ورود شماره موبایل خود را وارد کنید.
         </p>
       </div>
-      <form className="login-form " onSubmit={handleSubmit}>
+      <form className="login-form" onSubmit={handleSubmit}>
         <div className="form-group-login">
           <div className="form-Icom-login">
-          <Phone />
+            <Phone />
           </div>
           <input
             className={`phone-input ${error ? "input-error" : ""}`}
@@ -104,8 +105,10 @@ const Login: React.FC = () => {
         </button>
       </form>
       <p className="disclaimer-login">
-        ورود شما به معنی پذیرش
-        <a href="#" className="ColorRoll-login"> قوانین و مقررات </a>
+        ورود شما به معنی پذیرش{" "}
+        <a href="#" className="ColorRoll-login">
+          قوانین و مقررات
+        </a>{" "}
         است.
       </p>
     </div>

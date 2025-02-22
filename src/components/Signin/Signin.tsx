@@ -61,7 +61,7 @@ const Signin: React.FC = () => {
     };
 
     try {
-      await submitForm("/api/auth/verify-otp/", formData);
+      await submitForm("/api/auth/verify-otp/", formData, false);
       setphone_number("");
       setconfirm_code("");
       setError("");

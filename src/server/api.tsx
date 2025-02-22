@@ -1,5 +1,8 @@
 const BASE_URL = "http://127.0.0.1:8000/";
 
+/**
+ * درخواست GET برای دریافت محصولات
+ */
 export const fetchProducts = async (url: string) => {
     try {
         const response = await fetch(`${BASE_URL}${url}`, {
@@ -22,16 +25,23 @@ export const fetchProducts = async (url: string) => {
     }
 };
 
-export const submitForm = async (url: string, formData: object) => {
+
+export const submitForm = async (
+    url: string,
+    formData: object,
+    withAuth: boolean = true
+) => {
     const token = localStorage.getItem("token") || "";
+    // اگر withAuth true باشد و توکن موجود باشد، هدر Authorization اضافه می‌شود.
+    const headers: HeadersInit = {
+        "Content-Type": "application/json",
+        ...(withAuth && token ? { Authorization: `Bearer ${token}` } : {}),
+    };
 
     try {
         const response = await fetch(new URL(url, BASE_URL).toString(), {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: token ? `Bearer ${token}` : "",
-            },
+            headers,
             body: JSON.stringify(formData),
         });
 

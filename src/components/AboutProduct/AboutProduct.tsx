@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./AboutProduct.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { fetchProducts, submitForm } from "../../server/api"; // Assume this function exists
-import CartButton from "../CartButton/CartButton"; // Importing the new component
+import { fetchProducts, submitForm } from "../../server/api";
+import CartButton from "../CartButton/CartButton";
 import { Link, useSearchParams } from "react-router-dom";
 import FreeDelivery from "../../assets/svg/FreeDelivery";
 import CheckShield from "../../assets/svg/CheckShield";
 import Star from "../../assets/svg/Star";
-import Payment from "../../assets/svg/Payment"
+import Payment from "../../assets/svg/Payment";
 
 interface Image {
   product_name: string;
@@ -28,6 +28,7 @@ interface Products {
   Discount: number;
   final_price: number;
   productImageSrc: Image[];
+  is_favorite: boolean;
 }
 
 interface AboutProductProps {
@@ -37,13 +38,12 @@ interface AboutProductProps {
 }
 
 const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) => {
-  const [favorit, setFavorit] = useState<boolean>(false);
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [products, setProducts] = useState<Products[]>([]);
   const [expandedImgIndex, setExpandedImgIndex] = useState<number | null>(null);
   const [imgText, setImgText] = useState<string>("");
-  const [params, setParams] = useSearchParams()
-  const value = params.get('id')
+  const [params] = useSearchParams();
+  const value = params.get("id");
 
   const handleImageClick = (index: number, alt: string) => {
     setExpandedImgIndex(index);
@@ -57,7 +57,9 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
 
   const handlePrevImage = (images: Image[]) => {
     if (expandedImgIndex !== null) {
-      setExpandedImgIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : (prevIndex || images.length) - 1));
+      setExpandedImgIndex((prevIndex) =>
+        prevIndex === 0 ? images.length - 1 : (prevIndex || images.length) - 1
+      );
     }
   };
 
@@ -68,17 +70,26 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
   };
 
   const handleAddFavorit = async (id: number) => {
-    setFavorit(prev => !prev);
+    const product = products.find((p) => p.id === id);
+    if (!product) return;
+    const newFavoriteStatus = !product.is_favorite;
+
+    setProducts((prevProducts) =>
+      prevProducts.map((p) => (p.id === id ? { ...p, is_favorite: newFavoriteStatus } : p))
+    );
 
     try {
       const formData = {
         url: window.location.href,
         id,
-        is_favorite: !favorit,
+        is_favorite: newFavoriteStatus,
       };
-      const response = await submitForm("/save-data/", formData);
-      console.log(`Product ${id} ${!favorit ? "added to" : "removed from"} favorites`, response);
+      const response = await submitForm("/favorites/toggle/", formData);
+      console.log(`Product ${id} toggled favorite: ${newFavoriteStatus}`, response);
     } catch (error) {
+      setProducts((prevProducts) =>
+        prevProducts.map((p) => (p.id === id ? { ...p, is_favorite: product.is_favorite } : p))
+      );
       alert("Error saving data");
       console.error(error);
     }
@@ -97,6 +108,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // فرض کنید endpoint شما وضعیت is_favorite هر محصول را نیز برمی‌گرداند
         const data = await fetchProducts("api/data?id=" + value);
         setProducts(data);
       } catch (error) {
@@ -105,7 +117,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
     };
 
     fetchData();
-  }, []);
+  }, [value]);
 
   return (
     <div className="d-flex flex-column align-items-center">
@@ -131,7 +143,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                         className="iconB favorit btn-light"
                         onClick={() => handleAddFavorit(product.id)}
                       >
-                        {favorit ? (
+                        {product.is_favorite ? (
                           <i className="bi bi-suit-heart-fill text-danger"></i>
                         ) : (
                           <i className="bi bi-suit-heart"></i>
@@ -145,21 +157,15 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                         )}
                       </button>
                     </div>
-
                     {/* Product Images */}
                     {expandedImgIndex !== null && (
                       <div className="expanded-image-overlay">
                         <div className="expanded-image-container d-flex flex-column align-items-center">
-                          <span
-                            className="close-btn px-3 rounded-4 mb-2"
-                            onClick={closeImage}
-                          >
+                          <span className="close-btn px-3 rounded-4 mb-2" onClick={closeImage}>
                             &times;
                           </span>
                           <img
-                            src={
-                              product.productImageSrc[expandedImgIndex]?.productImageSrc || ""
-                            }
+                            src={product.productImageSrc[expandedImgIndex]?.productImageSrc || ""}
                             alt={imgText}
                             className="img-fluid rounded imgsS"
                           />
@@ -169,7 +175,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                                 className="btn btn-outline position-absolute top-50 translate-middle-y AboutProductbtnL"
                                 onClick={() => handlePrevImage(product.productImageSrc)}
                               >
-                                <i className="bi bi-chevron-left AboutProductbtnicon" ></i>
+                                <i className="bi bi-chevron-left AboutProductbtnicon"></i>
                               </button>
                               <button
                                 className="btn btn-outline position-absolute top-50 translate-middle-y AboutProductbtnR"
@@ -178,13 +184,11 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                                 <i className="bi bi-chevron-right AboutProductbtnicon"></i>
                               </button>
                             </div>
-
                           </div>
                         </div>
                       </div>
                     )}
-
-                    <div className="mb-3 shadow rounded-5 ">
+                    <div className="mb-3 shadow rounded-5">
                       <img
                         src={
                           product.productImageSrc[0]?.productImageSrc ||
@@ -204,14 +208,16 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                             "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
                           }
                           alt={img.product_name || "Product Image"}
-                          onClick={() => handleImageClick(i, img.product_name || "Product Image")}
+                          onClick={() =>
+                            handleImageClick(i, img.product_name || "Product Image")
+                          }
                           className="card-imgs shadow rounded border"
                         />
                       ))}
                     </div>
                   </div>
                 </div>
-                {/* center Section */}
+                {/* Center Section */}
                 <div className="d-flex flex-column mx-5 gap-1 p-4">
                   <div>
                     <p id="product_name" className="fw-bold product_name">
@@ -232,14 +238,20 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                   <div>
                     <p className="my-2 fw-bold">ویژگی های محصول:</p>
                     <ul className="px-2 ulsize">
-                      <li className="d-block ">
-                        <p className="m-0"> تاریخ تولید: {product.production_date || "ثبت نشده"}</p>
+                      <li className="d-block">
+                        <p className="m-0">
+                          تاریخ تولید: {product.production_date || "ثبت نشده"}
+                        </p>
                       </li>
                       <li className="d-block">
-                        <p className="m-0"> تاریخ انقضا: {product.expiration_date || "ثبت نشده"}</p>
+                        <p className="m-0">
+                          تاریخ انقضا: {product.expiration_date || "ثبت نشده"}
+                        </p>
                       </li>
                       <li className="d-block">
-                        <p className="m-0"> ابعاد بسته بندی: {product.size || "ثبت نشده"}</p>
+                        <p className="m-0">
+                          ابعاد بسته بندی: {product.size || "ثبت نشده"}
+                        </p>
                       </li>
                     </ul>
                   </div>
@@ -248,18 +260,18 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
               {/* Left Section */}
               <div className="LeftSection position-relative rounded shadow m-3 gap-5 p-4">
                 <div>
-                  <div className="d-flex  flex-row mb-3 gap-2">
+                  <div className="d-flex flex-row mb-3 gap-2">
                     <FreeDelivery /> ارسال رایگان
                   </div>
-                  <div className="d-flex  flex-row mb-3 gap-2">
+                  <div className="d-flex flex-row mb-3 gap-2">
                     <CheckShield />
                     گارانتی سلامت فیزیکی کالا
                   </div>
-                  <div className="d-flex  flex-row mb-3 gap-2">
+                  <div className="d-flex flex-row mb-3 gap-2">
                     <Star />
                     امتیاز های این محصول: 4.5
                   </div>
-                  <div className="d-flex  flex-row mb-3 gap-2">
+                  <div className="d-flex flex-row mb-3 gap-2">
                     <Payment />
                     پرداخت درب منزل
                   </div>
@@ -267,27 +279,27 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                 <div className="btncard">
                   <div className="d-flex flex-column align-items-end gap-2 m-3">
                     <div className="d-flex flex-row gap-2">
-                      <p className="text-decoration-line-through text-muted m-0 AboutProductpS ">
+                      <p className="text-decoration-line-through text-muted m-0 AboutProductpS">
                         {product.main_price.toLocaleString()} تومان
                       </p>
-                      <p className="badge mb-1 p-1 AboutProductpB" >% {product.Discount}</p>
+                      <p className="badge mb-1 p-1 AboutProductpB">% {product.Discount}</p>
                     </div>
-                    <p className=" m-0 AboutProductpSS">
+                    <p className="m-0 AboutProductpSS">
                       <strong>{product.final_price.toLocaleString()} تومان</strong>
                     </p>
                   </div>
-                  <div style={{
-                    width: "186.53px",
-                  }}>
+                  <div style={{ width: "186.53px" }}>
                     <CartButton
                       quantity={quantity}
                       onAdd={() => addition(product.id)}
-                      onReduce={() => reduce(product.id)} addcard={"افزودن به سبد خرید"} /></div>
+                      onReduce={() => reduce(product.id)}
+                      addcard={"افزودن به سبد خرید"}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           );
-          
         })
       )}
     </div>

@@ -4,18 +4,17 @@ import { submitForm } from "../../server/api";
 import Phone from "../../assets/svg/Phone";
 
 const Register: React.FC = () => {
-
-    const [phone_number, setphone_number] = useState<string>("");
+    const [phone_number, setPhoneNumber] = useState<string>("");
     const [error, setError] = useState<string>("");
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setphone_number(e.target.value);
+        setPhoneNumber(e.target.value);
         setError("");
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault(); // Prevents default form submission behavior
+        e.preventDefault();
         setIsSubmitting(true);
         setError("");
 
@@ -32,12 +31,13 @@ const Register: React.FC = () => {
         }
 
         const formData = {
-            "phone_number": phone_number
+            phone_number: phone_number,
         };
 
         try {
-            await submitForm("/api/auth/login-or-register/", formData);
-            setphone_number("");
+            const result = await submitForm("/api/auth/login-or-register/", formData, false);
+            console.log("نتیجه ثبت نام یا ورود:", result);
+            setPhoneNumber("");
             setError("");
         } catch (err) {
             setError("ارسال با خطا مواجه شد. لطفاً دوباره امتحان کنید.");
@@ -50,12 +50,12 @@ const Register: React.FC = () => {
         <div className="login-container" style={{ height: "400px" }}>
             <h2>بقالی</h2>
             <div>
-                <h3>ورود</h3>
+                <h3>ورود یا ثبت‌نام</h3>
                 <p className="login-container-p">
-                    برای ورود شماره موبایل خود را وارد کنید.
+                    برای ورود یا ثبت‌نام شماره موبایل خود را وارد کنید.
                 </p>
             </div>
-            <form className="login-form " onSubmit={handleSubmit}>
+            <form className="login-form" onSubmit={handleSubmit}>
                 <div className="form-group-login" style={{ marginBottom: "25px" }}>
                     <div className="form-Icom-login">
                         <Phone />
@@ -76,8 +76,10 @@ const Register: React.FC = () => {
                 </button>
             </form>
             <p className="disclaimer-login">
-                ورود شما به معنی پذیرش
-                <a href="#" className="ColorRoll-login"> قوانین و مقررات </a>
+                ورود یا ثبت‌نام شما به معنی پذیرش{" "}
+                <a href="#" className="ColorRoll-login">
+                    قوانین و مقررات
+                </a>{" "}
                 است.
             </p>
         </div>
