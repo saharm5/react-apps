@@ -7,7 +7,6 @@ import Header from "../components/Header/Header";
 import ProductGrid from "../components/ProductGrid/ProductGrid";
 import { fetchProducts } from '../server/api';
 import useBodyClass from "../components/useBodyClass/useBodyClass"
-
 import Footer from "../components/Footer/Footer";
 import AboutProduct from "../components/AboutProduct/AboutProduct";
 
@@ -15,6 +14,7 @@ interface Image {
     product_name: string;
     productImageSrc: string;
 }
+
 interface Products {
     id: number;
     product_name: string;
@@ -24,20 +24,17 @@ interface Products {
     productImageSrc: Image[];
 }
 
-
 interface CartsItem {
     id: number;
     quantity: number;
 }
 
-
 const ProductDetails: React.FC = () => {
+
     const [carts, setCarts] = useState<CartsItem[]>([]);
     const [products, setProducts] = useState<Products[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [cart, setCart] = useState<{ id: number; quantity: number }[]>([]);
-
-
     const increaseQuantity = (id: number) => {
         setCart((prev) => {
             const existingProduct = prev.find((item) => item.id === id);
@@ -62,14 +59,11 @@ const ProductDetails: React.FC = () => {
         });
     };
 
-
     const limit = 9
-
-
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await fetchProducts('/data/?limit=' + limit);
+                const data = await fetchProducts('api/data/?limit=' + limit);
 
                 setProducts(data);
             } catch (error) {
@@ -79,7 +73,6 @@ const ProductDetails: React.FC = () => {
 
         fetchData();
     }, []);
-
 
     const increasesQuantity = (id: number) => {
         setCarts((prev) => {
@@ -106,8 +99,6 @@ const ProductDetails: React.FC = () => {
     };
     useBodyClass("body-main");
 
-
-
     return (
         <div>
             <Header />
@@ -118,14 +109,11 @@ const ProductDetails: React.FC = () => {
                         reduce={decreasesQuantity}
                         carts={carts}
                     />
-                    <div className=" shadow-lg rounded mainproductcard" style={{ margin: "1% 0 " , padding:"1.5%", overflow: "auto" }}>
-                        {/* <HeaderProductGrid /> */}
-
+                    <div className=" shadow-lg rounded mainproductcard" style={{ margin: "1% 0 ", padding: "1.5%", overflow: "auto" }}>
                         {/* Tabs */}
                         <div className="maintabe">
                             <h5 className="ptabe" style={{ fontSize: "20px" }}>محصولات مشابه</h5>
                         </div>
-
                         <ProductGrid
                             products={products.map((product) => ({
                                 id: product.id,
@@ -137,8 +125,6 @@ const ProductDetails: React.FC = () => {
                             addition={increaseQuantity}
                             reduce={decreaseQuantity}
                         />
-
-
                     </div>
                 </div>
             </div>

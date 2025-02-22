@@ -7,8 +7,8 @@ import React from "react";
 import useBodyClass from "../components/useBodyClass/useBodyClass"
 
 const RegisterPage: React.FC = () => {
+  
   useBodyClass("body-login");
-
 
   return (
     <div>

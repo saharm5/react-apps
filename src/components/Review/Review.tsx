@@ -13,7 +13,6 @@ const Review: React.FC = () => {
     const [error, setError] = useState<string>("");
     const [responseMessage, setResponseMessage] = useState<string>("");
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-
     const phoneInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -26,7 +25,6 @@ const Review: React.FC = () => {
     const handleSubmit = async () => {
         setIsSubmitting(true);
 
-        // Validate phone number
         const phoneRegex = /^[0-9]{4}-[0-9]{3}-[0-9]{4}$/;
         if (!phone) {
             setError("شماره موبایل وارد نشده است.");
@@ -38,13 +36,11 @@ const Review: React.FC = () => {
             return;
         }
 
-        // Validate email
         if (!email) {
             setError("ایمیل وارد نشده است.");
             setIsSubmitting(false);
             return;
         }
-        // باید براش تعریف شه 
 
         const formData = {
             phone: phone.replace(/-/g, ""), // Remove dashes from phone number
@@ -91,9 +87,7 @@ const Review: React.FC = () => {
                         </div>
                     </form>
                 </div>
-
             </div>
-
             <div className="Reviewdate">
                 <label htmlFor="fromDate">تاریخ تولد :</label>
                 <input
@@ -104,7 +98,6 @@ const Review: React.FC = () => {
                     onChange={(e) => setFromDate(e.target.value)}
                 />
             </div>
-
             <div className="ReviewEmailSubscription">
                 <label htmlFor="formEmail">ایمیل شما :</label>
                 <form className="ReviewEmailSubscriptionForm">
@@ -119,7 +112,6 @@ const Review: React.FC = () => {
                     </div>
                 </form>
             </div>
-
             <div className="ReviewComments">
                 <label htmlFor="formComments">متن دیدگاه :</label>
                 <textarea

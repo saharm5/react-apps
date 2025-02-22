@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 const Footer: React.FC = () => {
+
   return (
     <footer>
       {/* Back to Top */}
@@ -19,7 +20,6 @@ const Footer: React.FC = () => {
           <span>بازگشت به بالا</span>
         </a>
       </div>
-
       <div className="footer500px">
         <div className="footerlinks500px">
           <div className="footerlinks500pxdiv"><a className="footerlinks500pxa" href="#"><p className="footerlinks500pxp">راهنمای خرید از بقالی </p><FontAwesomeIcon icon={faChevronLeft} /></a></div>
@@ -54,8 +54,6 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-
-
       {/* Footer Content */}
       <div className="footer-content">
         <div className="footer-layout">
@@ -128,7 +126,6 @@ const Footer: React.FC = () => {
                 </a>
               </div>
             </div>
-
             {/* Email Subscription */}
             <div className="email-subscription">
               <p className="pfooter">برای اطلاع از آخرین تخفیف‌ها، {true && <span className="boldpfooter"> ایمیل </span>} خود را ثبت نمایید</p>

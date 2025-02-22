@@ -1,12 +1,7 @@
-/* Header Section */
-
 header {
   direction: rtl !important;
-  /* Support RTL layouts */
-
 }
 
-/* Navbar */
 .HeaderNav {
   display: flex;
   justify-content: space-between;
@@ -29,7 +24,6 @@ header {
   width: 15%;
 }
 
-/* Dropdown Button */
 .HeaderMainDropdownBtn {
   background: rgb(17, 45, 78);
   color: white;
@@ -54,7 +48,6 @@ header {
   width: 100%;
   flex-direction: column;
   align-items: stretch;
-
 }
 
 .HeaderMainDropdownUl {
@@ -136,6 +129,7 @@ header {
   border-radius: 15px;
   padding-inline: 10px;
 }
+
 .HeaderSearchdiv {
   display: flex;
   justify-content: center;
@@ -154,7 +148,6 @@ header {
   outline: none;
   border-radius: 0;
   width: 100%;
-  /* Removed redundant radius */
 }
 
 .HeaderSearchBtn {
@@ -170,7 +163,6 @@ header {
   transform: scale(1.1);
 }
 
-/* Location Section */
 .Headerlocation {
   display: flex;
   align-items: center;
@@ -179,7 +171,6 @@ header {
   font-size: 14px;
 }
 
-/* Left Section - Icons */
 .HeaderIconContainer {
   display: flex;
   gap: 10px;
@@ -200,7 +191,6 @@ header {
   background-color: rgba(63, 114, 175, 0.5);
 }
 
-/* Solid Red Heart Icon */
 .HeaderHaertIcon {
   color: red;
 }
@@ -208,10 +198,11 @@ header {
 .HeaderHaertIcon:hover {
   color: rgba(255, 0, 0, 0.78);
 }
-.btnsumbit{
+
+.btnsumbit {
   color: rgb(17, 45, 78);
 }
-/* Responsive Design */
+
 @media (max-width: 768px) {
   .HeaderNav {
     flex-direction: column;
@@ -230,42 +221,27 @@ header {
   }
 }
 
-
-
-
 @media (max-width:950px) {
-
   .HeaderNav {
     display: none;
   }
 
   .HeaderResponsive {
-
     background-color: rgb(17, 45, 78) !important;
     position: relative;
     display: flex;
     flex-direction: column;
     position: fixed;
-    /* Makes the footer sticky */
     top: 0;
-    /* Positions it at the top */
     right: 0;
-    /* Ensures it spans the full width */
     width: 100%;
-    /* Full-width footer */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* Optional: slight shadow for better visibility */
     z-index: 1000;
-    /* Ensures it stays on top of other content */
   }
 
   .HeaderResponsiveNavbarIconPadding {
-
-    /* transform: rotate(180deg); */
     font-size: 18px;
     margin-left: 10px;
-
-
   }
 
   .collapsible-content {
@@ -287,7 +263,6 @@ header {
     display: none;
   }
 
-
   .HeaderResponsiveNavbar {
     background-color: rgb(17, 45, 78) !important;
     color: white;
@@ -307,28 +282,20 @@ header {
 
   .HeaderResponsiveNavbarButton span {
     display: inline-block;
-
   }
-
-
-
 
   .HeaderResponsiveSearchForm {
     margin: 0px;
-    /* align-items: center; */
     width: 100%;
     display: inline-flex;
     flex-direction: row-reverse;
     overflow: hidden;
   }
 
-
   .HeaderResponsiveSearchContainer {
     display: flex;
     flex: 1;
     position: relative;
-    /* table-layout: fixed; */
-    /* flex: auto; */
     max-width: 100%;
   }
 }

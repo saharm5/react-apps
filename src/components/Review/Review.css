@@ -7,6 +7,7 @@
   align-content: center;
   flex-wrap: wrap;
 }
+
 .ReviewEmailSubscription form {
   display: flex;
   align-items: center;
@@ -30,14 +31,17 @@
   font-weight: bold;
   font-size: 16px;
 }
+
 .ReviewdateInput::-webkit-calendar-picker-indicator {
   filter: invert(12%) sepia(90%) saturate(700%) hue-rotate(200deg);
   opacity: 1;
   cursor: pointer;
 }
+
 .ReviewEmailSubscriptionInput {
   position: relative;
 }
+
 .ReviewEmailSubscriptionInput i {
   position: absolute;
   left: 14px;
@@ -45,6 +49,7 @@
   transform: translateY(-50%);
   font-size: 18px;
 }
+
 .ReviewEmailSubscriptionInput input[type="email"] {
   padding: 12px 80px 12px;
   width: 100%;
@@ -106,18 +111,6 @@
   justify-content: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 .ReviewTelephone {
   font-weight: bold;
   font-size: 16px;
@@ -129,9 +122,6 @@
 
 }
 
-
-
-
 .ReviewTelephone form {
   display: flex;
   align-items: center;
@@ -140,7 +130,6 @@
 }
 
 .ReviewFormGroupPhone input[type="tel"] {
-
   padding: 12px 80px 12px;
   border: 1px solid #8d7bf149;
   border-radius: 0px;
@@ -151,7 +140,6 @@
 }
 
 .ReviewFormGroupPhone input[type="tel"]:focus {
-
   box-shadow: 0 0 4px rgba(15, 52, 96, 0.2);
 }
 
@@ -162,15 +150,11 @@
 }
 
 .input-error {
-
   background-color: #fff5f5;
-  /* Subtle red background */
 }
 
 .ReviewFormGroupPhone {
   position: relative;
-
-
 }
 
 .ReviewFormGroupPhone i {
@@ -180,17 +164,14 @@
   transform: translateY(-50%);
   color: #01194f;
   font-size: 18px;
-
 }
 
 .ReviewValidationError {
   font-size: 12px;
   color: #dc3545;
-  /* Red for error text */
   margin: 5px 5px 0px 5px !important;
   text-align: right;
 }
-
 
 .Reviewdate {
   max-width: 400px;
@@ -198,7 +179,6 @@
   gap: 5px;
   flex-direction: column;
   align-items: flex-start;
-
 }
 
 .Reviewdate input {
@@ -206,17 +186,13 @@
 }
 
 .Reviewdate {
-
   display: flex;
   flex-direction: column;
 }
 
 .Reviewdate label {
-
   font-weight: bold;
   font-size: 16px;
-
-
 }
 
 .Reviewdate input[type="date"] {
@@ -226,14 +202,12 @@
   padding: 8px;
   font-size: 15px;
   border: 1px solid #8d7bf149;
-  /* border-radius: 4px; */
   background-color: hsl(0, 0%, 100%);
   color: #15256d;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .Reviewdate input[type="date"]:focus {
-
   box-shadow: 0 0 5px #a1cfffc2;
   outline: none;
 }
@@ -250,7 +224,6 @@
   display: flex;
   gap: 5px;
   flex-direction: column;
-  /* border-radius: 5px; */
   max-width: 400px;
 }
 
@@ -266,20 +239,14 @@
   height: 200px;
   width: 100%;
   padding: 5px 5px;
-  /* تنظیم فاصله داخلی */
   padding-top: 5px;
-  /* فاصله از بالا */
   padding-right: 5px;
-  /* فاصله از راست */
   margin-bottom: 5px;
   border: 1px solid #01184f28;
-  /* border-radius: 4px; */
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   font-size: 15px;
   text-align: right;
-  /* متن ورودی به راست */
   direction: rtl;
-  /* جهت برای متن راست‌چین */
 }
 
 .ReviewComments textarea:focus {
@@ -289,13 +256,9 @@
 
 .ReviewComments textarea::placeholder {
   color: #2a548575;
-  /* رنگ placeholder */
   text-align: right;
-  /* متن placeholder به راست */
   direction: rtl;
-  /* جهت placeholder */
 }
-
 
 .ReviewDivButtonresponseMessage {
   color: #333;

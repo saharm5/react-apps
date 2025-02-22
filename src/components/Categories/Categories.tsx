@@ -1,4 +1,3 @@
-// Categories.tsx
 import { fetchProducts } from "../../server/api";
 import "./Categories.css";
 import React, { useEffect, useRef, useState } from "react";
@@ -10,10 +9,10 @@ interface Category {
 }
 
 const Categories: React.FC = () => {
-  const carouselRef = useRef<HTMLDivElement>(null); // Reference to the scrollable container
+  
+  const carouselRef = useRef<HTMLDivElement>(null);
   const [Category, setCategory] = useState<Category[]>([]);
-
-  const scrollDistance = 300; // Adjust scroll distance as needed
+  const scrollDistance = 300;
 
   const nextCategories = () => {
     if (carouselRef.current) {
@@ -36,17 +35,13 @@ const Categories: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data: { category: string; category_image_src: string }[] = await fetchProducts("/data");
-
-        // استخراج ترکیب یکتا از دسته و تصویر
+        const data: { category: string; category_image_src: string }[] = await fetchProducts("api/data");
         const categoryMap = new Map();
         data.forEach((product) => {
           if (!categoryMap.has(product.category)) {
             categoryMap.set(product.category, product.category_image_src);
           }
         });
-
-
         const uniqueCategories = Array.from(categoryMap, ([category, category_image_src]) => ({
           category,
           category_image_src,
@@ -63,7 +58,6 @@ const Categories: React.FC = () => {
 
   return (
     <div className="containercategory">
-
       {/* Header */}
       <div className="header-container-cat">
         <p className="header-title-C">دسته بندی ها</p>
@@ -88,7 +82,6 @@ const Categories: React.FC = () => {
       <div ref={carouselRef} className="categories-carousel">
         {Category.map((category, index) => (
           <div className="category-card" key={index}>
-
             <img
               src={category.category_image_src}
               alt={category.category}
@@ -97,13 +90,10 @@ const Categories: React.FC = () => {
             <a href={category.categoryLink} className="category-card__title">
               {category.category || "#"}
             </a>
-
           </div>
         ))}
       </div>
-
     </div>
-
   );
 };
 

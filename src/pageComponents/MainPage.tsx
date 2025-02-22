@@ -12,7 +12,6 @@ import "../styles/global.css";
 import { fetchProducts } from "../server/api";
 import useBodyClass from "../components/useBodyClass/useBodyClass";
 
-// Interfaces
 interface Image {
   product_name: string;
   productImageSrc: string;
@@ -69,11 +68,10 @@ const MainPage: React.FC = () => {
   };
 
   const limit = 12;
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchProducts(`/data/`);
+        const data = await fetchProducts(`api/data/`);
         setProducts(data);
       } catch (error) {
         console.error("Failed to fetch products:", error);
@@ -95,11 +93,10 @@ const MainPage: React.FC = () => {
             <Banner />
             <Categories />
             <div className="mainproductcard">
-
               <div className="maintabe">
                 <p className="ptabe">محصولات ویژه</p>
               </div>
-                <div className="scroll-container">
+              <div className="scroll-container">
                 <ProductGrid
                   products={products.map((product) => ({
                     id: product.id,
@@ -113,7 +110,6 @@ const MainPage: React.FC = () => {
                 />
               </div>
             </div>
-
             <Brands />
           </div>
           <FooterResponsive />

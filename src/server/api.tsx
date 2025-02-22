@@ -1,7 +1,4 @@
-
-
-
-const BASE_URL = "http://127.0.0.1:8000/api";
+const BASE_URL = "http://127.0.0.1:8000/";
 
 export const fetchProducts = async (url: string) => {
     try {
@@ -9,12 +6,12 @@ export const fetchProducts = async (url: string) => {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                // "Authorization": `Bearer ${yourToken}`  // در صورت نیاز به توکن
+                // "Authorization": `Bearer ${yourToken}` 
             }
         });
 
         if (!response.ok) {
-            const errorMessage = await response.text(); // دریافت پیام خطای سرور
+            const errorMessage = await response.text(); 
             throw new Error(`خطا در دریافت اطلاعات: ${errorMessage}`);
         }
 
@@ -25,13 +22,7 @@ export const fetchProducts = async (url: string) => {
     }
 };
 
-
-
-
-// برای درخواست POST
 export const submitForm = async (url: string, formData: object) => {
-    const BASE_URL = "http://127.0.0.1:8000/";
-
     try {
         // const csrfToken = getCsrfToken();
         const response = await fetch(new URL(url, BASE_URL).toString(), {
@@ -54,14 +45,14 @@ export const submitForm = async (url: string, formData: object) => {
         if (text.trim() === 'ok') {
             return { text };
         }
-   
+
         const responseData = JSON.parse(text);
         if (responseData.isregister === 1) {
-          
-            window.location.href = "http://localhost:5173/Signin";
+
+            window.location.href = "/Signin";
         } else if (responseData.isregister === 2) {
-          
-            window.location.href = "http://localhost:5173/login";
+
+            window.location.href = "/login";
         }
         try {
             const result = JSON.parse(text);

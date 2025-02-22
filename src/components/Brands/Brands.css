@@ -1,16 +1,12 @@
-/* Container */
 .containerBrand {
   direction: rtl;
-  padding: 1% ;
-  /* max-width: 1200px; */
+  padding: 1%;
   text-align: center;
 }
 
-/* Header */
 .brand-header-container {
   margin-bottom: 20px;
   display: flex;
-
 }
 
 .header-title-brand {
@@ -20,7 +16,6 @@
   margin: 0;
 }
 
-/* Carousel */
 .Brands-carousel {
   display: flex;
   width: 100%;
@@ -29,21 +24,21 @@
   justify-content: space-evenly;
   align-items: center;
   padding: 10px 0;
-  
+
 }
 
 .Brands-carousel::-webkit-scrollbar {
   display: none;
-  /* Hide scrollbars */
 }
-.Brand-circle{
+
+.Brand-circle {
   width: 100px !important;
   height: 100px !important;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-/* Brand Circle */
+
 .Brand-circle__image {
   width: 100px !important;
   height: 100px !important;
@@ -57,31 +52,15 @@
   transition: transform 0.3s, box-shadow 0.3s;
   object-fit: contain;
   padding: 10%;
-  
+
 }
 
-/* Hover Effect */
 .Brand-circle__image:hover {
   box-shadow: 0 4px 10px rgb(17, 45, 78, 0.15);
   transform: translateY(-5px);
-
 }
 
-/* Responsive Design */
-/* @media (max-width: 950px) {
-    .Brand-circle {
-      width: 70px;
-      height: 70px;
-    }
-  
-    .header-title {
-      font-size: 20px;
-    }
-  }
-   */
-
 @media (max-width: 450px) {
-
   .brand-header-container {
     margin-bottom: 2%;
   }
@@ -91,34 +70,15 @@
     font-size: 90%;
   }
 
-  /* Carousel */
   .Brands-carousel {
     margin: 10px;
     display: inline-flex;
     overflow: auto;
     justify-content: center;
-
   }
 
-
-
-  /* Brand Circle */
   .Brand-circle__image {
     width: 50px;
     height: 50px;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

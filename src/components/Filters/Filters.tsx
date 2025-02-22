@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./Filters.css";
 import { fetchProducts } from '../../server/api';
 
-
 interface FilterProps {
     selectedCategory: string | null;
     setSelectedCategory: React.Dispatch<React.SetStateAction<string | null>>;
@@ -15,7 +14,6 @@ interface FilterProps {
     applyFilters: () => void;
 }
 
-
 const Filter: React.FC<FilterProps> = ({
     selectedCategory,
     setSelectedCategory,
@@ -27,38 +25,27 @@ const Filter: React.FC<FilterProps> = ({
     setOnlyAvailable,
     applyFilters,
 }) => {
-
     const [isCategoryDropdownVisible, setIsCategoryDropdownVisible] = useState(false);
     const [categoryFilter, setCategoryFilter] = useState("");
     const [isBrandDropdownVisible, setIsBrandDropdownVisible] = useState(false);
     const [brandFilter, setBrandFilter] = useState("");
-    // const [brands, setBrands] = useState<string[]>([]);
-    // const [categories, setcategories] = useState<string[]>([]);
-
-
-
     const [categories, setCategories] = useState<string[]>([]);
     const [brands, setBrands] = useState<string[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data: { category: string; brand: string }[] = await fetchProducts("/data");
-
-                // استخراج دسته‌ها و برندها
+                const data: { category: string; brand: string }[] = await fetchProducts("api/data");
                 const uniqueCategories = Array.from(new Set(data.map(product => product.category)));
                 const uniqueBrands = Array.from(new Set(data.map(product => product.brand)));
-
                 setCategories(uniqueCategories);
                 setBrands(uniqueBrands);
             } catch (error) {
                 console.error("Error fetching product data:", error);
             }
         };
-
         fetchData();
     }, []);
-
 
     const handleBrandSelection = (brand: string) => {
         setSelectedBrands((prev) =>
@@ -66,17 +53,14 @@ const Filter: React.FC<FilterProps> = ({
         );
     };
 
-    // مدیریت انتخاب دسته‌بندی
     const handleCategorySelection = (category: string) => {
         setSelectedCategory(category);
     };
 
-    // باز کردن یا بستن منوی دسته‌بندی‌ها
     const toggleCategoryDropdown = () => {
         setIsCategoryDropdownVisible((prev) => !prev);
     };
 
-    // باز کردن یا بستن منوی برندها
     const toggleBrandDropdown = () => {
         setIsBrandDropdownVisible((prev) => !prev);
     };
@@ -86,7 +70,6 @@ const Filter: React.FC<FilterProps> = ({
             <div>
                 <h5 className="FilterHeaderH5">فیلتر ها</h5>
             </div>
-
             {/* فیلتر دسته‌بندی‌ها */}
             <div className="FilterDropdown">
                 <button onClick={toggleCategoryDropdown} className="FilterDropdownBtn">
@@ -123,7 +106,6 @@ const Filter: React.FC<FilterProps> = ({
                     </div>
                 )}
             </div>
-
             {/* فیلتر برندها */}
             <div className="FilterDropdown">
                 <button onClick={toggleBrandDropdown} className="FilterDropdownBtn">
@@ -156,7 +138,6 @@ const Filter: React.FC<FilterProps> = ({
                     </div>
                 )}
             </div>
-
             {/* فیلتر موجود بودن کالا */}
             <div className="FilterSwitchContainer">
                 <label className="FilterSwitchContainerLabel">
@@ -170,7 +151,6 @@ const Filter: React.FC<FilterProps> = ({
                 </label>
                 فقط کالا های موجود
             </div>
-
             {/* فیلتر محدوده قیمت */}
             <div className="FilterPriceRange">
                 <label>محدوده قیمت</label>

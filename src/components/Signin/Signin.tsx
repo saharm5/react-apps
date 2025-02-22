@@ -6,6 +6,7 @@ import VerificationCode from "../../assets/svg/VerificationCode";
 import Key from "../../assets/svg/Key";
 
 const Signin: React.FC = () => {
+
   const [phone_number, setphone_number] = useState<string>("");
   const [confirm_code, setconfirm_code] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -70,8 +71,6 @@ const Signin: React.FC = () => {
       setIsSubmitting(false);
     }
   };
-
-
 
   return (
     <div className="login-container" style={{ height: "500px" }}>

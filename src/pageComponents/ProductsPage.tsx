@@ -30,20 +30,18 @@ interface Products {
 }
 
 const ProductsPage: React.FC = () => {
+
   const [isLoading, setIsLoading] = useState(true);
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
-
   const [products, setProducts] = useState<Products[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Products[]>([]);
   const [cart, setCart] = useState<{ id: number; quantity: number }[]>([]);
-
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000000]);
   const [onlyAvailable, setOnlyAvailable] = useState(false);
 
   useBodyClass("body-main");
-
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -55,13 +53,10 @@ const ProductsPage: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-
-
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchProducts("/data/");
+        const data = await fetchProducts("api/data/");
         setProducts(data);
         setFilteredProducts(data);
       } catch (err) {
@@ -71,7 +66,6 @@ const ProductsPage: React.FC = () => {
 
     fetchData();
   }, []);
-
 
   const applyFilters = () => {
     const filtered = products.filter((product) => {
@@ -86,14 +80,11 @@ const ProductsPage: React.FC = () => {
       const matchesAvailability = onlyAvailable
         ? product.available === "true"
         : true;
-
       return matchesCategory && matchesBrand && matchesPrice && matchesAvailability;
     });
-
     setFilteredProducts(filtered);
     console.log("Filters applied:", { selectedCategory, selectedBrands, priceRange, onlyAvailable });
   };
-
 
   const increaseQuantity = (id: number) => {
     setCart((prev) => {
@@ -139,10 +130,9 @@ const ProductsPage: React.FC = () => {
             setOnlyAvailable={setOnlyAvailable}
             applyFilters={applyFilters}
           />
-
         </div>
         <div className="boxLeft">
-          <div className="mainproductcard" style={{margin:"5px ", paddingInline:"30px"}}>
+          <div className="mainproductcard" style={{ margin: "5px ", paddingInline: "30px" }}>
             {!hasLoadedOnce ? (
               <p>Loading...</p>
             ) : (
@@ -158,7 +148,6 @@ const ProductsPage: React.FC = () => {
                 reduce={decreaseQuantity}
 
               />
-
             )}
           </div>
         </div>

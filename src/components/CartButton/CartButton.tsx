@@ -13,6 +13,7 @@ interface CartButtonProps {
 }
 
 const CartButton: React.FC<CartButtonProps> = ({ quantity, onAdd, onReduce, addcard }) => {
+
     return (
         <div
             className="d-flex align-items-center text-white rounded"
@@ -23,7 +24,6 @@ const CartButton: React.FC<CartButtonProps> = ({ quantity, onAdd, onReduce, addc
                 maxWidth: "100%",
             }}
         >
-
             {quantity === 0 ? (
                 <button
                     className="btn d-flex align-items-center"
@@ -37,7 +37,7 @@ const CartButton: React.FC<CartButtonProps> = ({ quantity, onAdd, onReduce, addc
                     onClick={onAdd}
                 >
                     <span className="m-2"><AddToCart /></span>
-                    <span style={{ color: "rgb(19 62 135)",fontSize:"15px" }}>{addcard}</span>
+                    <span style={{ color: "rgb(19 62 135)", fontSize: "15px" }}>{addcard}</span>
                 </button>
             ) : (
                 <div className="d-flex rounded align-items-end  justify-content-evenly" style={{
@@ -46,8 +46,6 @@ const CartButton: React.FC<CartButtonProps> = ({ quantity, onAdd, onReduce, addc
                     padding: "0",
                     backgroundColor: "rgb(214 230 242)",
                     border: "rgb(19 62 135) solid 1px"
-
-
                 }}>
                     <button
                         className="d-flex justify-content-center align-items-center btn text-light fw-bold"

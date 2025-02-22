@@ -10,7 +10,6 @@ interface Product {
   price: number;
 }
 
-// GridProps Interface
 interface GridProps {
   products: Product[];
   carts: { id: number; quantity: number }[];
@@ -19,6 +18,7 @@ interface GridProps {
 }
 
 const ProductGrid: React.FC<GridProps> = ({ products, carts, addition, reduce }) => {
+
   return (
     <div className="products-card">
       <div className="grid">
@@ -28,7 +28,7 @@ const ProductGrid: React.FC<GridProps> = ({ products, carts, addition, reduce })
 
           return (
             <div key={product.id} className="productCards">
-              <a href={`http://localhost:5173/ProductDetails?id=${product.id}`}
+              <a href={`/ProductDetails?id=${product.id}`}
                 style={{ textDecoration: "none" }}>
                 <img
                   src={product.imageUrl || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs9gUXKwt2KErC_jWWlkZkGabxpeGchT-fyw&s"}
@@ -48,6 +48,7 @@ const ProductGrid: React.FC<GridProps> = ({ products, carts, addition, reduce })
                   onReduce={() => reduce(product.id)} addcard={""} /></div>
             </div>
           );
+          
         })}
       </div>
     </div >

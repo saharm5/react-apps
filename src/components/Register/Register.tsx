@@ -4,6 +4,7 @@ import { submitForm } from "../../server/api";
 import Phone from "../../assets/svg/Phone";
 
 const Register: React.FC = () => {
+
     const [phone_number, setphone_number] = useState<string>("");
     const [error, setError] = useState<string>("");
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -29,7 +30,6 @@ const Register: React.FC = () => {
             setTimeout(() => setIsSubmitting(false), 2000);
             return;
         }
-
 
         const formData = {
             "phone_number": phone_number

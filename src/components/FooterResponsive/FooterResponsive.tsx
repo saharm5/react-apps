@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./FooterResponsive.css";
 
 const FooterResponsive: React.FC = () => {
+    
     const [activeIcon, setActiveIcon] = useState<string>("");
 
     useEffect(() => {
-
         const path = window.location.pathname;
         if (path === "/login") {
             setActiveIcon("person");
@@ -43,7 +43,7 @@ const FooterResponsive: React.FC = () => {
                 <a
                     className={`icon ${activeIcon === "category" ? "active" : ""}`}
                     onClick={() => handleTabClick("category")}
-                    href="http://localhost:5173/"
+                    href="/"
                 >
                     {getIcon("category", activeIcon === "category")}
                 </a>
@@ -52,7 +52,7 @@ const FooterResponsive: React.FC = () => {
                 <a
                     className={`icon ${activeIcon === "person" ? "active" : ""}`}
                     onClick={() => handleTabClick("person")}
-                    href="http://localhost:5173/login"
+                    href="/login"
                 >
                     {getIcon("person", activeIcon === "person")}
                 </a>
@@ -61,7 +61,7 @@ const FooterResponsive: React.FC = () => {
                 <a
                     className={`icon ${activeIcon === "home" ? "active" : ""}`}
                     onClick={() => handleTabClick("home")}
-                    href="http://localhost:5173/"
+                    href="/"
                 >
                     {getIcon("home", activeIcon === "home")}
                 </a>
@@ -70,7 +70,7 @@ const FooterResponsive: React.FC = () => {
                 <a
                     className={`icon ${activeIcon === "cart" ? "active" : ""}`}
                     onClick={() => handleTabClick("cart")}
-                    href="http://localhost:5173/"
+                    href="/"
                 >
                     {getIcon("cart", activeIcon === "cart")}
                 </a>
@@ -79,7 +79,7 @@ const FooterResponsive: React.FC = () => {
                 <a
                     className={`icon ${activeIcon === "favorit" ? "active" : ""}`}
                     onClick={() => handleTabClick("favorit")}
-                    href="http://localhost:5173/"
+                    href="/"
                 >
                     {getIcon("favorit", activeIcon === "favorit")}
                 </a>

@@ -9,9 +9,9 @@ interface HeaderSearchProductsProps {
 }
 
 const HeaderSearchProducts: React.FC<HeaderSearchProductsProps> = ({ SearchPath, NumberOfItems }) => {
+
     const [activeTab, setActiveTab] = useState<string>("BestSeller");
     const [isSortingDropdownVisible, setIsSortingDropdownVisible] = useState(false);
-
     const handleTabClick = (tab: string) => setActiveTab(tab);
     const toggleSortingDropdown = () => setIsSortingDropdownVisible(prev => !prev);
 
@@ -40,7 +40,6 @@ const HeaderSearchProducts: React.FC<HeaderSearchProductsProps> = ({ SearchPath,
 
         </ul>
     );
-
     return (
         <div>
             <div className="HSPMResponsiv">
@@ -66,9 +65,7 @@ const HeaderSearchProducts: React.FC<HeaderSearchProductsProps> = ({ SearchPath,
                     <div className="HeaderSearchProductsNumberOfItem">{NumberOfItems} عدد</div>
                 </div>
             </div>
-
         </div>
-
     );
 };
 

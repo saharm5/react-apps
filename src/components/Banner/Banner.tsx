@@ -1,8 +1,8 @@
-//Banner.tsx
 import React, { useState, useEffect } from "react";
 import "./Banner.css";
 
 const Banner: React.FC = () => {
+  
   const [slideIndex, setSlideIndex] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -37,18 +37,6 @@ const Banner: React.FC = () => {
     return () => clearInterval(timer);
   }, [isPaused, slides.length]);
 
-  // const nextSlide = () => {
-  //   setSlideIndex((prevIndex) =>
-  //     prevIndex === slides.length ? 1 : prevIndex + 1
-  //   );
-  // };
-
-  // const prevSlide = () => {
-  //   setSlideIndex((prevIndex) =>
-  //     prevIndex === 1 ? slides.length : prevIndex - 1
-  //   );
-  // };
-
   return (
     <div className="">
       <div
@@ -70,28 +58,7 @@ const Banner: React.FC = () => {
               />
             </div>
           ))}
-
-          {/* <button
-          className="prev"
-          onClick={prevSlide}
-          aria-label="Previous Slide"
-        >
-          &#10095;
-        </button>
-        <button className="next" onClick={nextSlide} aria-label="Next Slide">
-          &#10094;
-        </button> */}
         </div>
-
-        {/* <div className="dots-container">
-        {slides.map((_, index) => (
-          <span
-            key={index}
-            className={`dot ${slideIndex === index + 1 ? "active" : ""}`}
-            onClick={() => setSlideIndex(index + 1)}
-          />
-        ))}
-      </div> */}
       </div>
     </div>
   );

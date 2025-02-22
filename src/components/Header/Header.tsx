@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import "./Header.css";
 import { FaSearch } from 'react-icons/fa';
 
-
-
 const Header: React.FC = () => {
+
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const toggleNavbar = () => {
@@ -164,7 +163,6 @@ const Header: React.FC = () => {
     }
   ];
 
-
   return (
     <header>
       {/* if max-width:950  show this*/}
@@ -177,7 +175,6 @@ const Header: React.FC = () => {
             aria-label="Toggle navigation"
             className="HeaderResponsiveNavbarButton"
           >
-
             <span className={`collapsiblecontent ${isCollapsed ? "show" : ""}`}>
               <FaSearch className="HeaderResponsiveNavbarIconPadding" /> {/* Search Icon */}
               {/* <i className="bi bi-search HeaderResponsiveNavbarIconPadding half-size-icon"></i> */}
@@ -206,20 +203,16 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* else */}
+      {/* if min-width:950  show this */}
       <nav className="HeaderNav">
         {/* Right Section */}
         <div className="HeaderMainDropdown">
-
           <button className="HeaderMainDropdownBtn">
             <h4>
               <i className="bi bi-list HeaderMainDropdownIconPadding"></i>
-              <a href="http://localhost:5173/" style={{ textDecoration: "none", color: "#fff" }}>بقالی</a>
+              <a href="/" style={{ textDecoration: "none", color: "#fff" }}>بقالی</a>
             </h4>
           </button>
-
-
           <div className="HeaderMainDropdownContainer">
             <ul className="HeaderMainDropdownUl">
               {NavbarCategories.map((NavbarCategory, index) => (
@@ -248,13 +241,10 @@ const Header: React.FC = () => {
                     </div>
                   </li>
                 </div>
-
               ))}
             </ul>
           </div>
-
         </div>
-
         {/* Center Section - Search */}
         <div className=" HeaderSearchContainer">
           <div className=" HeaderSearchdiv">
@@ -269,13 +259,11 @@ const Header: React.FC = () => {
             </button>
           </div>
         </div>
-
         {/* location Section */}
         <div className="Headerlocation">
           <i className="bi bi-geo-alt-fill"></i>
           <span>زنجان، بلوار مهرانه، سانای</span>
         </div>
-
         {/* Left Section */}
         <div className="HeaderIconContainer">
           <a href="http://localhost:5173/login" className="HeaderIcon" aria-label="User Profile">

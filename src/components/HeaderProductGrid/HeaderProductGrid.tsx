@@ -1,18 +1,14 @@
-
 import React, { useState } from "react";
 import "./ProductGrid.css";
 
-
 const HeaderProductGrid: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<string>("daily"); // Manage active tab
+    const [activeTab, setActiveTab] = useState<string>("daily");
 
     const handleTabClick = (tab: string) => {
         setActiveTab(tab);
     };
-
     // Filter products based on the active tab
     // const filteredProducts = products.filter((product) => product.category === activeTab);
-
     return (
         <div className="products-card">
             {/* Tabs */}

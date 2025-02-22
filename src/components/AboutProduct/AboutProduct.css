@@ -23,15 +23,6 @@
   font-size: 20px;
 }
 
-/* .bg-img {
-    background-image: url("https://asset.okala.com/unsigned/rs:fill/size:192:192/quality:100/plain/s3://cdn/product/379324.png");
-    min-height: 380px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-  }
-   */
 .AboutProductpS {
   font-size: 12px;
 }
@@ -78,26 +69,16 @@
   cursor: pointer;
 }
 
-
-
-
-
 .card-img-top {
   object-fit: contain;
-  /* height: 200px;
-    width: 200px;  */
 }
 
-
-/* General card styling */
 .card {
   border-radius: 12px;
   border: none;
-  max-width: 86%;
+  max-width: 400px;
 }
 
-
-/* iconB hover and active state */
 .iconB {
   display: flex;
   justify-content: center;
@@ -125,12 +106,8 @@
 
 .card-imgs {
   height: -webkit-fill-available;
-
 }
 
-/* .container {
-  width: 250px;
-} */
 .image-nav-buttons {
   display: flex;
   justify-content: center;
@@ -145,8 +122,6 @@
   border-radius: 5px;
 }
 
-
-
 .Products-imgs {
   overflow-x: auto;
   height: 60px;
@@ -160,31 +135,24 @@
   cursor: pointer;
 }
 
-/* Scrollbar styling */
 .Products-imgs::-webkit-scrollbar {
   width: 10px;
   height: 10px;
-  /* Ensure horizontal scrollbar is styled */
 }
 
 .Products-imgs::-webkit-scrollbar-thumb {
   background-color: #888;
-  /* Add visible color for thumb */
   border-radius: 10px;
   border: 2px solid transparent;
-  /* Adds spacing around the thumb */
   background-clip: content-box;
-  /* Ensures visible spacing */
 }
 
 .Products-imgs::-webkit-scrollbar-thumb:hover {
   background-color: #555;
-  /* Darker color on hover */
 }
 
 .Products-imgs::-webkit-scrollbar-track {
   background: #ffffff;
-  /* Light background for track */
   border-radius: 10px;
   border: 2px solid #ffffff;
 }
@@ -196,8 +164,6 @@
   height: 15px;
 }
 
-
-
 .productName {
   font-size: 18px;
 }
@@ -208,12 +174,10 @@
 
 .productbrand {
   font-size: 15px;
-
 }
 
 .productbrand a {
   text-decoration: none;
-
 }
 
 .productcategory {
@@ -222,14 +186,11 @@
 
 .productcategory a {
   text-decoration: none;
-
 }
 
 .ulsize li {
   font-size: 14px;
-
 }
-
 
 .LeftSection {
   border: solid 1px rgb(186, 226, 233);
@@ -241,10 +202,7 @@
 .btncard {
   position: absolute;
   left: 50%;
-  /* Center horizontally */
   bottom: 25px;
   width: 186.53px;
-  /* Align to the bottom */
-
   transform: translateX(-50%);
 }

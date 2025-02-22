@@ -4,8 +4,8 @@ import { submitForm } from "../../server/api";
 import Phone from "../../assets/svg/Phone";
 import Key from "../../assets/svg/Key";
 
-
 const Login: React.FC = () => {
+
   const [phone_number, setphone_number] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");

@@ -5,50 +5,38 @@
   margin: 20px 0px;
   width: 100%;
   background-color: #ffffff;
-  /* Matches the white background */
   padding: 20px;
-
-
 }
 
 .CardGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit,
       minmax(150px, 0fr));
-  /* Responsive layout */
   gap: 40px;
   width: 100%;
   justify-items: center;
-
 }
 
 .SearchProductCard {
-
   background-color: rgb(255, 255, 255);
-  /* Card background */
   border-radius: 20px;
-  /* Rounded corners */
   width: 150px;
   text-align: center;
   margin: 10px;
   padding: 16px;
   box-shadow: 0px 1px 2px rgb(19, 62, 135, 0.1);
-  /* Subtle shadow */
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .SearchProductCard:hover {
   transform: translateY(-5px);
-  /* Hover lift effect */
   box-shadow: 0px 4px 10px rgb(19, 62, 135, 0.15);
-  /* Deeper shadow */
 }
 
 .SearchProductImage {
   width: 80px;
   height: 80px;
   object-fit: contain;
-  /* Ensure the product fits well */
   margin-bottom: 12px;
 }
 
@@ -56,9 +44,7 @@
   font-size: 14px;
   height: 30px;
   color: #112d4e;
-  /* Dark gray for text */
   margin: 15px;
-
   line-height: 1.4;
 }
 
@@ -66,16 +52,12 @@
   font-size: 12px;
   height: 15px;
   margin: 10px;
-
   color: #112d4e;
-  /* Matches the blue theme */
 }
 
 .AddToCart {
   background-color: #d6e6f2cc;
-  /* Light gray button */
   color: #01194f;
-  /* Blue text */
   border: none;
   padding: 6px 15px;
   font-size: 14px;
@@ -87,8 +69,6 @@
 
 .AddToCart:hover {
   background-color: #cbdceb;
-  /* Blue hover effect */
-  /* White text on hover */
 }
 
 .actionButton {
@@ -123,7 +103,6 @@
   border-radius: 20px;
   border: none;
   display: inline-block;
-  /* Ensures the background fits the icon */
 }
 
 .BReduceAdd {
@@ -136,11 +115,9 @@
     padding: 5px;
   }
 
-
   .CardGrid {
     gap:10px;
     justify-content: center;
 
   }
-
 }

@@ -9,8 +9,6 @@ import CheckShield from "../../assets/svg/CheckShield";
 import Star from "../../assets/svg/Star";
 import Payment from "../../assets/svg/Payment"
 
-
-
 interface Image {
   product_name: string;
   productImageSrc: string;
@@ -46,32 +44,28 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
   const [imgText, setImgText] = useState<string>("");
   const [params, setParams] = useSearchParams()
   const value = params.get('id')
-  // Handle image click to expand
+
   const handleImageClick = (index: number, alt: string) => {
     setExpandedImgIndex(index);
     setImgText("");
   };
 
-  // Close the expanded image
   const closeImage = () => {
     setExpandedImgIndex(null);
     setImgText("");
   };
 
-  // Navigate to previous image
   const handlePrevImage = (images: Image[]) => {
     if (expandedImgIndex !== null) {
       setExpandedImgIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : (prevIndex || images.length) - 1));
     }
   };
 
-  // Navigate to next image
   const handleNextImage = (images: Image[]) => {
     if (expandedImgIndex !== null) {
       setExpandedImgIndex((prevIndex) => ((prevIndex || -1) + 1) % images.length);
     }
   };
-
 
   const handleAddFavorit = async (id: number) => {
     setFavorit(prev => !prev);
@@ -82,7 +76,6 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
         id,
         is_favorite: !favorit,
       };
-
       const response = await submitForm("/save-data/", formData);
       console.log(`Product ${id} ${!favorit ? "added to" : "removed from"} favorites`, response);
     } catch (error) {
@@ -91,9 +84,6 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
     }
   };
 
-
-
-  // Handle copying the product link
   const handleCopyLink = () => {
     navigator.clipboard
       .writeText(window.location.href)
@@ -104,11 +94,10 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
       .catch((error) => console.error("Error copying to clipboard:", error));
   };
 
-  // Fetch product data on component mount
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchProducts("/data?id=" + value);
+        const data = await fetchProducts("api/data?id=" + value);
         setProducts(data);
       } catch (error) {
         console.error("Error fetching product data:", error);
@@ -298,6 +287,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
               </div>
             </div>
           );
+          
         })
       )}
     </div>

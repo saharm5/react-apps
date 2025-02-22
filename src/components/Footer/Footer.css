@@ -1,7 +1,5 @@
-/* General Styling */
 footer {
   direction: rtl;
-  /* RTL layout */
   background-color: #fff;
   padding: 20px 40px 0;
   color: #333;
@@ -9,7 +7,6 @@ footer {
   margin-top: 30px;
 }
 
-/* Back to Top Section */
 .back-to-top {
   text-align: center;
   margin-bottom: 30px;
@@ -28,7 +25,6 @@ footer {
   color: #0056b3;
 }
 
-/* Footer Layout */
 .footer-layout {
   display: flex;
   justify-content: space-evenly;
@@ -36,15 +32,12 @@ footer {
   flex-wrap: wrap;
 }
 
-/* Left Column: Social Media + Email Subscription */
 .footer-left-column {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* Takes up equal space */
   max-width: 40%;
-  /* Restricts width */
 }
 
 .social-media {
@@ -118,13 +111,11 @@ footer {
   background-color: #163f9c;
 }
 
-/* Right Column: Footer Links + Certifications */
 .footer-right-column {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* Takes up equal space */
   max-width: 50%;
 }
 
@@ -155,7 +146,6 @@ footer {
   margin-bottom: 5px;
 }
 
-/* Certifications */
 .certifications {
   display: flex;
   justify-content: center;
