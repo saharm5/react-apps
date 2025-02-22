@@ -1,9 +1,8 @@
 import React from "react";
 import "./ProductGrid.css";
-import CartButton from "../CartButton/CartButton";
+import CartButton from "../../CartButton/CartButton";
 import { Link } from "react-router-dom";
 
-// Product Interface
 interface Product {
   id: number;
   imageUrl: string | null;
@@ -30,14 +29,13 @@ const ProductGrid: React.FC<GridProps> = ({ products, carts, addition, reduce })
           return (
             <div key={product.id} className="productCards">
               <Link to={`/ProductDetails?id=${product.id}`}
-              // >
-              //   <a href={`/ProductDetails?id=${product.id}`}
-                  style={{ textDecoration: "none" }}>
-                  <img
-                    src={product.imageUrl || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs9gUXKwt2KErC_jWWlkZkGabxpeGchT-fyw&s"}
-                    alt={product.title}
-                    className="product-image"
-                  />
+                //   <a href={`/ProductDetails?id=${product.id}`}
+                style={{ textDecoration: "none" }}>
+                <img
+                  src={product.imageUrl || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs9gUXKwt2KErC_jWWlkZkGabxpeGchT-fyw&s"}
+                  alt={product.title}
+                  className="product-image"
+                />
                 {/* </a> */}
               </Link>
               <p className="product-Title">{product.title}</p>

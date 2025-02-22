@@ -4,7 +4,7 @@ import { fetchProducts } from '../server/api';
 import "../styles/global.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ProductGrid from "../components/ProductGrid/ProductGrid";
+import ProductGrid from "../components/ProductsGrid/ProductGrid/ProductGrid";
 import Header from "../components/Header/Header";
 import HeaderSearchProducts from "../components/SearchProductPage/HeaderSearchProducts/HeaderSearchProducts";
 import Filter from "../components/Filters/Filters";
@@ -138,6 +138,7 @@ const ProductsPage: React.FC = () => {
             ) : (
               <ProductGrid
                 products={filteredProducts.map((product) => ({
+                  key: product.id,
                   id: product.id,
                   title: product.product_name,
                   price: product.final_price,

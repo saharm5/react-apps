@@ -2,35 +2,17 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header/Header";
 import Banner from "../components/Banner/Banner";
 import Categories from "../components/Categories/Categories";
-import ProductGrid from "../components/ProductGrid/ProductGrid";
 import Brands from "../components/Brands/Brands";
 import Footer from "../components/Footer/Footer";
 import FooterResponsive from "../components/FooterResponsive/FooterResponsive";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../styles/global.css";
-import { fetchProducts } from "../server/api";
 import useBodyClass from "../components/useBodyClass/useBodyClass";
-
-interface Image {
-  product_name: string;
-  productImageSrc: string;
-}
-
-interface Product {
-  id: number;
-  product_name: string;
-  final_price: number;
-  description: string;
-  rating: number;
-  productImageSrc: Image[];
-}
+import ProductGrid2 from "../components/ProductsGrid/ProductGrid2";
 
 const MainPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState<Product[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [cart, setCart] = useState<{ id: number; quantity: number }[]>([]);
 
   useBodyClass("body-main");
 
@@ -43,44 +25,6 @@ const MainPage: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const increaseQuantity = (id: number) => {
-    setCart((prev) => {
-      const existingProduct = prev.find((item) => item.id === id);
-      if (existingProduct) {
-        return prev.map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
-      return [...prev, { id, quantity: 1 }];
-    });
-  };
-
-  const decreaseQuantity = (id: number) => {
-    setCart((prev) => {
-      const existingProduct = prev.find((item) => item.id === id);
-      if (existingProduct?.quantity === 1) {
-        return prev.filter((item) => item.id !== id);
-      }
-      return prev.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity - 1 } : item
-      );
-    });
-  };
-
-  const limit = 12;
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchProducts(`api/data/`);
-        setProducts(data);
-      } catch (error) {
-        console.error("Failed to fetch products:", error);
-        setError("Failed to fetch products");
-      }
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <div>
@@ -97,17 +41,7 @@ const MainPage: React.FC = () => {
                 <p className="ptabe">محصولات ویژه</p>
               </div>
               <div className="scroll-container">
-                <ProductGrid
-                  products={products.map((product) => ({
-                    id: product.id,
-                    title: product.product_name,
-                    price: product.final_price,
-                    imageUrl: product.productImageSrc[0]?.productImageSrc || ""
-                  }))}
-                  carts={cart}
-                  addition={increaseQuantity}
-                  reduce={decreaseQuantity}
-                />
+                <ProductGrid2 />
               </div>
             </div>
             <Brands />

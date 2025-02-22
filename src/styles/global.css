@@ -75,6 +75,12 @@ body {
 
 }
 
+.not-scroll-container {
+  height: 270px;
+  overflow-y: hidden;
+  padding-top: 10px;
+}
+
 .productCards {
   scroll-snap-align: start;
 }
