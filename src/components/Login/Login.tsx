@@ -48,7 +48,6 @@ const Login: React.FC = () => {
 
     try {
       const result = await submitForm("/api/auth/login-with-password/", formData, false);
-      // در صورت موفقیت، توکن دریافتی (در فیلد access) را ذخیره می‌کنیم
       if (result && result.access) {
         localStorage.setItem("token", result.access);
       }

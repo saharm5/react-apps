@@ -1,15 +1,12 @@
 const BASE_URL = "http://127.0.0.1:8000/";
 
-/**
- * درخواست GET برای دریافت محصولات
- */
+
 export const fetchProducts = async (url: string) => {
     try {
         const response = await fetch(`${BASE_URL}${url}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                // در صورت نیاز می‌توانید هدر Authorization را اضافه کنید
             },
         });
 
@@ -32,7 +29,6 @@ export const submitForm = async (
     withAuth: boolean = true
 ) => {
     const token = localStorage.getItem("token") || "";
-    // اگر withAuth true باشد و توکن موجود باشد، هدر Authorization اضافه می‌شود.
     const headers: HeadersInit = {
         "Content-Type": "application/json",
         ...(withAuth && token ? { Authorization: `Bearer ${token}` } : {}),
@@ -52,7 +48,6 @@ export const submitForm = async (
             throw new Error("Failed to submit form");
         }
 
-        // در صورتی که پاسخ تنها 'ok' باشد
         if (text.trim() === "ok") {
             window.location.href = "/";
             return { text };
@@ -71,6 +66,9 @@ export const submitForm = async (
             return;
         } else if (result.isregister === 2) {
             window.location.href = "/login";
+            return;
+        } else if (result.message === "ورود موفق.") {
+            window.location.href = "/";
             return;
         }
 

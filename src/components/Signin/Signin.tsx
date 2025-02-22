@@ -28,7 +28,7 @@ const Signin: React.FC = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Prevents default form submission behavior
+    e.preventDefault();
     setIsSubmitting(true);
     setError("");
 
