@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { fetchProducts } from "../../server/api";
 import "./Categories.css";
 import React, { useEffect, useRef, useState } from "react";
@@ -87,9 +88,9 @@ const Categories: React.FC = () => {
               alt={category.category}
               className="category-card__image"
             />
-            <a href={category.categoryLink} className="category-card__title">
+            <Link to={`/Products`} className="category-card__title">
               {category.category || "#"}
-            </a>
+            </Link>
           </div>
         ))}
       </div>

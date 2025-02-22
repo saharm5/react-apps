@@ -3,7 +3,7 @@ import "./AboutProduct.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { fetchProducts, submitForm } from "../../server/api"; // Assume this function exists
 import CartButton from "../CartButton/CartButton"; // Importing the new component
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import FreeDelivery from "../../assets/svg/FreeDelivery";
 import CheckShield from "../../assets/svg/CheckShield";
 import Star from "../../assets/svg/Star";
@@ -223,10 +223,10 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                     </p>
                     <p id="category" className="productcategory">
                       <strong> دسته بندی : </strong>
-                      <a href="#">{product.category}</a>
+                      <Link to={`/`}>{product.category}</Link>
                     </p>
                     <p id="brand" className="productbrand">
-                      <strong> برند:</strong> <a href="#">{product.brand}</a>
+                      <strong> برند:</strong> <Link to={`/`}>{product.brand}</Link>
                     </p>
                   </div>
                   <div>

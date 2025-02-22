@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Header.css";
 import { FaSearch } from 'react-icons/fa';
+import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
 
@@ -210,7 +211,7 @@ const Header: React.FC = () => {
           <button className="HeaderMainDropdownBtn">
             <h4>
               <i className="bi bi-list HeaderMainDropdownIconPadding"></i>
-              <a href="/" style={{ textDecoration: "none", color: "#fff" }}>بقالی</a>
+              <Link to={`/`} style={{ textDecoration: "none", color: "#fff" }}>بقالی</Link>
             </h4>
           </button>
           <div className="HeaderMainDropdownContainer">
@@ -222,9 +223,9 @@ const Header: React.FC = () => {
                     <div className="HeaderDropdown">
                       <div>
                         <button className="HeaderDropdownBtn">
-                          <a className="HeaderMainDropdownLi" href="#">
+                          <Link className="HeaderMainDropdownLi" to={`/Products`}>
                             {NavbarCategory.category}
-                          </a>
+                          </Link>
                         </button>
                       </div>
                       <div>
@@ -232,7 +233,7 @@ const Header: React.FC = () => {
                           {NavbarCategory.SubCategorization.map((sub, subIndex) => (
                             <div className="HeaderDropdownCategory" key={subIndex}>
                               <li className="HeaderDropdownLi">
-                                <a className="HeaderDropdownLi" href="#">{sub.SubCategory}</a>
+                                <Link className="HeaderDropdownLi" to={`/Products`} >{sub.SubCategory}</Link>
                               </li>
                             </div>
                           ))}
@@ -255,7 +256,7 @@ const Header: React.FC = () => {
               aria-label="Search"
             />
             <button className="HeaderSearchBtn" type="submit">
-              <a className="btnsumbit" href="http://localhost:5173/Products"><i className="bi bi-search"></i></a>
+              <Link to={`/Products`} className="btnsumbit"><i className="bi bi-search"></i></Link>
             </button>
           </div>
         </div>
@@ -266,15 +267,15 @@ const Header: React.FC = () => {
         </div>
         {/* Left Section */}
         <div className="HeaderIconContainer">
-          <a href="http://localhost:5173/login" className="HeaderIcon" aria-label="User Profile">
+          <Link to={`/login`} className="HeaderIcon" aria-label="User Profile">
             <i className="bi bi-person"></i>
-          </a>
-          <a href="https://www.digikala.com/checkout/cart/" className="HeaderIcon" aria-label="Shopping Cart">
+          </Link>
+          <Link to={`/`} className="HeaderIcon" aria-label="Shopping Cart">
             <i className="bi bi-cart"></i>
-          </a>
-          <a href="#" className="HeaderIcon" aria-label="Wishlist">
+          </Link>
+          <Link to={`/`} className="HeaderIcon" aria-label="Wishlist">
             <i className="bi bi-heart-fill HeaderHaertIcon"></i>
-          </a>
+          </Link>
         </div>
       </nav>
     </header>
