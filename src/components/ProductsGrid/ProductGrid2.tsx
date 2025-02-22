@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProductGrid from "./ProductGrid/ProductGrid";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "../styles/global.css";
+import "../../styles/global.css";
 import { fetchProducts } from "../../server/api";
 
 interface Image {
