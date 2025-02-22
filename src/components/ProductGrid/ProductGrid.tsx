@@ -1,6 +1,7 @@
 import React from "react";
 import "./ProductGrid.css";
 import CartButton from "../CartButton/CartButton";
+import { Link } from "react-router-dom";
 
 // Product Interface
 interface Product {
@@ -28,19 +29,24 @@ const ProductGrid: React.FC<GridProps> = ({ products, carts, addition, reduce })
 
           return (
             <div key={product.id} className="productCards">
-              <a href={`/ProductDetails?id=${product.id}`}
-                style={{ textDecoration: "none" }}>
-                <img
-                  src={product.imageUrl || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs9gUXKwt2KErC_jWWlkZkGabxpeGchT-fyw&s"}
-                  alt={product.title}
-                  className="product-image"
-                />
-              </a>
+              <Link to={`/ProductDetails?id=${product.id}`}
+              // >
+              //   <a href={`/ProductDetails?id=${product.id}`}
+                  style={{ textDecoration: "none" }}>
+                  <img
+                    src={product.imageUrl || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs9gUXKwt2KErC_jWWlkZkGabxpeGchT-fyw&s"}
+                    alt={product.title}
+                    className="product-image"
+                  />
+                {/* </a> */}
+              </Link>
               <p className="product-Title">{product.title}</p>
-              {product.price &&
+              {
+                product.price &&
                 <p className="product-price">
                   <strong>{product.price.toLocaleString()}</strong> تومان
-                </p>}
+                </p>
+              }
               <div style={{ width: "118px" }}>
                 <CartButton
                   quantity={quantity}
@@ -48,7 +54,7 @@ const ProductGrid: React.FC<GridProps> = ({ products, carts, addition, reduce })
                   onReduce={() => reduce(product.id)} addcard={""} /></div>
             </div>
           );
-          
+
         })}
       </div>
     </div >
