@@ -50,7 +50,7 @@ const Review: React.FC = () => {
         };
 
         try {
-            const result = await submitForm("/regmsg/", formData);
+            const result = await submitForm("api/reviews/", formData);
             setResponseMessage("فرم با موفقیت ارسال شد!");
             setError("");
             setPhone("");

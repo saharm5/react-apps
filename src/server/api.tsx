@@ -40,6 +40,8 @@ export const submitForm = async (url: string, formData: object) => {
 
         if (!response.ok) {
             throw new Error("Failed to submit form");
+        }else {
+            window.location.href = "/";
         }
 
         if (text.trim() === 'ok') {
