@@ -6,12 +6,12 @@ export const fetchProducts = async (url: string) => {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                // "Authorization": `Bearer ${yourToken}` 
-            }
+                // در صورت نیاز می‌توانید هدر Authorization را اضافه کنید
+            },
         });
 
         if (!response.ok) {
-            const errorMessage = await response.text(); 
+            const errorMessage = await response.text();
             throw new Error(`خطا در دریافت اطلاعات: ${errorMessage}`);
         }
 
@@ -23,15 +23,15 @@ export const fetchProducts = async (url: string) => {
 };
 
 export const submitForm = async (url: string, formData: object) => {
+    const token = localStorage.getItem("token") || "";
+
     try {
-        // const csrfToken = getCsrfToken();
         const response = await fetch(new URL(url, BASE_URL).toString(), {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                // "X-CSRFToken": csrfToken|| "", 
+                Authorization: token ? `Bearer ${token}` : "",
             },
-            // credentials: "include",  
             body: JSON.stringify(formData),
         });
 
@@ -40,30 +40,31 @@ export const submitForm = async (url: string, formData: object) => {
 
         if (!response.ok) {
             throw new Error("Failed to submit form");
-        }else {
-            window.location.href = "/";
         }
 
-        if (text.trim() === 'ok') {
+        // در صورتی که پاسخ تنها 'ok' باشد
+        if (text.trim() === "ok") {
+            window.location.href = "/";
             return { text };
         }
 
-        const responseData = JSON.parse(text);
-        if (responseData.isregister === 1) {
-
-            window.location.href = "/Signin";
-        } else if (responseData.isregister === 2) {
-
-            window.location.href = "/login";
-        }
+        let result;
         try {
-            const result = JSON.parse(text);
-            return result;
+            result = JSON.parse(text);
         } catch (e) {
             console.error("Failed to parse JSON:", e);
             throw new Error("Response is not valid JSON");
         }
 
+        if (result.isregister === 1) {
+            window.location.href = "/Signin";
+            return;
+        } else if (result.isregister === 2) {
+            window.location.href = "/login";
+            return;
+        }
+
+        return result;
     } catch (error) {
         console.error("Error submitting form:", error);
         throw error;
