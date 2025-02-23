@@ -67,7 +67,7 @@ export const submitForm = async (
         } else if (result.isregister === 2) {
             window.location.href = "/login";
             return;
-        } else if (result.message === "ورود موفق.") {
+        } else if (result.Status === "ok") {
             window.location.href = "/";
             return;
         }
