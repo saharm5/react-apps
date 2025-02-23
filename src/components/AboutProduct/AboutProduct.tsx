@@ -195,7 +195,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                           "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
                         }
                         alt={product.product_name || "Product"}
-                        className="card-img-top"
+                        className="card-img-top  rounded-3"
                         onClick={() => handleImageClick(0, product.product_name || "Product")}
                       />
                     </div>
