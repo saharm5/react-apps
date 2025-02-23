@@ -6,9 +6,11 @@ import SigninPage from "./pageComponents/SigninPage";
 import ProductsPage from "./pageComponents/ProductsPage";
 import ProductDetails from "./pageComponents/AboutProductPage";
 import ReviewPage from "./pageComponents/ReviewPage";
-import "./styles/global.css";
 import NotFoundPage from "./pageComponents/NotFoundPage";
+import FavoritePage from "./pageComponents/FavoritePage";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./styles/global.css";
+import ShoppingCartPage from "./pageComponents/ShoppingCartPage";
 
 export default function App() {
   return (
@@ -20,6 +22,8 @@ export default function App() {
         <Route path="Signin" element={<SigninPage />} />
         <Route path="Products" element={<ProductsPage />} />
         <Route path="ProductDetails" element={<ProductDetails />} />
+        <Route path="Favorite" element={<FavoritePage />} />
+        <Route path="ShoppingCart" element={<ShoppingCartPage />} />
         <Route path="Review" element={<ReviewPage />} />
         <Route path="*" element={<NotFoundPage />} /> 
       </Routes>

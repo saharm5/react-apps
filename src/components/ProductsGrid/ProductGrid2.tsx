@@ -21,7 +21,6 @@ interface Product {
 
 const ProductGrid2: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
-    const [error, setError] = useState<string | null>(null);
     const [carts, setCarts] = useState<{ id: number; quantity: number }[]>([]);
 
     const increasesQuantity = (id: number) => {
@@ -53,13 +52,12 @@ const ProductGrid2: React.FC = () => {
                 const data = await fetchProducts(`api/data/`);
                 setProducts(data);
             } catch (error) {
-                setError('Failed to fetch products');
+                console.error('Failed to fetch products');
             }
         };
 
         fetchData();
     }, []);
-
 
     return (
 

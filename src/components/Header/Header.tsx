@@ -270,10 +270,10 @@ const Header: React.FC = () => {
           <Link to={`/login`} className="HeaderIcon" aria-label="User Profile">
             <i className="bi bi-person"></i>
           </Link>
-          <Link to={`/`} className="HeaderIcon" aria-label="Shopping Cart">
+          <Link to={`/ShoppingCart`} className="HeaderIcon" aria-label="Shopping Cart">
             <i className="bi bi-cart"></i>
           </Link>
-          <Link to={`/`} className="HeaderIcon" aria-label="Wishlist">
+          <Link to={`/Favorite`} className="HeaderIcon" aria-label="Wishlist">
             <i className="bi bi-heart-fill HeaderHaertIcon"></i>
           </Link>
         </div>

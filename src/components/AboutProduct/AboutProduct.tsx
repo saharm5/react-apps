@@ -72,8 +72,8 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
   const handleAddFavorit = async (id: number) => {
     const product = products.find((p) => p.id === id);
     if (!product) return;
-    const newFavoriteStatus = !product.is_favorite;
 
+    const newFavoriteStatus = !product.is_favorite;
     setProducts((prevProducts) =>
       prevProducts.map((p) => (p.id === id ? { ...p, is_favorite: newFavoriteStatus } : p))
     );
@@ -90,7 +90,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
       setProducts((prevProducts) =>
         prevProducts.map((p) => (p.id === id ? { ...p, is_favorite: product.is_favorite } : p))
       );
-      alert("Error saving data");
+      alert("لطفاوارد شوید");
       console.error(error);
     }
   };
@@ -124,185 +124,177 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
       {products.length === 0 ? (
         <div>No products available. Please try again later.</div>
       ) : (
-        products.map((product) => {
-          const cartsItem = carts.find((item) => item.id === product.id);
-          const quantity = cartsItem ? cartsItem.quantity : 0;
-
-          return (
-            <div
-              key={product.id}
-              className="d-flex flex-row my-4 p-5 rounded shadow justify-content-between AboutPmaindiv"
-            >
-              <div className="d-flex flex-row">
-                {/* Right Section */}
-                <div className="d-flex flex-column align-items-center m-3">
-                  <div className="card position-relative mb-4">
-                    {/* Action Icons */}
-                    <div className="position-absolute top-0 start-0 m-2">
-                      <button
-                        className="iconB favorit btn-light"
-                        onClick={() => handleAddFavorit(product.id)}
-                      >
-                        {product.is_favorite ? (
-                          <i className="bi bi-suit-heart-fill text-danger"></i>
-                        ) : (
-                          <i className="bi bi-suit-heart"></i>
-                        )}
-                      </button>
-                      <button className="iconB share btn-light" onClick={handleCopyLink}>
-                        {isCopied ? (
-                          <i className="bi bi-check-lg text-success"></i>
-                        ) : (
-                          <i className="bi bi-link-45deg"></i>
-                        )}
-                      </button>
-                    </div>
-                    {/* Product Images */}
-                    {expandedImgIndex !== null && (
-                      <div className="expanded-image-overlay">
-                        <div className="expanded-image-container d-flex flex-column align-items-center">
-                          <span className="close-btn px-3 rounded-4 mb-2" onClick={closeImage}>
-                            &times;
-                          </span>
-                          <img
-                            src={product.productImageSrc[expandedImgIndex]?.productImageSrc || ""}
-                            alt={imgText}
-                            className="img-fluid rounded imgsS"
-                          />
-                          <div className="d-flex justify-content-center gap-3 mt-3">
-                            <div className="d-flex justify-content-between">
-                              <button
-                                className="btn btn-outline position-absolute top-50 translate-middle-y AboutProductbtnL"
-                                onClick={() => handlePrevImage(product.productImageSrc)}
-                              >
-                                <i className="bi bi-chevron-left AboutProductbtnicon"></i>
-                              </button>
-                              <button
-                                className="btn btn-outline position-absolute top-50 translate-middle-y AboutProductbtnR"
-                                onClick={() => handleNextImage(product.productImageSrc)}
-                              >
-                                <i className="bi bi-chevron-right AboutProductbtnicon"></i>
-                              </button>
-                            </div>
+        products.map((product) =>
+        (
+          <div
+            key={product.id}
+            className="d-flex flex-row my-4 p-5 rounded shadow justify-content-between AboutPmaindiv"
+          >
+            <div className="d-flex flex-row">
+              {/* Right Section */}
+              <div className="d-flex flex-column align-items-center m-3">
+                <div className="card position-relative mb-4">
+                  {/* Action Icons */}
+                  <div className="position-absolute top-0 start-0 m-2">
+                    <button
+                      className="iconB favorit btn-light"
+                      onClick={() => handleAddFavorit(product.id)}
+                    >
+                      {product.is_favorite ? (
+                        <i className="bi bi-suit-heart-fill text-danger"></i>
+                      ) : (
+                        <i className="bi bi-suit-heart"></i>
+                      )}
+                    </button>
+                    <button className="iconB share btn-light" onClick={handleCopyLink}>
+                      {isCopied ? (
+                        <i className="bi bi-check-lg text-success"></i>
+                      ) : (
+                        <i className="bi bi-link-45deg"></i>
+                      )}
+                    </button>
+                  </div>
+                  {/* Product Images */}
+                  {expandedImgIndex !== null && (
+                    <div className="expanded-image-overlay">
+                      <div className="expanded-image-container d-flex flex-column align-items-center">
+                        <span className="close-btn px-3 rounded-4 mb-2" onClick={closeImage}>
+                          &times;
+                        </span>
+                        <img
+                          src={product.productImageSrc[expandedImgIndex]?.productImageSrc || ""}
+                          alt={imgText}
+                          className="img-fluid rounded imgsS"
+                        />
+                        <div className="d-flex justify-content-center gap-3 mt-3">
+                          <div className="d-flex justify-content-between">
+                            <button
+                              className="btn btn-outline position-absolute top-50 translate-middle-y AboutProductbtnL"
+                              onClick={() => handlePrevImage(product.productImageSrc)}
+                            >
+                              <i className="bi bi-chevron-left AboutProductbtnicon"></i>
+                            </button>
+                            <button
+                              className="btn btn-outline position-absolute top-50 translate-middle-y AboutProductbtnR"
+                              onClick={() => handleNextImage(product.productImageSrc)}
+                            >
+                              <i className="bi bi-chevron-right AboutProductbtnicon"></i>
+                            </button>
                           </div>
                         </div>
                       </div>
-                    )}
-                    <div className="mb-3 shadow rounded-5">
+                    </div>
+                  )}
+                  <div className="mb-3 shadow rounded-5">
+                    <img
+                      src={
+                        product.productImageSrc[0]?.productImageSrc ||
+                        "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+                      }
+                      alt={product.product_name || "Product"}
+                      className="card-img-top  rounded-3"
+                      onClick={() => handleImageClick(0, product.product_name || "Product")}
+                    />
+                  </div>
+                  <div className="Products-imgs d-flex flex-row gap-3 rounded">
+                    {product.productImageSrc.map((img, i) => (
                       <img
+                        key={i}
                         src={
-                          product.productImageSrc[0]?.productImageSrc ||
+                          img.productImageSrc ||
                           "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
                         }
-                        alt={product.product_name || "Product"}
-                        className="card-img-top  rounded-3"
-                        onClick={() => handleImageClick(0, product.product_name || "Product")}
+                        alt={img.product_name || "Product Image"}
+                        onClick={() =>
+                          handleImageClick(i, img.product_name || "Product Image")
+                        }
+                        className="card-imgs shadow rounded border"
                       />
-                    </div>
-                    <div className="Products-imgs d-flex flex-row gap-3 rounded">
-                      {product.productImageSrc.map((img, i) => (
-                        <img
-                          key={i}
-                          src={
-                            img.productImageSrc ||
-                            "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
-                          }
-                          alt={img.product_name || "Product Image"}
-                          onClick={() =>
-                            handleImageClick(i, img.product_name || "Product Image")
-                          }
-                          className="card-imgs shadow rounded border"
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                {/* Center Section */}
-                <div className="d-flex flex-column mx-5 gap-1 p-4">
-                  <div>
-                    <p id="product_name" className="fw-bold product_name">
-                      {product.product_name}
-                    </p>
-                    <p id="product_details" className="productDetails">
-                      <strong>توضیحات محصول : </strong>
-                      {product.product_details}
-                    </p>
-                    <p id="category" className="productcategory">
-                      <strong> دسته بندی : </strong>
-                      <Link to={`/`}>{product.category}</Link>
-                    </p>
-                    <p id="brand" className="productbrand">
-                      <strong> برند:</strong> <Link to={`/`}>{product.brand}</Link>
-                    </p>
-                  </div>
-                  <div>
-                    <p className="my-2 fw-bold">ویژگی های محصول:</p>
-                    <ul className="px-2 ulsize">
-                      <li className="d-block">
-                        <p className="m-0">
-                          تاریخ تولید: {product.production_date || "ثبت نشده"}
-                        </p>
-                      </li>
-                      <li className="d-block">
-                        <p className="m-0">
-                          تاریخ انقضا: {product.expiration_date || "ثبت نشده"}
-                        </p>
-                      </li>
-                      <li className="d-block">
-                        <p className="m-0">
-                          ابعاد بسته بندی: {product.size || "ثبت نشده"}
-                        </p>
-                      </li>
-                    </ul>
+                    ))}
                   </div>
                 </div>
               </div>
-              {/* Left Section */}
-              <div className="LeftSection position-relative rounded shadow m-3 gap-5 p-4">
+              {/* Center Section */}
+              <div className="d-flex flex-column mx-5 gap-1 p-4">
                 <div>
-                  <div className="d-flex flex-row mb-3 gap-2">
-                    <FreeDelivery /> ارسال رایگان
-                  </div>
-                  <div className="d-flex flex-row mb-3 gap-2">
-                    <CheckShield />
-                    گارانتی سلامت فیزیکی کالا
-                  </div>
-                  <div className="d-flex flex-row mb-3 gap-2">
-                    <Star />
-                    امتیاز های این محصول: 4.5
-                  </div>
-                  <div className="d-flex flex-row mb-3 gap-2">
-                    <Payment />
-                    پرداخت درب منزل
-                  </div>
+                  <p id="product_name" className="fw-bold product_name">
+                    {product.product_name}
+                  </p>
+                  <p id="product_details" className="productDetails">
+                    <strong>توضیحات محصول : </strong>
+                    {product.product_details}
+                  </p>
+                  <p id="category" className="productcategory">
+                    <strong> دسته بندی : </strong>
+                    <Link to={`/`}>{product.category} </Link>|
+                    <Link to={`/`}> {product.sub_category}</Link>
+                  </p>
+                  <p id="brand" className="productbrand">
+                    <strong> برند:</strong> <Link to={`/`}>{product.brand}</Link>
+                  </p>
                 </div>
-                <div className="btncard">
-                  <div className="d-flex flex-column align-items-end gap-2 m-3">
-                    <div className="d-flex flex-row gap-2">
-                      <p className="text-decoration-line-through text-muted m-0 AboutProductpS">
-                        {product.main_price.toLocaleString()} تومان
+                <div>
+                  <p className="my-2 fw-bold">ویژگی های محصول:</p>
+                  <ul className="px-2 ulsize">
+                    <li className="d-block">
+                      <p className="m-0">
+                        تاریخ تولید: {product.production_date || "ثبت نشده"}
                       </p>
-                      <p className="badge mb-1 p-1 AboutProductpB">% {product.Discount}</p>
-                    </div>
-                    <p className="m-0 AboutProductpSS">
-                      <strong>{product.final_price.toLocaleString()} تومان</strong>
-                    </p>
-                  </div>
-                  <div style={{ width: "186.53px" }}>
-                    <CartButton
-                      quantity={quantity}
-                      onAdd={() => addition(product.id)}
-                      onReduce={() => reduce(product.id)}
-                      addcard={"افزودن به سبد خرید"}
-                    />
-                  </div>
+                    </li>
+                    <li className="d-block">
+                      <p className="m-0">
+                        تاریخ انقضا: {product.expiration_date || "ثبت نشده"}
+                      </p>
+                    </li>
+                    <li className="d-block">
+                      <p className="m-0">
+                        ابعاد بسته بندی: {product.size || "ثبت نشده"}
+                      </p>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
-          );
-        })
+            {/* Left Section */}
+            <div className="LeftSection position-relative rounded shadow m-3 gap-5 p-4">
+              <div>
+                <div className="d-flex flex-row mb-3 gap-2">
+                  <FreeDelivery /> ارسال رایگان
+                </div>
+                <div className="d-flex flex-row mb-3 gap-2">
+                  <CheckShield />
+                  گارانتی سلامت فیزیکی کالا
+                </div>
+                <div className="d-flex flex-row mb-3 gap-2">
+                  <Star />
+                  امتیاز های این محصول: 4.5
+                </div>
+                <div className="d-flex flex-row mb-3 gap-2">
+                  <Payment />
+                  پرداخت درب منزل
+                </div>
+              </div>
+              <div className="btncard">
+                <div className="d-flex flex-column align-items-end gap-2 m-3">
+                  <div className="d-flex flex-row gap-2">
+                    <p className="text-decoration-line-through text-muted m-0 AboutProductpS">
+                      {product.main_price.toLocaleString()} تومان
+                    </p>
+                    <p className="badge mb-1 p-1 AboutProductpB">% {product.Discount}</p>
+                  </div>
+                  <p className="m-0 AboutProductpSS">
+                    <strong>{product.final_price.toLocaleString()} تومان</strong>
+                  </p>
+                </div>
+                <div style={{ width: "186.53px" }}>
+                  <CartButton quantity={carts.find((item) => item.id === product.id)?.quantity || 0} onAdd={() => addition(product.id)} onReduce={() => reduce(product.id)} addcard="افزودن به سبد خرید" />
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
       )}
-    </div>
+    </div >
   );
 };
 
