@@ -64,7 +64,7 @@ const Favorite: React.FC = () => {
             );
         });
     };
-    const handleAddFavorit = async (id: number) => {
+    const handleAddFavorite = async (id: number) => {
         const product = products.find((p) => p.id === id);
         if (!product) return;
 
@@ -110,7 +110,7 @@ const Favorite: React.FC = () => {
                 carts={carts}
                 addition={increasesQuantity}
                 reduce={decreasesQuantity}
-                handleAddFavorit={handleAddFavorit}
+                handleAddFavorite={handleAddFavorite}
             />
         </div>
     );

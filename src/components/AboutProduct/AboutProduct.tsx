@@ -69,7 +69,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
     }
   };
 
-  const handleAddFavorit = async (id: number) => {
+  const handleAddFavorite = async (id: number) => {
     const product = products.find((p) => p.id === id);
     if (!product) return;
 
@@ -137,8 +137,8 @@ const AboutProduct: React.FC<AboutProductProps> = ({ addition, reduce, carts }) 
                   {/* Action Icons */}
                   <div className="position-absolute top-0 start-0 m-2">
                     <button
-                      className="iconB favorit btn-light"
-                      onClick={() => handleAddFavorit(product.id)}
+                      className="iconB favorite btn-light"
+                      onClick={() => handleAddFavorite(product.id)}
                     >
                       {product.is_favorite ? (
                         <i className="bi bi-suit-heart-fill text-danger"></i>

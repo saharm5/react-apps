@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./FooterResponsive.css";
+import { Link } from "react-router-dom";
 
 const FooterResponsive: React.FC = () => {
     
@@ -11,6 +12,10 @@ const FooterResponsive: React.FC = () => {
             setActiveIcon("person");
         } else if (path === "/") {
             setActiveIcon("home");
+        } else if (path === "/Favorite") {
+            setActiveIcon("favorite");
+        } else if (path === "/ShoppingCart") {
+            setActiveIcon("cart");
         } else {
             setActiveIcon("");
         }
@@ -30,7 +35,7 @@ const FooterResponsive: React.FC = () => {
                 return isActive ? <i className="bi bi-house-fill"></i> : <i className="bi bi-house"></i>;
             case "cart":
                 return isActive ? <i className="bi bi-cart-fill"></i> : <i className="bi bi-cart"></i>;
-            case "favorit":
+            case "favorite":
                 return isActive ? <i className="bi bi-suit-heart-fill HeaderHaertIcon"></i> : <i className="bi bi-suit-heart"></i>;
             default:
                 return null;
@@ -40,49 +45,49 @@ const FooterResponsive: React.FC = () => {
     return (
         <div className="FooterResponsive">
             <div className="">
-                <a
+                <Link
                     className={`icon ${activeIcon === "category" ? "active" : ""}`}
                     onClick={() => handleTabClick("category")}
-                    href="/"
+                    to="/"
                 >
                     {getIcon("category", activeIcon === "category")}
-                </a>
+                </Link>
             </div>
             <div className="">
-                <a
+                <Link
                     className={`icon ${activeIcon === "person" ? "active" : ""}`}
                     onClick={() => handleTabClick("person")}
-                    href="/login"
+                    to="/login"
                 >
                     {getIcon("person", activeIcon === "person")}
-                </a>
+                </Link>
             </div>
             <div className="">
-                <a
+                <Link
                     className={`icon ${activeIcon === "home" ? "active" : ""}`}
                     onClick={() => handleTabClick("home")}
-                    href="/"
+                    to="/"
                 >
                     {getIcon("home", activeIcon === "home")}
-                </a>
+                </Link>
             </div>
             <div className="">
-                <a
+                <Link
                     className={`icon ${activeIcon === "cart" ? "active" : ""}`}
                     onClick={() => handleTabClick("cart")}
-                    href="/"
+                    to="/ShoppingCart"
                 >
                     {getIcon("cart", activeIcon === "cart")}
-                </a>
+                </Link>
             </div>
             <div className="">
-                <a
-                    className={`icon ${activeIcon === "favorit" ? "active" : ""}`}
-                    onClick={() => handleTabClick("favorit")}
-                    href="/"
+                <Link
+                    className={`icon ${activeIcon === "favorite" ? "active" : ""}`}
+                    onClick={() => handleTabClick("favorite")}
+                    to="/Favorite"
                 >
-                    {getIcon("favorit", activeIcon === "favorit")}
-                </a>
+                    {getIcon("favorite", activeIcon === "favorite")}
+                </Link>
             </div>
         </div>
     );
