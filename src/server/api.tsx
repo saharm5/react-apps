@@ -1,13 +1,19 @@
 const BASE_URL = "http://127.0.0.1:8000/";
 
 
-export const fetchProducts = async (url: string) => {
+export const fetchProducts = async(
+    url: string,
+    withAuth: boolean = true
+) => {
+    const token = localStorage.getItem("token") || "";
+    const headers: HeadersInit = {
+        "Content-Type": "application/json",
+        ...(withAuth && token ? { Authorization: `Bearer ${token}` } : {}),
+    };
     try {
         const response = await fetch(`${BASE_URL}${url}`, {
             method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
+            headers,
         });
 
         if (!response.ok) {
@@ -67,10 +73,11 @@ export const submitForm = async (
         } else if (result.isregister === 2) {
             window.location.href = "/login";
             return;
-        } else if (result.Status === "ok") {
-            window.location.href = "/";
-            return;
         }
+        // else if (result.Status === "ok") {
+        //     window.location.href = "/";
+        //     return;
+        // }
 
         return result;
     } catch (error) {

@@ -30,8 +30,7 @@ const Favorite: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await fetchProducts(`api/data/`);
-                // اینجا قراره لینکش عوض شه 
+                const data = await fetchProducts(`favorites/list`);
                 setProducts(data);
             } catch (error) {
                 console.error('Failed to fetch products');

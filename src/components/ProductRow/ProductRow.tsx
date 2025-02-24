@@ -58,9 +58,9 @@ const ProductRow: React.FC<RowProps> = ({ products, carts, addition, reduce, han
                                         onClick={() => handleAddFavorite(product.id)}
                                     >
                                         {product.is_favorite ? (
-                                            <i className="bi bi-suit-heart-fill text-danger"></i>
-                                        ) : (
                                             <i className="bi bi-suit-heart"></i>
+                                        ) : (
+                                           <i className="bi bi-suit-heart-fill text-danger"></i>
                                         )}
                                     </button>
                                 </div>
