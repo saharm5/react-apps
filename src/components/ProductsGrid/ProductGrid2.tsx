@@ -49,7 +49,7 @@ const ProductGrid2: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await fetchProducts(`api/data/`);
+                const data = await fetchProducts("api/data/");
                 setProducts(data);
             } catch (error) {
                 console.error('Failed to fetch products');
