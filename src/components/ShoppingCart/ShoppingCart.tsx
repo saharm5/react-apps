@@ -118,7 +118,7 @@ const ShoppingCart: React.FC = () => {
     };
 
     return (
-        <div className="w-75">
+        <div className="w-75 mx-5">
             <ProductRow
                 products={products.map((product) => ({
                     key: product.id,
