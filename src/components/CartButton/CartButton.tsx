@@ -1,3 +1,4 @@
+// C:\Users\Sanay\react-apps\src\components\CartButton\CartButton.tsx
 import React from "react";
 import AddToCart from "../../assets/svg/AddToCart";
 import Trash from "../../assets/svg/TrashX";
@@ -13,7 +14,6 @@ interface CartButtonProps {
 }
 
 const CartButton: React.FC<CartButtonProps> = ({ quantity, onAdd, onReduce, addcard }) => {
-
     return (
         <div
             className="d-flex align-items-center text-white rounded"
@@ -40,7 +40,7 @@ const CartButton: React.FC<CartButtonProps> = ({ quantity, onAdd, onReduce, addc
                     <span style={{ color: "rgb(19 62 135)", fontSize: "15px" }}>{addcard}</span>
                 </button>
             ) : (
-                <div className="d-flex rounded align-items-end  justify-content-evenly" style={{
+                <div className="d-flex rounded align-items-end justify-content-evenly" style={{
                     width: "100%",
                     height: "35px",
                     padding: "0",

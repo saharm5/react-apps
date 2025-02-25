@@ -16,10 +16,10 @@ const Footer: React.FC = () => {
     <footer>
       {/* Back to Top */}
       <div className="back-to-top">
-        <Link to={`/`}>
+        <a href="#">
           <FontAwesomeIcon icon={faChevronUp} />
           <span>بازگشت به بالا</span>
-        </Link>
+        </a>
       </div>
       <div className="footer500px">
         <div className="footerlinks500px">

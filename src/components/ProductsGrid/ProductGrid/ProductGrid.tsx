@@ -1,9 +1,12 @@
+// C:\Users\Sanay\react-apps\src\components\ProductsGrid\ProductGrid\ProductGrid.tsx
 import React from "react";
 import "./ProductGrid.css";
 import CartButton from "../../CartButton/CartButton";
 import { Link } from "react-router-dom";
 
 interface Product {
+  addcard: string |null;
+  quantity: number;
   id: number;
   imageUrl: string | null;
   title: string;
@@ -15,6 +18,7 @@ interface GridProps {
   carts: { id: number; quantity: number }[];
   addition: (id: number) => void;
   reduce: (id: number) => void;
+  
 }
 
 const ProductGrid: React.FC<GridProps> = ({ products, carts, addition, reduce }) => (
@@ -22,7 +26,7 @@ const ProductGrid: React.FC<GridProps> = ({ products, carts, addition, reduce })
     <div className="grid">
       {products.map((product) => {
         const cartItem = carts.find((item) => item.id === product.id);
-        const quantity = cartItem ? cartItem.quantity : 0;
+        const quantity = cartItem ? cartItem.quantity : product.quantity;
 
         return (
           <div key={product.id} className="productCards">
@@ -40,7 +44,12 @@ const ProductGrid: React.FC<GridProps> = ({ products, carts, addition, reduce })
               </p>
             )}
             <div style={{ width: "118px" }}>
-              <CartButton quantity={quantity} onAdd={() => addition(product.id)} onReduce={() => reduce(product.id)} addcard={""} />
+              <CartButton
+                quantity={quantity}
+                onAdd={() => addition(product.id)}
+                onReduce={() => reduce(product.id)}
+                addcard={product.addcard || ""}
+              />
             </div>
           </div>
         );

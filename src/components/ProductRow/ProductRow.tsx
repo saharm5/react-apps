@@ -15,6 +15,7 @@ interface Product {
     final_price: number;
     imageUrl: string | null;
     is_favorite: boolean;
+    quantity: number;
 }
 
 interface RowProps {
@@ -29,7 +30,8 @@ const ProductRow: React.FC<RowProps> = ({ products, carts, addition, reduce, han
 
     <div className="row row-cols-1 row-cols-md-2 g-4">
         {products.map((product) => {
-            const quantity = carts.find((item) => item.id === product.id)?.quantity || 0;
+            const cartItem = carts.find((item) => item.id === product.id);
+            const quantity = cartItem ? cartItem.quantity : product.quantity;
 
             return (
                 <div key={product.id} className="col">
@@ -57,10 +59,10 @@ const ProductRow: React.FC<RowProps> = ({ products, carts, addition, reduce, han
                                         className="iconB favorite btn-light"
                                         onClick={() => handleAddFavorite(product.id)}
                                     >
-                                        {product.is_favorite ? (
-                                            <i className="bi bi-suit-heart"></i>
+                                        {product.is_favorite == true ? (
+                                            <i className="bi bi-suit-heart-fill text-danger"></i>
                                         ) : (
-                                           <i className="bi bi-suit-heart-fill text-danger"></i>
+                                            <i className="bi bi-suit-heart"></i>
                                         )}
                                     </button>
                                 </div>
@@ -119,7 +121,7 @@ const ProductRow: React.FC<RowProps> = ({ products, carts, addition, reduce, han
                                         quantity={quantity}
                                         onAdd={() => addition(product.id)}
                                         onReduce={() => reduce(product.id)}
-                                        addcard="اضافه به سبد خرید"
+                                        addcard="افزودن به سبد خرید"
                                     />
                                 </div>
                             </div>
