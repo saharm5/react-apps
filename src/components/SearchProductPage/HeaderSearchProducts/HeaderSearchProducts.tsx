@@ -1,5 +1,4 @@
-// C: \Users\Sanay\react - apps\src\components\SearchProductPage\HeaderSearchProducts\HeaderSearchProducts.tsx
-import React, { useState } from "react";
+import React from "react";
 import "./HeaderSearchProducts.css";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,14 +6,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 interface HeaderSearchProductsProps {
     SearchPath: string;
     NumberOfItems: number;
+    activeTab: string;
+    setActiveTab: (value: string) => void;
 }
 
-const HeaderSearchProducts: React.FC<HeaderSearchProductsProps> = ({ SearchPath, NumberOfItems }) => {
+const HeaderSearchProducts: React.FC<HeaderSearchProductsProps> = ({
+    SearchPath,
+    NumberOfItems,
+    activeTab,
+    setActiveTab,
+}) => {
 
-    const [activeTab, setActiveTab] = useState<string>("BestSeller");
-    const [isSortingDropdownVisible, setIsSortingDropdownVisible] = useState(false);
-    const handleTabClick = (tab: string) => setActiveTab(tab);
-    const toggleSortingDropdown = () => setIsSortingDropdownVisible(prev => !prev);
+    const toggleSortingDropdown = () => {
+     
+    };
 
     const tabs = [
         { key: "BestSeller", label: "پرفروش ترین" },
@@ -28,19 +33,19 @@ const HeaderSearchProducts: React.FC<HeaderSearchProductsProps> = ({ SearchPath,
 
     const renderTabs = () => (
         <ul className="HeaderSearchProductsBreadcrumb">
-            {tabs.map(tab => (
+            {tabs.map((tab) => (
                 <li key={tab.key}>
                     <button
                         className={`tab ${activeTab === tab.key ? "active" : ""}`}
-                        onClick={() => handleTabClick(tab.key)}
+                        onClick={() => setActiveTab(tab.key)}
                     >
                         {tab.label}
                     </button>
                 </li>
             ))}
-
         </ul>
     );
+
     return (
         <div>
             <div className="HSPMResponsiv">
@@ -49,7 +54,6 @@ const HeaderSearchProducts: React.FC<HeaderSearchProductsProps> = ({ SearchPath,
                         <p>مرتب سازی</p>
                         <FontAwesomeIcon icon={faChevronDown} />
                     </button>
-                    {isSortingDropdownVisible && <div className="HeaderSearchProductsTabes">{renderTabs()}</div>}
                 </div>
                 <div className="HSPDResponsiv">
                     <button className="HSPBResponsiv">
@@ -62,7 +66,8 @@ const HeaderSearchProducts: React.FC<HeaderSearchProductsProps> = ({ SearchPath,
                 <div className="HeaderSearchProductsPTabe">
                     <p>{SearchPath}</p>
                 </div>
-                <div className="HeaderSearchProductsTabes">{renderTabs()}
+                <div className="HeaderSearchProductsTabes">
+                    {renderTabs()}
                     <div className="HeaderSearchProductsNumberOfItem">{NumberOfItems} عدد</div>
                 </div>
             </div>

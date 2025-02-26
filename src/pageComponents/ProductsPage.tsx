@@ -1,4 +1,3 @@
-// C:\Users\Sanay\react-apps\src\pageComponents\ProductsPage.tsx
 import React, { useState, useEffect } from "react";
 import FooterResponsive from "../components/FooterResponsive/FooterResponsive";
 import { fetchProducts, submitForm } from '../server/api';
@@ -41,6 +40,7 @@ const ProductsPage: React.FC = () => {
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000000]);
   const [onlyAvailable, setOnlyAvailable] = useState(false);
+  const [activeTab, setActiveTab] = useState<string>("BestSeller");
 
   useBodyClass("body-main");
 
@@ -53,13 +53,11 @@ const ProductsPage: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const value = 'Discounted';
-
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const endpoint = `api/data?sort=${value}`;
+        const endpoint = `api/data?sort=${activeTab}`;
         const data = await fetchProducts(endpoint);
         setProducts(data);
         setFilteredProducts(data);
@@ -69,12 +67,12 @@ const ProductsPage: React.FC = () => {
         }));
         setCart(initialCart);
       } catch (err) {
-        console.error('Failed to fetch products');
+        console.error("Failed to fetch products");
       }
     };
 
     fetchData();
-  }, [value]);
+  }, [activeTab]);
 
   const applyFilters = () => {
     const filtered = products.filter((product) => {
@@ -147,6 +145,8 @@ const ProductsPage: React.FC = () => {
       <HeaderSearchProducts
         SearchPath={"صفحه اصلی > محصولات > تمام محصولات"}
         NumberOfItems={filteredProducts.length}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
       />
       <div className="row-container">
         <div className="boxRight">
