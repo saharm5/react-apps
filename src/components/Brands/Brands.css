@@ -21,9 +21,9 @@
   width: 100%;
   gap: 20px;
   overflow-x: auto;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
-  padding: 10px 0;
+  padding: 20px 0;
 
 }
 
