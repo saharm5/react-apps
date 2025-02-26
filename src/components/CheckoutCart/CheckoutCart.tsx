@@ -34,7 +34,7 @@ const CheckoutCart: React.FC = () => {
     }, []);
 
     const discountTotalPrice = sumMainPrice - sumFinalPrice;
-    const discountTotal = Math.ceil((discountTotalPrice * 100) / sumMainPrice)||0;
+    const discountTotal = Math.ceil((discountTotalPrice * 100) / sumMainPrice) || 0;
 
 
     return (

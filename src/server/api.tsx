@@ -1,8 +1,7 @@
-// C: \Users\Sanay\react - apps\src\server\api.tsx
+// C:\Users\Sanay\react - apps\src\server\api.tsx
 const BASE_URL = "http://127.0.0.1:8000/";
 
-
-export const fetchProducts = async(
+export const fetchProducts = async (
     url: string,
     withAuth: boolean = true
 ) => {

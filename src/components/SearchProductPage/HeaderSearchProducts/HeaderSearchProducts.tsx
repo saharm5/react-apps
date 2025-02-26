@@ -1,3 +1,4 @@
+// C: \Users\Sanay\react - apps\src\components\SearchProductPage\HeaderSearchProducts\HeaderSearchProducts.tsx
 import React, { useState } from "react";
 import "./HeaderSearchProducts.css";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";

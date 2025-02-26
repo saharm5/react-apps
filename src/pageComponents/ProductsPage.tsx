@@ -53,10 +53,14 @@ const ProductsPage: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const value = 'Discounted';
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchProducts("api/data/");
+        const endpoint = `api/data?sort=${value}`;
+        const data = await fetchProducts(endpoint);
         setProducts(data);
         setFilteredProducts(data);
         const initialCart = data.map((product: Products) => ({
@@ -70,7 +74,7 @@ const ProductsPage: React.FC = () => {
     };
 
     fetchData();
-  }, []);
+  }, [value]);
 
   const applyFilters = () => {
     const filtered = products.filter((product) => {
