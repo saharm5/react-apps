@@ -8,7 +8,7 @@ const FooterResponsive: React.FC = () => {
 
     useEffect(() => {
         const path = window.location.pathname;
-        if (path === "/login") {
+        if (path === "/Signin") {
             setActiveIcon("person");
         } else if (path === "/") {
             setActiveIcon("home");
@@ -57,7 +57,7 @@ const FooterResponsive: React.FC = () => {
                 <Link
                     className={`icon ${activeIcon === "person" ? "active" : ""}`}
                     onClick={() => handleTabClick("person")}
-                    to="/login"
+                    to="/Signin"
                 >
                     {getIcon("person", activeIcon === "person")}
                 </Link>
