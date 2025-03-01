@@ -30,17 +30,26 @@ interface Products {
   productImageSrc: Image[];
 }
 
+interface CartItem {
+  id: number;
+  quantity: number;
+}
+
 const ProductsPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
   const [products, setProducts] = useState<Products[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Products[]>([]);
-  const [cart, setCart] = useState<{ id: number; quantity: number }[]>([]);
+  const [cart, setCart] = useState<CartItem[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000000]);
   const [onlyAvailable, setOnlyAvailable] = useState(false);
   const [activeTab, setActiveTab] = useState<string>("BestSeller");
+
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const limit = 20;
 
   useBodyClass("body-main");
 
@@ -56,35 +65,76 @@ const ProductsPage: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const endpoint = `api/data?sort=${activeTab}`;
+        const endpoint = `api/data?sort=${activeTab}&page=${page}&limit=${limit}`;
         const data = await fetchProducts(endpoint);
-        setProducts(data);
-        setFilteredProducts(data);
-        const initialCart = data.reduce((acc: { id: number; quantity: number }[], product: Products) => {
-          if (!acc.some(item => item.id === product.id)) {
-            acc.push({ id: product.id, quantity: product.quantity });
-          }
-          return acc;
-        }, []);
-        setCart(initialCart);
+
+        if (page === 1) {
+          setProducts(data);
+          setFilteredProducts(data);
+          const initialCart = data.reduce((acc: CartItem[], product: Products) => {
+            if (!acc.some(item => item.id === product.id)) {
+              acc.push({ id: product.id, quantity: product.quantity });
+            }
+            return acc;
+          }, []);
+          setCart(initialCart);
+        } else {
+          setProducts(prev => [...prev, ...data]);
+          setFilteredProducts(prev => [...prev, ...data]);
+          const newCart = data.reduce((acc: CartItem[], product: Products) => {
+            if (!acc.some(item => item.id === product.id)) {
+              acc.push({ id: product.id, quantity: product.quantity });
+            }
+            return acc;
+          }, [] as CartItem[]);
+          setCart(prev => {
+            const updatedCart = [...prev];
+            newCart.forEach((newItem: CartItem) => {
+              if (!updatedCart.some(item => item.id === newItem.id)) {
+                updatedCart.push(newItem);
+              }
+            });
+            return updatedCart;
+          });
+        }
+
+        setHasMore(data.length === limit);
       } catch (err) {
-        console.error("Failed to fetch products");
+        console.error("Failed to fetch products", err);
       }
     };
 
     fetchData();
-  }, [activeTab]);
+  }, [activeTab, page]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      const fullHeight = document.documentElement.offsetHeight;
+
+      if (scrollTop + windowHeight + 100 >= fullHeight && hasMore) {
+        setPage(prev => prev + 1);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [hasMore]);
 
   const applyFilters = () => {
     const filtered = products.filter((product) => {
-      const matchesCategory = selectedCategory && selectedCategory !== "همه کالاها"
-        ? product.category === selectedCategory
-        : true;
-      const matchesBrand = selectedBrands.length > 0
-        ? selectedBrands.includes(product.brand)
-        : true;
+      const matchesCategory =
+        selectedCategory && selectedCategory !== "همه کالاها"
+          ? product.category === selectedCategory
+          : true;
+      const matchesBrand =
+        selectedBrands.length > 0
+          ? selectedBrands.includes(product.brand)
+          : true;
       const matchesPrice =
-        product.final_price >= priceRange[0] && product.final_price <= priceRange[1];
+        product.final_price >= priceRange[0] &&
+        product.final_price <= priceRange[1];
       const matchesAvailability = onlyAvailable
         ? product.available === "true"
         : true;
@@ -95,20 +145,17 @@ const ProductsPage: React.FC = () => {
   };
 
   const increaseQuantity = async (id: number) => {
-    setCart((prev) => {
-      const existingProduct = prev.find((item) => item.id === id);
+    setCart(prev => {
+      const existingProduct = prev.find(item => item.id === id);
       if (existingProduct) {
-        return prev.map((item) =>
+        return prev.map(item =>
           item.id === id ? { ...item, quantity: item.quantity + 1 } : item
         );
       }
       return [...prev, { id, quantity: 1 }];
     });
     try {
-      const formData = {
-        id,
-        operation: "add",
-      };
+      const formData = { id, operation: "add" };
       const response = await submitForm("AddCart/cart/", formData);
       console.log(response);
     } catch (error) {
@@ -118,20 +165,17 @@ const ProductsPage: React.FC = () => {
   };
 
   const decreaseQuantity = async (id: number) => {
-    setCart((prev) => {
-      const existingProduct = prev.find((item) => item.id === id);
+    setCart(prev => {
+      const existingProduct = prev.find(item => item.id === id);
       if (existingProduct) {
-        return prev.map((item) =>
+        return prev.map(item =>
           item.id === id ? { ...item, quantity: Math.max(0, item.quantity - 1) } : item
         );
       }
       return prev;
     });
     try {
-      const formData = {
-        id,
-        operation: "remove",
-      };
+      const formData = { id, operation: "remove" };
       const response = await submitForm("AddCart/cart/", formData);
       console.log(response);
     } catch (error) {
@@ -169,7 +213,7 @@ const ProductsPage: React.FC = () => {
               <p>Loading...</p>
             ) : (
               <ProductGrid
-                products={filteredProducts.map((product) => ({
+                products={filteredProducts.map(product => ({
                   key: product.id,
                   quantity: product.quantity,
                   id: product.id,

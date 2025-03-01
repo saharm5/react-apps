@@ -48,7 +48,7 @@ const FooterResponsive: React.FC = () => {
                 <Link
                     className={`icon ${activeIcon === "category" ? "active" : ""}`}
                     onClick={() => handleTabClick("category")}
-                    to="/"
+                    to="/Review"
                 >
                     {getIcon("category", activeIcon === "category")}
                 </Link>
@@ -57,7 +57,7 @@ const FooterResponsive: React.FC = () => {
                 <Link
                     className={`icon ${activeIcon === "person" ? "active" : ""}`}
                     onClick={() => handleTabClick("person")}
-                    to="/login"
+                    to="/Register"
                 >
                     {getIcon("person", activeIcon === "person")}
                 </Link>
