@@ -3,8 +3,8 @@ import "./Filters.css";
 import { fetchProducts } from '../../server/api';
 
 interface FilterProps {
-    selectedCategory: string | null;
-    setSelectedCategory: React.Dispatch<React.SetStateAction<string | null>>;
+    selectedCategory: string[];
+    setSelectedCategory: React.Dispatch<React.SetStateAction<string[]>>;
     selectedBrands: string[];
     setSelectedBrands: React.Dispatch<React.SetStateAction<string[]>>;
     priceRange: [number, number];
@@ -54,7 +54,9 @@ const Filter: React.FC<FilterProps> = ({
     };
 
     const handleCategorySelection = (category: string) => {
-        setSelectedCategory(category);
+        setSelectedCategory((prev) =>
+            prev.includes(category) ? prev.filter((b) => b !== category) : [...prev, category]
+        );
     };
 
     const toggleCategoryDropdown = () => {
@@ -92,9 +94,9 @@ const Filter: React.FC<FilterProps> = ({
                                     <label key={index} className="FilterContentLabel">
                                         <input
                                             className="FilterDropdownContentInputRadio"
-                                            type="radio"
+                                            type="checkbox"
                                             name="category"
-                                            checked={selectedCategory === category}
+                                            checked={selectedCategory.includes(category)}
                                             onChange={() => handleCategorySelection(category)}
                                         />
                                         <span className="FilterDropdownContentCheckmark">

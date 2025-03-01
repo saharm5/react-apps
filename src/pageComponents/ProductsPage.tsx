@@ -41,7 +41,7 @@ const ProductsPage: React.FC = () => {
   const [products, setProducts] = useState<Products[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Products[]>([]);
   const [cart, setCart] = useState<CartItem[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000000]);
   const [onlyAvailable, setOnlyAvailable] = useState(false);
@@ -132,8 +132,8 @@ const ProductsPage: React.FC = () => {
   const applyFilters = () => {
     const filtered = products.filter((product) => {
       const matchesCategory =
-        selectedCategory && selectedCategory !== "همه کالاها"
-          ? product.category === selectedCategory
+        selectedCategory.length > 0
+          ? selectedCategory.includes(product.category)
           : true;
       const matchesBrand =
         selectedBrands.length > 0
