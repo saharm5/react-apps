@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FooterResponsive from "../components/FooterResponsive/FooterResponsive";
-import { fetchProducts, submitForm } from '../server/api';
+import { fetchProducts, submitForm } from "../server/api";
 import "../styles/global.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -53,7 +53,6 @@ const ProductsPage: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -61,10 +60,12 @@ const ProductsPage: React.FC = () => {
         const data = await fetchProducts(endpoint);
         setProducts(data);
         setFilteredProducts(data);
-        const initialCart = data.map((product: Products) => ({
-          id: product.id,
-          quantity: product.quantity,
-        }));
+        const initialCart = data.reduce((acc: { id: number; quantity: number }[], product: Products) => {
+          if (!acc.some(item => item.id === product.id)) {
+            acc.push({ id: product.id, quantity: product.quantity });
+          }
+          return acc;
+        }, []);
         setCart(initialCart);
       } catch (err) {
         console.error("Failed to fetch products");

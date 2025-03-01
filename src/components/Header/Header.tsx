@@ -267,7 +267,7 @@ const Header: React.FC = () => {
         </div>
         {/* Left Section */}
         <div className="HeaderIconContainer">
-          <Link to={`/Register`} className="HeaderIcon" aria-label="User Profile">
+          <Link to={`/login`} className="HeaderIcon" aria-label="User Profile">
             <i className="bi bi-person"></i>
           </Link>
           <Link to={`/ShoppingCart`} className="HeaderIcon" aria-label="Shopping Cart">
