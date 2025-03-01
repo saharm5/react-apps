@@ -53,6 +53,9 @@ const ProductsPage: React.FC = () => {
 
   useBodyClass("body-main");
 
+  const queryParams = new URLSearchParams(location.search);
+  const search = queryParams.get("search") || "";
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -67,12 +70,12 @@ const ProductsPage: React.FC = () => {
     setProducts([]);
     setFilteredProducts([]);
     window.scrollTo(0, 0);
-  }, [activeTab]);
+  }, [activeTab, search]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const endpoint = `api/data?sort=${activeTab}&page=${page}&limit=${limit}`;
+        const endpoint = `api/data?sort=${activeTab}&page=${page}&limit=${limit}${search ? `&search=${encodeURIComponent(search)}` : ""}`;
         const data = await fetchProducts(endpoint);
 
         if (page === 1) {
@@ -112,7 +115,7 @@ const ProductsPage: React.FC = () => {
     };
 
     fetchData();
-  }, [activeTab, page]);
+  }, [activeTab, page, search]);
 
   useEffect(() => {
     const handleScroll = () => {

@@ -57,7 +57,7 @@ const FooterResponsive: React.FC = () => {
                 <Link
                     className={`icon ${activeIcon === "person" ? "active" : ""}`}
                     onClick={() => handleTabClick("person")}
-                    to="/Register"
+                    to="/login"
                 >
                     {getIcon("person", activeIcon === "person")}
                 </Link>

@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import "./Header.css";
-import { FaSearch } from 'react-icons/fa';
-import { Link } from "react-router-dom";
+import { FaSearch } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
-
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   const toggleNavbar = () => {
     setIsCollapsed(!isCollapsed);
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault(); // جلوگیری از رفرش صفحه
+    if (search.trim()) {
+      navigate(`/Products?search=${encodeURIComponent(search)}`);
+    }
   };
 
   const NavbarCategories = [
@@ -177,32 +185,34 @@ const Header: React.FC = () => {
             className="HeaderResponsiveNavbarButton"
           >
             <span className={`collapsiblecontent ${isCollapsed ? "show" : ""}`}>
-              <FaSearch className="HeaderResponsiveNavbarIconPadding" /> {/* Search Icon */}
-              {/* <i className="bi bi-search HeaderResponsiveNavbarIconPadding half-size-icon"></i> */}
+              <FaSearch className="HeaderResponsiveNavbarIconPadding" />
             </span>
             بقالی
-
           </button>
           <div className="Headerlocation">
             <i className="bi bi-geo-alt-fill"></i>
             <span>زنجان، بلوار مهرانه، سانای</span>
           </div>
         </nav>
-        <div className={`collapsible-content ${isCollapsed ? "show" : ""}`}>
-          <div className="HeaderResponsiveSearchContainer">
-            <form className="HeaderResponsiveSearchForm">
-              <button className="HeaderSearchBtn" type="submit">
-                <i className="bi bi-search"></i>
-              </button>
-              <input
-                className="HeaderSearchInput"
-                type="search"
-                placeholder="به دنبال چه می‌گردی؟"
-                aria-label="Search"
-              />
-            </form>
+        {isCollapsed && (
+          <div className="collapsible-content">
+            <div className="HeaderResponsiveSearchContainer">
+              <form onSubmit={handleSearch} className="HeaderResponsiveSearchForm">
+                <input
+                  className="HeaderSearchInput"
+                  type="search"
+                  placeholder="به دنبال چه می‌گردی؟"
+                  aria-label="Search"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <button className="HeaderSearchBtn" type="submit">
+                  <i className="bi bi-search"></i>
+                </button>
+              </form>
+            </div>
           </div>
-        </div>
+        )}
       </div>
       {/* if min-width:950  show this */}
       <nav className="HeaderNav">
@@ -211,7 +221,9 @@ const Header: React.FC = () => {
           <button className="HeaderMainDropdownBtn">
             <h4>
               <i className="bi bi-list HeaderMainDropdownIconPadding"></i>
-              <Link to={`/`} style={{ textDecoration: "none", color: "#fff" }}>بقالی</Link>
+              <Link to="/" style={{ textDecoration: "none", color: "#fff" }}>
+                بقالی
+              </Link>
             </h4>
           </button>
           <div className="HeaderMainDropdownContainer">
@@ -247,33 +259,35 @@ const Header: React.FC = () => {
           </div>
         </div>
         {/* Center Section - Search */}
-        <div className=" HeaderSearchContainer">
-          <div className=" HeaderSearchdiv">
+        <div className="HeaderSearchContainer">
+          <form onSubmit={handleSearch} className="HeaderSearchdiv">
             <input
               className="HeaderSearchInput"
               type="search"
               placeholder="به دنبال چه می‌گردی؟"
               aria-label="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
             <button className="HeaderSearchBtn" type="submit">
-              <Link to={`/Products`} className="btnsumbit"><i className="bi bi-search"></i></Link>
+              <i className="bi bi-search"></i>
             </button>
-          </div>
+          </form>
         </div>
         {/* location Section */}
         <div className="Headerlocation">
           <i className="bi bi-geo-alt-fill"></i>
           <span>زنجان، بلوار مهرانه، سانای</span>
         </div>
-        {/* Left Section */}
+        {/* icons*/}
         <div className="HeaderIconContainer">
-          <Link to={`/login`} className="HeaderIcon" aria-label="User Profile">
+          <Link to="/Register" className="HeaderIcon" aria-label="User Profile">
             <i className="bi bi-person"></i>
           </Link>
-          <Link to={`/ShoppingCart`} className="HeaderIcon" aria-label="Shopping Cart">
+          <Link to="/ShoppingCart" className="HeaderIcon" aria-label="Shopping Cart">
             <i className="bi bi-cart"></i>
           </Link>
-          <Link to={`/Favorite`} className="HeaderIcon" aria-label="Wishlist">
+          <Link to="/Favorite" className="HeaderIcon" aria-label="Wishlist">
             <i className="bi bi-heart-fill HeaderHaertIcon"></i>
           </Link>
         </div>

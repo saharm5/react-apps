@@ -1,11 +1,10 @@
-// C:\Users\Sanay\react-apps\src\components\ProductsGrid\ProductGrid\ProductGrid.tsx
 import React from "react";
 import "./ProductGrid.css";
 import CartButton from "../../CartButton/CartButton";
 import { Link } from "react-router-dom";
 
 interface Product {
-  addcard: string |null;
+  addcard: string | null;
   quantity: number;
   id: number;
   imageUrl: string | null;
@@ -18,7 +17,6 @@ interface GridProps {
   carts: { id: number; quantity: number }[];
   addition: (id: number) => void;
   reduce: (id: number) => void;
-  
 }
 
 const ProductGrid: React.FC<GridProps> = ({ products, carts, addition, reduce }) => (
