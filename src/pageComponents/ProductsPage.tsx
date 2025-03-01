@@ -63,6 +63,13 @@ const ProductsPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    setPage(1);
+    setProducts([]);
+    setFilteredProducts([]);
+    window.scrollTo(0, 0);
+  }, [activeTab]);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const endpoint = `api/data?sort=${activeTab}&page=${page}&limit=${limit}`;
