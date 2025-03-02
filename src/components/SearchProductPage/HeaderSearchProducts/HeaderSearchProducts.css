@@ -3,15 +3,18 @@
   justify-content: space-between;
   width: 98%;
   flex-direction: row;
-  align-items: baseline;
+  align-items: center;
   background-color: #ffffff;
   padding: 1% 0;
 }
 
 .HeaderSearchProductsPTabe {
-  font-size: 14px;
+  display: flex;
+  margin: 15px 25px 0 0;
+  font-weight: bold;
   width: 18%;
-  color: #485874;
+  font-size: 15px;
+
 }
 
 .HeaderSearchProductsTabes {
