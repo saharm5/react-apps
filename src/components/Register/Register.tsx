@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "../Login/Login.css";
 import { submitForm } from "../../server/api";
 import Phone from "../../assets/svg/Phone";
+import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 const Register: React.FC = () => {
     const [phone_number, setPhoneNumber] = useState<string>("");
@@ -75,12 +78,16 @@ const Register: React.FC = () => {
                     ورود
                 </button>
             </form>
-            <p className="disclaimer-login">
-                ورود یا ثبت‌نام شما به معنی پذیرش{" "}
-                <a href="#" className="ColorRoll-login">
-                    قوانین و مقررات
-                </a>{" "}
-                است.
+            <p className="Signin-login d-flex gap-1">
+                برای {" "}
+                <Link to="/login" className="" aria-label="User Profile">
+                    ورود {" "}
+                </Link>
+                یا {" "}
+                <Link to="/Signin" className="" aria-label="User Profile">
+                    ثبت‌نام {" "}
+                </Link>
+                کلیک کنید.
             </p>
         </div>
     );

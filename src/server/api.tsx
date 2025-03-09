@@ -65,14 +65,14 @@ export const submitForm = async (
         let result;
         try {
             result = JSON.parse(text);
+            console.log("Response:", result);
         } catch (e) {
             console.error("Failed to parse JSON:", e);
             throw new Error("Response is not valid JSON");
         }
 
         if (result.isregister === 1) {
-            window.location.href = "/Signin";
-            return;
+            // window.location.href = "/Signin";
         } else if (result.isregister === 2) {
             window.location.href = "/login";
             return;

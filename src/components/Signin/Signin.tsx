@@ -66,7 +66,7 @@ const Signin: React.FC = () => {
       setconfirm_code("");
       setError("");
     } catch (err) {
-      setError("ارسال با خطا مواجه شد. لطفاً دوباره امتحان کنید.");
+      setError("کد احراز هویت اشتباه است");
     } finally {
       setIsSubmitting(false);
     }

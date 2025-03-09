@@ -107,6 +107,22 @@
   transform: translateY(-1px);
 }
 
+.Signin-login {
+  margin: 20px 15px 20px;
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+.Signin-login a {
+  text-decoration: none;
+  color: #144ac7;
+}
+
+.Signin-login a:hover {
+  color: #7d2cda;
+  transform: scale(1.05);
+}
+
 .disclaimer-login {
   display: flex;
   font-size: 12px;

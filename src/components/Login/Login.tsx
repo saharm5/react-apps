@@ -55,7 +55,7 @@ const Login: React.FC = () => {
       setPassword("");
       setError("");
     } catch (err) {
-      setError("ارسال با خطا مواجه شد. لطفاً دوباره امتحان کنید.");
+      setError("شماره تلفن یا رمز عبور نادرست است!");
     } finally {
       setIsSubmitting(false);
     }

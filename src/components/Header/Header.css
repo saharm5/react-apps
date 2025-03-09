@@ -178,7 +178,7 @@ header {
 
 .HeaderIcon {
   font-size: 20px;
-  color: #f9f7f7;
+  color: #f9f7f7 !important;
   background-color: transparent;
   border: none;
   cursor: pointer;
