@@ -1,15 +1,15 @@
 .containerBanner {
   position: relative;
-  max-width: 1903px;
   overflow: hidden;
   padding: 1%;
 }
 
 .imgSize {
-  width: 100%;
-  height: auto;
   display: block;
   border-radius: 10px;
+  width: 100%;
+  aspect-ratio: 4.79;
+  object-fit: cover;
 }
 
 .mySlides {

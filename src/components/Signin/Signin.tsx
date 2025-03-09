@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../Login/login.css";
+import "../Login/Login.css";
 import { submitForm } from "../../server/api";
 import Phone from "../../assets/svg/Phone";
 import VerificationCode from "../../assets/svg/VerificationCode";

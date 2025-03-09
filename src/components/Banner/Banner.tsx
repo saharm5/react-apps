@@ -9,19 +9,19 @@ const Banner: React.FC = () => {
   const slides = [
     {
       imgSrc:
-        "https://dkstatics-public.digikala.com/digikala-adservice-banners/f62e6a6fe7d4fe9222f52e1ec9e3858971a5fafb_1733560848.jpg?x-oss-process=image/quality,q_95/format,webp",
+        "https://dkstatics-public.digikala.com/digikala-adservice-banners/75e4dc2851ff84eb0f92dbf526d860e50998bae7_1741018587.jpg?x-oss-process=image/quality,q_95/format,webp",
     },
     {
       imgSrc:
-        "https://dkstatics-public.digikala.com/digikala-adservice-banners/422c39151be2cabc3a5b646f862c6eae874c77a7_1730888651.jpg?x-oss-process=image/quality,q_95/format,webp",
+        "https://dkstatics-public.digikala.com/digikala-adservice-banners/b9e05bea74868187a4221d3ca3075885bdc9df10_1741157297.jpg?x-oss-process=image/quality,q_95/format,webp",
     },
     {
       imgSrc:
-        "https://dkstatics-public.digikala.com/digikala-adservice-banners/f62e6a6fe7d4fe9222f52e1ec9e3858971a5fafb_1733560848.jpg?x-oss-process=image/quality,q_95/format,webp",
+        "https://dkstatics-public.digikala.com/digikala-adservice-banners/75e4dc2851ff84eb0f92dbf526d860e50998bae7_1741018587.jpg?x-oss-process=image/quality,q_95/format,webp",
     },
     {
       imgSrc:
-        "https://dkstatics-public.digikala.com/digikala-adservice-banners/422c39151be2cabc3a5b646f862c6eae874c77a7_1730888651.jpg?x-oss-process=image/quality,q_95/format,webp",
+        "https://asset.okala.com/unsigned/rs:fill/size:0:0/plain/s3://cdn/slider/c3ee34f5-0624-4a2b-8e4b-bd742543f34b.jpg",
     },
   ];
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Header.css";
 import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import SearchIcon from "../../assets/svg/SearchIcon";
 
 const Header: React.FC = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -185,9 +186,11 @@ const Header: React.FC = () => {
             className="HeaderResponsiveNavbarButton"
           >
             <span className={`collapsiblecontent ${isCollapsed ? "show" : ""}`}>
-              <FaSearch className="HeaderResponsiveNavbarIconPadding" />
+              <SearchIcon />
             </span>
-            بقالی
+            <span className="mx-1">
+              بقالی
+            </span>
           </button>
           <div className="Headerlocation">
             <i className="bi bi-geo-alt-fill"></i>
