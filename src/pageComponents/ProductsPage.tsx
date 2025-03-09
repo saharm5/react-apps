@@ -49,7 +49,7 @@ const ProductsPage: React.FC = () => {
 
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const limit = 20;
+  const limit = 22;
 
   useBodyClass("body-main");
 
@@ -61,7 +61,7 @@ const ProductsPage: React.FC = () => {
       setIsLoading(false);
       setHasLoadedOnce(true);
       console.log("Loading complete!");
-    }, 0);
+    }, 1000);
     return () => clearTimeout(timer);
   }, []);
 
