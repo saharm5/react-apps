@@ -108,19 +108,20 @@
 }
 
 .Signin-login {
+  color: #5a5e63;
   margin: 20px 15px 20px;
   line-height: 1.5;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .Signin-login a {
-  text-decoration: none;
-  color: #144ac7;
+  color: #123c9c;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .Signin-login a:hover {
-  color: #4c2cda;
-  transform: scale(1.05);
+  color: #da2c43;
+  transform: translateY(-1px);
 }
 
 .disclaimer-login {

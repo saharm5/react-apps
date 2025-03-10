@@ -79,14 +79,14 @@ const Register: React.FC = () => {
                 </button>
             </form>
             <p className="Signin-login d-flex gap-1">
-                برای {" "}
-                <Link to="/login" className="" aria-label="User Profile">
-                    ورود {" "}
-                </Link>
-                یا {" "}
-                <Link to="/Signin" className="" aria-label="User Profile">
-                    ثبت‌نام {" "}
-                </Link>
+                برای
+                {" "}<Link to="/login" className="" aria-label="User Profile">
+                    ورود‌
+                </Link>{" "}
+                یا‌
+                {" "}<Link to="/Signup" className="" aria-label="User Profile">
+                    ثبت‌نام‌
+                </Link>{" "}
                 کلیک کنید.
             </p>
         </div>
