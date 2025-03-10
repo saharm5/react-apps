@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import SearchIcon from "../../assets/svg/SearchIcon";
+import { fetchProducts } from "../../server/api";
 
 const Header: React.FC = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -14,11 +15,27 @@ const Header: React.FC = () => {
   };
 
   const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault(); // جلوگیری از رفرش صفحه
+    e.preventDefault();
     if (search.trim()) {
       navigate(`/Products?search=${encodeURIComponent(search)}`);
     }
   };
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await fetchProducts(`/api/isLoggedIn/`);
+        setIsLoggedIn(true);
+      } catch (error) {
+        console.error("خطا در دریافت داده‌های محصول:", error);
+        return false;
+      }
+    };
+
+    fetchData();
+  }, []);
+
 
   const NavbarCategories = [
     {
@@ -284,8 +301,11 @@ const Header: React.FC = () => {
         </div>
         {/* icons*/}
         <div className="HeaderIconContainer">
-          <Link to="/register" className="HeaderIcon" aria-label="User Profile">
+          {/* <Link to="/register" className="HeaderIcon" aria-label="User Profile">
             <i className="bi bi-person"></i>
+          </Link> */}
+          <Link to={isLoggedIn ? "/profile" : "/register"} className="HeaderIcon" aria-label="User Profile">
+            <i className={`bi ${isLoggedIn ? "bi-person-check" : "bi-person"}`}></i>
           </Link>
           <Link to="/ShoppingCart" className="HeaderIcon" aria-label="Shopping Cart">
             <i className="bi bi-cart"></i>

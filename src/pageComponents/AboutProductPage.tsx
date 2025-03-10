@@ -9,7 +9,6 @@ import useBodyClass from "../components/useBodyClass/useBodyClass"
 import Footer from "../components/Footer/Footer";
 import AboutProduct from "../components/AboutProduct/AboutProduct";
 import ProductGrid2 from "../components/ProductsGrid/ProductGrid2";
-import { submitForm } from "../server/api";
 
 
 const ProductDetails: React.FC = () => {
