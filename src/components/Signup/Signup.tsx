@@ -5,7 +5,7 @@ import Phone from "../../assets/svg/Phone";
 import VerificationCode from "../../assets/svg/VerificationCode";
 import Key from "../../assets/svg/Key";
 
-const Signin: React.FC = () => {
+const Signup: React.FC = () => {
 
   const [phone_number, setphone_number] = useState<string>("");
   const [confirm_code, setconfirm_code] = useState<string>("");
@@ -136,4 +136,4 @@ const Signin: React.FC = () => {
   );
 };
 
-export default Signin;
+export default Signup;

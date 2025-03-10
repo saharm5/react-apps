@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./pageComponents/MainPage";
 import LoginPage from "./pageComponents/LoginPage";
 import RegisterPage from "./pageComponents/RegisterPage";
-import SigninPage from "./pageComponents/SigninPage";
+import SignupPage from "./pageComponents/SignupPage";
 import ProductsPage from "./pageComponents/ProductsPage";
 import ProductDetails from "./pageComponents/AboutProductPage";
 import ReviewPage from "./pageComponents/ReviewPage";
@@ -19,7 +19,7 @@ export default function App() {
         <Route index element={<MainPage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="Register" element={<RegisterPage />} />
-        <Route path="Signin" element={<SigninPage />} />
+        <Route path="Signup" element={<SignupPage />} />
         <Route path="Products" element={<ProductsPage />} />
         <Route path="ProductDetails" element={<ProductDetails />} />
         <Route path="Favorite" element={<FavoritePage />} />
