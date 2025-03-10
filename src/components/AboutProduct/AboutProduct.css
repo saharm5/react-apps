@@ -175,18 +175,26 @@
 
 .productbrand {
   font-size: 15px;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
 }
 
-.productbrand a {
-  text-decoration: none;
+.productbrand p {
+  color: rgb(60 110 253);
+    cursor: pointer;
 }
 
 .productcategory {
   font-size: 15px;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
 }
 
-.productcategory a {
-  text-decoration: none;
+.productcategory div {
+  color: rgb(60 110 253);
+  cursor: pointer;
 }
 
 .ulsize li {

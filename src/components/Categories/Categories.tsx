@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { fetchProducts } from "../../server/api";
 import "./Categories.css";
 import React, { useEffect, useRef, useState } from "react";
@@ -13,7 +13,14 @@ const Categories: React.FC = () => {
   
   const carouselRef = useRef<HTMLDivElement>(null);
   const [Category, setCategory] = useState<Category[]>([]);
+  const navigate = useNavigate();
   const scrollDistance = 300;
+
+  const handlecategory = (category: string) => {
+    if (category.trim()) {
+      navigate(`/Products?search=${encodeURIComponent(category)}`);
+    }
+  };
 
   const nextCategories = () => {
     if (carouselRef.current) {
@@ -82,15 +89,15 @@ const Categories: React.FC = () => {
       {/* Scrollable container */}
       <div ref={carouselRef} className="categories-carousel">
         {Category.map((category, index) => (
-          <div className="category-card" key={index}>
+          <div className="category-card" key={index} onClick={() => handlecategory(category.category)}>
             <img
               src={category.category_image_src}
               alt={category.category}
               className="category-card__image"
             />
-            <Link to={`/Products`} className="category-card__title">
+            <span className="category-card__title">
               {category.category || "#"}
-            </Link>
+            </span>
           </div>
         ))}
       </div>

@@ -3,7 +3,7 @@ import "./AboutProduct.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { fetchProducts, submitForm } from "../../server/api";
 import CartButton from "../CartButton/CartButton";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import FreeDelivery from "../../assets/svg/FreeDelivery";
 import CheckShield from "../../assets/svg/CheckShield";
 import Star from "../../assets/svg/Star";
@@ -33,6 +33,7 @@ interface Products {
 }
 
 const AboutProduct: React.FC = () => {
+  const navigate = useNavigate();
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [products, setProducts] = useState<Products[]>([]);
   const [carts, setCarts] = useState<{ id: number; quantity: number }[]>([]);
@@ -40,6 +41,18 @@ const AboutProduct: React.FC = () => {
   const [imgText, setImgText] = useState<string>("");
   const [params] = useSearchParams();
   const value = params.get("id");
+
+  const handleSearchcategory = (category: string | null) => {
+    navigate(`/Products?search=${encodeURIComponent(category ?? "")}`);
+  };
+
+  const handleSearchsubcategory = (sub_category: string | null) => {
+    navigate(`/Products?search=${encodeURIComponent(sub_category ?? "‌")}`);
+  };
+
+  const handlebrand = (brand: string | null) => {
+    navigate(`/Products?search=${encodeURIComponent(brand ?? "‌")}`);
+  };
 
   const handleImageClick = (index: number, alt: string) => {
     setExpandedImgIndex(index);
@@ -280,14 +293,19 @@ const AboutProduct: React.FC = () => {
                       <strong>توضیحات محصول : </strong>
                       {product.product_details}
                     </p>
-                    <p id="category" className="productcategory">
+                    <div id="category" className="productcategory">
                       <strong> دسته بندی : </strong>
-                      <Link to={`/`}>{product.category} </Link>|
-                      <Link to={`/`}> {product.sub_category}</Link>
-                    </p>
-                    <p id="brand" className="productbrand">
-                      <strong> برند:</strong> <Link to={`/`}>{product.brand}</Link>
-                    </p>
+                      <div onClick={() => handleSearchcategory(product.category)}>
+                        {product.category} </div> |
+                      <div onClick={() => handleSearchsubcategory(product.sub_category)}>
+                        {product.sub_category}</div>
+                    </div>
+                    <div id="brand" className="productbrand" onClick={() => handlebrand(product.brand)}>
+                      <strong> برند:</strong>
+                      <p>
+                        {product.brand}
+                      </p>
+                    </div>
                   </div>
                   <div>
                     <p className="my-2 fw-bold">ویژگی های محصول:</p>

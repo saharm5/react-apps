@@ -1,5 +1,6 @@
 import { fetchProducts } from "../../server/api";
 import "./Brands.css";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 interface Brand {
@@ -9,7 +10,14 @@ interface Brand {
 
 const Brands: React.FC = () => {
 
+  const navigate = useNavigate();
   const [Brand, setBrand] = useState<Brand[]>([]);
+
+  const handlebrand = (brand: string) => {
+    if (brand.trim()) {
+      navigate(`/Products?search=${encodeURIComponent(brand)}`);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,7 +51,7 @@ const Brands: React.FC = () => {
       {/* Carousel */}
       <div className="Brands-carousel">
         {Brand.map((brand, index) => (
-          <div key={index} className="Brand-circle">
+          <div key={index} className="Brand-circle" onClick={() => handlebrand(brand.brand)}>
             <img
               src={brand.brand_image_src}
               alt={brand.brand}
