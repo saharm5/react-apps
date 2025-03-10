@@ -7,7 +7,7 @@ const BASE_URL = "http://localhost:8081/";
 export const fetchProducts = async (
     url: string,
     withAuth: boolean = true
-) => {
+): Promise<any[]> => {  // یا می‌توانید نوع دقیق‌تر را جایگزین کنید
     const token = localStorage.getItem("token") || "";
     const headers: HeadersInit = {
         "Content-Type": "application/json",
@@ -21,6 +21,13 @@ export const fetchProducts = async (
 
         if (!response.ok) {
             const errorMessage = await response.text();
+
+            if (response.status === 401) {
+                const newToken = await refreshAccessToken();
+                if (newToken) {
+                    return fetchProducts(url, withAuth);  
+                }
+            }
             throw new Error(`خطا در دریافت اطلاعات: ${errorMessage}`);
         }
 
@@ -31,6 +38,37 @@ export const fetchProducts = async (
     }
 };
 
+
+const refreshAccessToken = async () => {
+    const refreshToken = localStorage.getItem("refresh_token");
+    if (!refreshToken) {
+        console.error("Refresh Token موجود نیست");
+        return null;
+    }
+
+    try {
+        const response = await fetch(`${BASE_URL}/token/refresh/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ refresh: refreshToken }),
+        });
+
+        if (!response.ok) {
+            console.error("توکن رفرش معتبر نیست یا مشکل دیگری پیش آمده");
+            return null;
+        }
+
+        const data = await response.json();
+        const newAccessToken = data.access;
+        localStorage.setItem("token", newAccessToken);
+        return newAccessToken;
+    } catch (error) {
+        console.error("خطا در رفرش توکن:", error);
+        return null;
+    }
+};
 
 export const submitForm = async (
     url: string,
@@ -71,12 +109,12 @@ export const submitForm = async (
             throw new Error("Response is not valid JSON");
         }
 
-        if (result.isregister === 1) {
-            // window.location.href = "/Signin";
-        } else if (result.isregister === 2) {
-            window.location.href = "/login";
-            return;
-        }
+        // if (result.isregister === 1) {
+        //     window.location.href = "/Signin";
+        // } else if (result.isregister === 2) {
+        //     window.location.href = "/login";
+        //     return;
+        // }
         // else if (result.Status === "ok") {
         //     window.location.href = "/";
         //     return;
