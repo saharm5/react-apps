@@ -2,16 +2,15 @@ import React from "react";
 import "./HeaderSearchProducts.css";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Breadcrumb from "../../Breadcrumb/Breadcrumb";
 
 interface HeaderSearchProductsProps {
-    SearchPath: string;
     NumberOfItems: number;
     activeTab: string;
     setActiveTab: (value: string) => void;
 }
 
 const HeaderSearchProducts: React.FC<HeaderSearchProductsProps> = ({
-    SearchPath,
     NumberOfItems,
     activeTab,
     setActiveTab,
@@ -64,7 +63,7 @@ const HeaderSearchProducts: React.FC<HeaderSearchProductsProps> = ({
             </div>
             <div className="HeaderSearchProductsMain">
                 <div className="HeaderSearchProductsPTabe">
-                    <p>{SearchPath}</p>
+                    <Breadcrumb />
                 </div>
                 <div className="HeaderSearchProductsTabes">
                     {renderTabs()}

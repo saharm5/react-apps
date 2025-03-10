@@ -1,0 +1,9 @@
+.textcolor {
+    text-decoration: none;
+    color: #144ac7;
+}
+
+.textcolor:hover{
+    text-decoration: underline;
+    color: #4c2cda;
+}

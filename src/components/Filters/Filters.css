@@ -1,9 +1,9 @@
 .filtern {
-  color: #01194f;
+  color: rgb(19, 62, 135);
   margin: 20px 0px;
-  padding: 25px;
+  padding: 15px 25px;
   direction: rtl !important;
-  border: 1px solid #d6e6f2;
+  border: 1px solid rgb(210 224 240 / 52%);
   border-radius: 20px;
   box-shadow: 0 1px 2px rgba(118, 159, 205, 0.5);
 }
@@ -21,7 +21,7 @@
   background-color: #d6e6f2;
   border-radius: 15px;
   padding: 5px 12px 2px;
-  color: #01194f;
+  color: rgb(19, 62, 135);
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -76,7 +76,7 @@
   right: 5px;
   width: 20px;
   height: 20px;
-  background-color: #01194f;
+  background-color: rgb(19, 62, 135);
   color: white;
   border-radius: 50%;
   cursor: pointer;
@@ -143,13 +143,13 @@
 
 .FilterDropdownContentCheckmark {
   padding-right: 10px;
-  color: #01194f;
+  color: rgb(19, 62, 135);
 }
 
 .FilterSwitchContainer {
   padding: 5px 12px;
   margin: 25px 0px;
-  color: #01194f;
+  color: rgb(19, 62, 135);
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
@@ -205,7 +205,7 @@
 }
 
 .FilterPriceRangeText {
-  color: #01194f;
+  color: rgb(19, 62, 135);
   margin-inline: 5px;
 }
 
@@ -251,8 +251,9 @@
   background-color: #d6e6f2;
   border-radius: 15px;
   padding: 5px 12px 2px;
-  color: #01194f;
+  color: rgb(19, 62, 135);
   width: 100%;
+  margin-bottom: 10px;
   padding: 5px 12px;
 }
 

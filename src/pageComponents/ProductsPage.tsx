@@ -10,6 +10,7 @@ import HeaderSearchProducts from "../components/SearchProductPage/HeaderSearchPr
 import Filter from "../components/Filters/Filters";
 import Footer from "../components/Footer/Footer";
 import useBodyClass from "../components/useBodyClass/useBodyClass";
+import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
 
 interface Image {
   product_name: string;
@@ -198,7 +199,6 @@ const ProductsPage: React.FC = () => {
     <div>
       <Header />
       <HeaderSearchProducts
-        SearchPath={"صفحه اصلی > محصولات > تمام محصولات"}
         NumberOfItems={filteredProducts.length}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
