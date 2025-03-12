@@ -9,6 +9,7 @@ import useBodyClass from "../components/useBodyClass/useBodyClass"
 import Footer from "../components/Footer/Footer";
 import AboutProduct from "../components/AboutProduct/AboutProduct";
 import ProductGrid2 from "../components/ProductsGrid/ProductGrid2";
+import ProductReview from "../components/ProductReview/ProductReview";
 
 
 const ProductDetails: React.FC = () => {
@@ -32,6 +33,7 @@ const ProductDetails: React.FC = () => {
                             <ProductGrid2 />
                         </div>
                     </div>
+                    <ProductReview />
                 </div>
             </div>
             <FooterResponsive />

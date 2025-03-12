@@ -8,6 +8,7 @@ const Review: React.FC = () => {
 
     const [phone, setPhone] = useState<string>("");
     const [fromDate, setFromDate] = useState<string>("");
+    const [rating, setrating] = useState<string>("");
     const [email, setEmail] = useState<string>();
     const [comments, setComments] = useState<string>("");
     const [error, setError] = useState<string>("");
@@ -45,6 +46,7 @@ const Review: React.FC = () => {
         const formData = {
             phone: phone.replace(/-/g, ""), // Remove dashes from phone number
             fromDate,
+            rating,
             email,
             comments,
         };
@@ -55,6 +57,7 @@ const Review: React.FC = () => {
             setError("");
             setPhone("");
             setFromDate("");
+            setrating("")
             setEmail("");
             setComments("");
         } catch (err) {
@@ -88,16 +91,6 @@ const Review: React.FC = () => {
                     </form>
                 </div>
             </div>
-            <div className="Reviewdate">
-                <label htmlFor="fromDate">تاریخ تولد :</label>
-                <input
-                    className="ReviewdateInput"
-                    id="fromDate"
-                    type="date"
-                    value={fromDate}
-                    onChange={(e) => setFromDate(e.target.value)}
-                />
-            </div>
             <div className="ReviewEmailSubscription">
                 <label htmlFor="formEmail">ایمیل شما :</label>
                 <form className="ReviewEmailSubscriptionForm">
@@ -111,6 +104,28 @@ const Review: React.FC = () => {
                         <i className="bi bi-envelope-fill"></i>
                     </div>
                 </form>
+            </div>
+            <div className="Reviewdate">
+                <label htmlFor="fromDate">تاریخ خرید :</label>
+                <input
+                    className="ReviewdateInput"
+                    id="fromDate"
+                    type="date"
+                    value={fromDate}
+                    onChange={(e) => setFromDate(e.target.value)}
+                />
+            </div>
+            <div className="Reviewdate">
+                <label htmlFor="rating">امتیاز شما :</label>
+                <input
+                    className="ReviewdateInput"
+                    id="rating"
+                    type="number"
+                    value={rating}
+                    onChange={(e) => setrating(e.target.value)}
+                    min="1"
+                    max="5"
+                />
             </div>
             <div className="ReviewComments">
                 <label htmlFor="formComments">متن دیدگاه :</label>

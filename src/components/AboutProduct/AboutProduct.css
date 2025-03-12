@@ -182,7 +182,7 @@
 
 .productbrand p {
   color: rgb(60 110 253);
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .productcategory {
@@ -193,6 +193,7 @@
 }
 
 .productcategory div {
+  margin-bottom: 1rem;
   color: rgb(60 110 253);
   cursor: pointer;
 }
