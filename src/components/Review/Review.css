@@ -1,3 +1,15 @@
+.rating-message {
+  visibility: hidden;
+  /* پیش‌فرض مخفی بودن متن */
+  opacity: 0;
+}
+
+.rating-message:hover {
+  visibility: visible;
+  /* وقتی روی امتیاز قرار می‌گیرد، متن نمایان می‌شود */
+  opacity: 1;
+}
+
 .ReviewMain {
   display: flex;
   justify-content: center;

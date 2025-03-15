@@ -1,66 +1,57 @@
-import React, { useState, useEffect, useRef } from "react";
-
-import Inputmask from "inputmask";
-import "./Review.css";
-import { submitForm } from '../../server/api';
+// C: \Users\Sanay\react - apps\src\components\Review\Review.tsx
+import React, { useState } from "react";
+import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
+import Typography from "@mui/material/Typography";
+import { submitForm } from "../../server/api";
 
 const Review: React.FC = () => {
-
-    const [phone, setPhone] = useState<string>("");
-    const [fromDate, setFromDate] = useState<string>("");
-    const [rating, setrating] = useState<string>("");
-    const [email, setEmail] = useState<string>();
+    const [fromHeader, setFromHeader] = useState<string>("");
+    const [rating, setRating] = useState<number | null>(1);
+    const [name, setName] = useState<string | "ناشناس">("");
     const [comments, setComments] = useState<string>("");
     const [error, setError] = useState<string>("");
     const [responseMessage, setResponseMessage] = useState<string>("");
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-    const phoneInputRef = useRef<HTMLInputElement>(null);
+    const [hover, setHover] = React.useState(-1);
 
-    useEffect(() => {
-        if (phoneInputRef.current) {
-            const im = new Inputmask("0999-999-9999");
-            im.mask(phoneInputRef.current);
-        }
-    }, []);
+    function getLabelText(rating: number) {
+        return `${rating} Star${rating !== 1 ? 's' : ''}, ${ratingMessages[rating]}`;
+    }
+    const ratingMessages: { [key: number]: string } = {
+        1: "خیلی بد",
+        2: "پیشنهاد نمی‌کنم",
+        3: "قابل قبول بود",
+        4: "خوبه",
+        5: "عالی بود",
+    };
 
     const handleSubmit = async () => {
         setIsSubmitting(true);
 
-        const phoneRegex = /^[0-9]{4}-[0-9]{3}-[0-9]{4}$/;
-        if (!phone) {
-            setError("شماره موبایل وارد نشده است.");
-            setIsSubmitting(false);
+        if (!name) {
+            setName("ناشناس");
+            setIsSubmitting(true);
             return;
-        } else if (!phoneRegex.test(phone)) {
-            setError("شماره موبایل باید به فرمت صحیح باشد (0999-999-9999).");
+        }
+        if (!rating) {
+            setError("لطفا امتیازتان را به محصول وارد کنید");
             setIsSubmitting(false);
             return;
         }
 
-        if (!email) {
-            setError("ایمیل وارد نشده است.");
-            setIsSubmitting(false);
-            return;
-        }
-
-        const formData = {
-            phone: phone.replace(/-/g, ""), // Remove dashes from phone number
-            fromDate,
-            rating,
-            email,
-            comments,
-        };
+        const formData = { fromHeader, rating, name, comments };
 
         try {
-            const result = await submitForm("api/reviews/", formData);
+            await submitForm("api/reviews/", formData);
             setResponseMessage("فرم با موفقیت ارسال شد!");
             setError("");
-            setPhone("");
-            setFromDate("");
-            setrating("")
-            setEmail("");
+            setFromHeader("");
+            setRating(1);
+            setName("");
             setComments("");
         } catch (err) {
+            console.error("Error submitting form:", err);
             setError("ارسال فرم با خطا مواجه شد. لطفاً دوباره امتحان کنید.");
         } finally {
             setIsSubmitting(false);
@@ -68,82 +59,66 @@ const Review: React.FC = () => {
     };
 
     return (
-        <div className="ReviewMain">
-            <div>
-                <div className="ReviewTelephone">
-                    <label htmlFor="Telephoneform"> شماره تلفن :</label>
-                    <form>
-                        <div className="ReviewFormGroupPhone">
-                            <input
-                                ref={phoneInputRef}
-                                className={`phone-input ${error ? "input-error" : ""}`}
-                                type="tel"
-                                value={phone}
-                                onChange={(e) => {
-                                    setPhone(e.target.value);
-                                    setError("");
-                                }}
-                                placeholder="0912-345-6789"
-                                required
-                            />
-                            <i className="bi bi-telephone"></i>
-                        </div>
-                    </form>
-                </div>
-            </div>
+        <div className="container mt-4 ReviewMain">
+            <Box sx={{ "& > legend": { mt: 3 } }} className="mb-3 text-end" >
+                <Typography component="legend">امتیاز خود را انتخاب کنید:</Typography>
+                <Rating
+                    dir="ltr"
+                    name="simple-controlled"
+                    value={rating}
+                    getLabelText={getLabelText}
+                    onChangeActive={(event, newHover) => {
+                        setHover(newHover);
+                    }}
+                    onChange={(_event: React.SyntheticEvent, newValue: number | null) => setRating(newValue)}
+                />
+                {rating !== null && (
+                    <Box className="mt-2 text-primary" sx={{ ml: 2 }}>{ratingMessages[hover !== -1 ? hover : rating]}</Box>
+                )}
+            </Box>
             <div className="ReviewEmailSubscription">
-                <label htmlFor="formEmail">ایمیل شما :</label>
-                <form className="ReviewEmailSubscriptionForm">
-                    <div className="ReviewEmailSubscriptionInput">
-                        <input
-                            type="email"
-                            id="formEmail"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <i className="bi bi-envelope-fill"></i>
-                    </div>
+                <form className="ReviewEmailSubscription form-control">
+                    <label htmlFor="formName" className="form-label">نام شما:</label>
+                    <input
+                        type="text"
+                        placeholder="ناشناس"
+                        id="formName"
+                        className="ReviewEmailSubscriptionInput form-control"
+                        value={name}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
+                    />
                 </form>
             </div>
-            <div className="Reviewdate">
-                <label htmlFor="fromDate">تاریخ خرید :</label>
-                <input
-                    className="ReviewdateInput"
-                    id="fromDate"
-                    type="date"
-                    value={fromDate}
-                    onChange={(e) => setFromDate(e.target.value)}
-                />
-            </div>
-            <div className="Reviewdate">
-                <label htmlFor="rating">امتیاز شما :</label>
-                <input
-                    className="ReviewdateInput"
-                    id="rating"
-                    type="number"
-                    value={rating}
-                    onChange={(e) => setrating(e.target.value)}
-                    min="1"
-                    max="5"
-                />
+            <div className="ReviewEmailSubscription">
+                <form className="ReviewEmailSubscription form-control">
+                    <label htmlFor="fromHeader" className="form-label">عنوان نظر:</label>
+                    <input
+                        id="fromHeader"
+                        type="text"
+                        className="ReviewEmailSubscriptionInput form-control"
+                        value={fromHeader}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFromHeader(e.target.value)}
+                    />
+                </form>
             </div>
             <div className="ReviewComments">
-                <label htmlFor="formComments">متن دیدگاه :</label>
+                <label htmlFor="formComments" className="form-label">متن دیدگاه:</label>
                 <textarea
                     id="formComments"
+                    className="form-control"
                     value={comments}
-                    onChange={(e) => setComments(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setComments(e.target.value)}
                     rows={4}
                     placeholder="نظر خود را اینجا بنویسید..."
                 />
             </div>
-            <div className="ReviewDivButtonSubmit">
-                <button onClick={handleSubmit} className="ReviewButton" disabled={isSubmitting}>
+            <div className="ReviewDivButtonSubmit d-flex justify-content-end">
+                <button onClick={handleSubmit} className="btn ReviewButton" disabled={isSubmitting}>
                     {isSubmitting ? "در حال ارسال..." : "ارسال فرم"}
                 </button>
-                {error && <p className="ReviewValidationError">{error}</p>}
-                {responseMessage && <p className="ReviewDivButtonresponseMessage">{responseMessage}</p>}
             </div>
+            {error && <p className="ReviewValidationError">{error}</p>}
+            {responseMessage && <p className="ReviewDivButtonresponseMessage">{responseMessage}</p>}
         </div>
     );
 };
