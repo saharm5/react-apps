@@ -5,6 +5,9 @@ import { fetchProducts } from "../../server/api";
 import Star from "../../assets/svg/Star";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ReviewMultiStepModal from "../ReviewMultiStepModal";
+
+
 
 interface Product {
     id: number;
@@ -15,6 +18,8 @@ const ProductReview: React.FC = () => {
     const fullStars = Math.floor(rating);
     const fractionalPart = rating - fullStars;
     const totalStars = fractionalPart > 0 ? fullStars + 1 : fullStars;
+
+    const [showModal, setShowModal] = useState(false);
 
     const [product, setProduct] = useState<Product[]>([]);
     const [showReviewModal, setShowReviewModal] = useState(false); // مدیریت مدال
@@ -53,13 +58,18 @@ const ProductReview: React.FC = () => {
                     <p className="text-muted m-2" style={{ fontSize: "13px" }}>
                         شما هم درباره این کالا دیدگاه ثبت کنید.
                     </p>
-                    <button
+                    <button className="btn btn-primary" onClick={() => setShowModal(true)}>
+                        ثبت امتیاز و دیدگاه
+                    </button>
+
+                    <ReviewMultiStepModal show={showModal} handleClose={() => setShowModal(false)} />
+                    {/* <button
                         className="btn my-2"
                         style={{ backgroundColor: "rgb(230, 242, 252)", color: "#133e87" }}
                         onClick={() => setShowReviewModal(true)} // باز کردن مدال
                     >
                         ثبت دیدگاه
-                    </button>
+                    </button> */}
                 </div>
             </div>
 
@@ -83,6 +93,7 @@ const ProductReview: React.FC = () => {
                     </div>
                 ))}
             </div>
+
 
             {/* نمایش مدال هنگام کلیک روی دکمه */}
             <ReviewModal show={showReviewModal} handleClose={() => setShowReviewModal(false)} />

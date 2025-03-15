@@ -13,8 +13,14 @@ const ReviewMultiStepModal: React.FC<ReviewMultiStepModalProps> = ({ show, handl
   const [name, setName] = useState<string>("");
   const [comment, setComment] = useState<string>("");
 
+  // تابع برای بستن مدال و بازنشانی مرحله به ۱
+  const handleCloseAndReset = () => {
+    setStep(1);
+    handleClose();
+  };
+
   return (
-    <Modal show={show} onHide={handleClose} centered>
+    <Modal show={show} onHide={handleCloseAndReset} dialogClassName="modal-dialog-centered">
       <Modal.Header closeButton>
         <Modal.Title>ثبت امتیاز و دیدگاه</Modal.Title>
       </Modal.Header>
@@ -22,15 +28,25 @@ const ReviewMultiStepModal: React.FC<ReviewMultiStepModalProps> = ({ show, handl
         {step === 1 ? (
           // **مرحله ۱: امتیازدهی**
           <div className="text-center">
-            <img src="/path-to-product-image.jpg" alt="محصول" style={{ width: "100px" }} />
-            <h5 className="mt-3">دوغ کفیر لیان</h5>
-            <p>چقدر از این محصول راضی بودید؟</p>
+            <img
+              src="/path-to-product-image.jpg"
+              alt="محصول"
+              style={{ width: "100px", marginBottom: "10px" }}
+            />
+            <h5 className="mt-2">دوغ کفیر لیان</h5>
+            <p className="mt-3">چقدر از این محصول راضی بودید؟</p>
             <Rating
               name="product-rating"
               value={rating}
+              size="large"
               onChange={(_, newValue) => setRating(newValue)}
             />
-            <Button variant="primary" className="mt-3" onClick={() => setStep(2)} disabled={!rating}>
+            <Button
+              variant="primary"
+              className="mt-4 w-100"
+              onClick={() => setStep(2)}
+              disabled={!rating}
+            >
               ثبت امتیاز →
             </Button>
           </div>
@@ -41,7 +57,7 @@ const ReviewMultiStepModal: React.FC<ReviewMultiStepModalProps> = ({ show, handl
             <Rating name="final-rating" value={rating} readOnly />
 
             <div className="mt-3">
-              <label>نام خود را وارد کنید (اختیاری):</label>
+              <label className="form-label">نام خود را وارد کنید (اختیاری):</label>
               <input
                 type="text"
                 className="form-control"
@@ -52,7 +68,7 @@ const ReviewMultiStepModal: React.FC<ReviewMultiStepModalProps> = ({ show, handl
             </div>
 
             <div className="mt-3">
-              <label>متن دیدگاه:</label>
+              <label className="form-label">متن دیدگاه:</label>
               <textarea
                 className="form-control"
                 rows={3}
@@ -62,9 +78,17 @@ const ReviewMultiStepModal: React.FC<ReviewMultiStepModalProps> = ({ show, handl
               />
             </div>
 
-            <Button variant="success" className="mt-3" onClick={handleClose}>
-              ثبت دیدگاه
-            </Button>
+            <div className="d-flex justify-content-between mt-4">
+              {/* دکمه بازگشت */}
+              <Button variant="secondary" onClick={() => setStep(1)}>
+                ← بازگشت
+              </Button>
+
+              {/* دکمه ثبت نظر */}
+              <Button variant="success" onClick={handleCloseAndReset}>
+                ثبت دیدگاه
+              </Button>
+            </div>
           </div>
         )}
       </Modal.Body>
