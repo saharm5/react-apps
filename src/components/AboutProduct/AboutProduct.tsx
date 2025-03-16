@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./AboutProduct.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { fetchProducts, submitForm } from "../../server/api";
 import CartButton from "../CartButton/CartButton";
-import { Link, useSearchParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import FreeDelivery from "../../assets/svg/FreeDelivery";
 import CheckShield from "../../assets/svg/CheckShield";
 import Star from "../../assets/svg/Star";
@@ -13,8 +12,8 @@ interface Image {
   product_name: string;
   productImageSrc: string;
 }
-
-interface Products {
+interface Product {
+  imageUrl: string | null;
   quantity: number;
   production_date: string | null;
   expiration_date: string | null;
@@ -31,16 +30,20 @@ interface Products {
   productImageSrc: Image[];
   is_favorite: boolean;
 }
+interface AboutProductProps {
+  products: Product[];
+  carts: { id: number; quantity: number }[];
+  increasesQuantity: (id: number) => void;
+  decreasesQuantity: (id: number) => void;
+  handleAddFavorite: (id: number) => void;
 
-const AboutProduct: React.FC = () => {
+}
+
+const AboutProduct: React.FC<AboutProductProps> = ({ products, carts, increasesQuantity, decreasesQuantity, handleAddFavorite }) => {
   const navigate = useNavigate();
   const [isCopied, setIsCopied] = useState<boolean>(false);
-  const [products, setProducts] = useState<Products[]>([]);
-  const [carts, setCarts] = useState<{ id: number; quantity: number }[]>([]);
   const [expandedImgIndex, setExpandedImgIndex] = useState<number | null>(null);
   const [imgText, setImgText] = useState<string>("");
-  const [params] = useSearchParams();
-  const value = params.get("id");
 
   const handleSearchcategory = (category: string | null) => {
     navigate(`/Products?search=${encodeURIComponent(category ?? "")}`);
@@ -78,33 +81,6 @@ const AboutProduct: React.FC = () => {
     }
   };
 
-  const handleAddFavorite = async (id: number) => {
-    const product = products.find((p) => p.id === id);
-    if (!product) return;
-
-    const newFavoriteStatus = !product.is_favorite;
-    setProducts((prevProducts) =>
-      prevProducts.map((p) => (p.id === id ? { ...p, is_favorite: newFavoriteStatus } : p))
-    );
-
-    try {
-      const formData = {
-        url: window.location.href,
-        id,
-        is_favorite: newFavoriteStatus,
-      };
-      const response = await submitForm("/favorites/toggle/", formData);
-      console.log(`Product ${id} toggled favorite: ${newFavoriteStatus}`, response);
-    } catch (error) {
-      // بازگردانی وضعیت قبلی در صورت خطا
-      setProducts((prevProducts) =>
-        prevProducts.map((p) => (p.id === id ? { ...p, is_favorite: product.is_favorite } : p))
-      );
-      alert("لطفا وارد شوید");
-      console.error(error);
-    }
-  };
-
   const handleCopyLink = () => {
     navigator.clipboard
       .writeText(window.location.href)
@@ -115,66 +91,6 @@ const AboutProduct: React.FC = () => {
       .catch((error) => console.error("Error copying to clipboard:", error));
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const endpoint = value ? `api/data?id=${value}` : "api/data/";
-        const data = await fetchProducts(endpoint);
-        setProducts(data);
-        const initialCart = data.map((product: Products) => ({
-          id: product.id,
-          quantity: product.quantity,
-        }));
-        setCarts(initialCart);
-      } catch (err) {
-        console.error("Failed to fetch products");
-      }
-    };
-
-    fetchData();
-  }, [value]);
-
-  const increasesQuantity = async (id: number) => {
-    setCarts((prev) => {
-      const existingProduct = prev.find((item) => item.id === id);
-      if (existingProduct) {
-        return prev.map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
-      return [...prev, { id, quantity: 1 }];
-    });
-    try {
-      const formData = { id, operation: "add" };
-      const response = await submitForm("AddCart/cart/", formData);
-      console.log(response);
-    } catch (error) {
-      alert("لطفا وارد شوید");
-      console.error(error);
-    }
-  };
-
-  const decreasesQuantity = async (id: number) => {
-    setCarts((prev) => {
-      const existingProduct = prev.find((item) => item.id === id);
-      if (existingProduct) {
-        return prev.map((item) =>
-          item.id === id ? { ...item, quantity: Math.max(0, item.quantity - 1) } : item
-        );
-      }
-      return prev;
-    });
-    try {
-      const formData = { id, operation: "remove" };
-      const response = await submitForm("AddCart/cart/", formData);
-      console.log(response);
-    } catch (error) {
-      alert("لطفا وارد شوید");
-      console.error(error);
-    }
-  };
-
-  // نمایش یکبار map روی محصولات
   return (
     <div className="d-flex flex-column align-items-center">
       {products.length === 0 ? (

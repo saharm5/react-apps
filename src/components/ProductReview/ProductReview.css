@@ -1,0 +1,43 @@
+.LeftDiv {
+    height: 300px;
+}
+
+/* .productReviewContainer {
+} */
+.ReviewButton button {
+    background-color: rgb(230, 242, 252);
+    color: #133e87;
+}
+
+.ReviewButton :hover {
+    background-color: rgb(209, 225, 238);
+    border: solid 1px rgb(218, 220, 223);
+}
+
+.RightDiv {
+    height: 400px;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #ffffff;
+}
+
+.RightDiv::-webkit-scrollbar-track {
+    border-radius: 4px;
+}
+
+.RightDiv::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.ReviewCard {
+    max-width: 100%;
+    background-color: rgb(230, 242, 252);
+    color: #133e87;
+}
+
+.CommentersName {
+    font-size: 14px;
+}
+.fontsizecustom{
+    font-size: 13px;
+}
