@@ -1,7 +1,9 @@
-// C: \Users\Sanay\react - apps\src\components\ReviewMultiStepModal.tsx
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import Rating from "@mui/material/Rating";
+import { Box } from "@mui/material";
+import "./ProductReview/ProductReview.css";
+import { submitForm } from "../server/api";
 
 interface Product {
   product_name: string;
@@ -20,60 +22,113 @@ const ReviewMultiStepModal: React.FC<ReviewMultiStepModalProps> = ({ show, produ
   const [rating, setRating] = useState<number | null>(1);
   const [name, setName] = useState<string>("");
   const [comment, setComment] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [hover, setHover] = useState(-1);
 
-  const handleCloseAndReset = () => {
-    setStep(1);
-    handleClose();
+  const handleCloseAndReset = async (product: Product) => {
+    if (!rating) {
+      setError("لطفا امتیازتان را به محصول وارد کنید");
+      return;
+    }
+    
+    const finalName = name || "ناشناس";
+    const fromTitle = product.product_name;
+    const fromid = product.id;
+    const formData = { fromid,fromTitle, rating, name: finalName, comment };
+    console.log("formData:", formData);
+    try {
+      await submitForm("api/reviews/", formData);
+      setError("");
+      setRating(1);
+      setName("");
+      setComment("");
+      setStep(1);
+      handleClose();
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      setError("ارسال فرم با خطا مواجه شد. لطفاً دوباره امتحان کنید.");
+      alert("لطفا وارد شوید");
+    }
+  };
+
+  const ratingMessages: { [key: number]: string } = {
+    1: "خیلی بد",
+    2: "بد",
+    3: "متوسط",
+    4: "خوب",
+    5: "عالی",
   };
 
   return (
-    <>
+    <div>
       {products.map((product) => (
         <Modal
           key={product.id}
           show={show}
-          onHide={handleCloseAndReset}
+          // در onHide، محصول فعلی را به handleCloseAndReset می‌فرستیم
+          onHide={() => handleCloseAndReset(product)}
           dialogClassName="modal-dialog-centered"
         >
-          <Modal.Header closeButton>
-            <Modal.Title>ثبت امتیاز و دیدگاه</Modal.Title>
+          <Modal.Header closeButton className="d-flex justify-content-between">
+            <Modal.Title className="fs-5">ثبت امتیاز و دیدگاه</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body className="modalsize">
             {step === 1 ? (
-              <div className="text-center">
+              <div className="h-100 text-center d-flex flex-column align-items-center justify-content-between">
                 <img
                   src={
                     product.imageUrl ||
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs9gUXKwt2KErC_jWWlkZkGabxpeGchT-fyw&s"
                   }
                   alt={product.product_name}
-                  style={{ width: "100px", marginBottom: "10px" }}
+                  className="mb-4 w-25"
                 />
-                <h5 className="mt-2">{product.product_name}</h5>
-                <p className="mt-3">چقدر از این محصول راضی بودید؟</p>
+                <p className="m-2 fw-bold">{product.product_name}</p>
+                <p className="mt-5">چقدر از این محصول راضی بودید؟</p>
                 <Rating
+                  className="gap-2"
+                  dir="ltr"
                   name="product-rating"
                   value={rating}
                   size="large"
-                  onChange={(_, newValue) => setRating(newValue)}
+                  onChangeActive={(event, newHover) => {
+                    setHover(newHover);
+                  }}
+                  onChange={(_event: React.SyntheticEvent, newValue: number | null) => {
+                    setRating(newValue);
+                  }}
                 />
-                <Button
-                  variant="primary"
-                  className="mt-4 w-100"
-                  onClick={() => setStep(2)}
-                  disabled={!rating}
-                >
-                  ثبت امتیاز →
-                </Button>
+                {rating !== null && (
+                  <Box className="mt-2" sx={{ ml: 2 }}>
+                    {ratingMessages[hover !== -1 ? hover : rating]}
+                  </Box>
+                )}
+                <div className="d-flex w-100 flex-column justify-content-between mt-3 ReviewButton">
+                  <button className="btn mt-2 ReviewButton" onClick={() => setStep(2)} disabled={!rating}>
+                    ثبت امتیاز و دیدگاه
+                  </button>
+                </div>
               </div>
             ) : (
-              <div>
-                  <p className="fw-bold">امتیاز شما به {product.product_name}:</p>
-                <Rating name="final-rating" value={rating} readOnly />
+              <div className="h-100 d-flex flex-column justify-content-between">
+                <div>
+                  <p className="mb-3">امتیاز شما به {product.product_name}:</p>
+                  <Rating
+                    className="mx-3 gap-2"
+                    name="final-rating"
+                    value={rating}
+                    dir="ltr"
+                    size="large"
+                    onChangeActive={(event, newHover) => {
+                      setHover(newHover);
+                    }}
+                    onChange={(_event: React.SyntheticEvent, newValue: number | null) => {
+                      setRating(newValue);
+                    }}
+                  />
+                </div>
                 <div className="mt-3">
-                  <label className="form-label">
-                    نام خود را وارد کنید (اختیاری):
-                  </label>
+                  <label className="form-label">نام خود را وارد کنید (اختیاری):</label>
                   <input
                     type="text"
                     className="form-control"
@@ -92,20 +147,17 @@ const ReviewMultiStepModal: React.FC<ReviewMultiStepModalProps> = ({ show, produ
                     placeholder="نظر خود را درباره این کالا بنویسید..."
                   />
                 </div>
-                <div className="d-flex justify-content-between mt-4">
-                  <Button variant="secondary" onClick={() => setStep(1)}>
-                    ← بازگشت
-                  </Button>
-                  <Button variant="success" onClick={handleCloseAndReset}>
-                    ثبت دیدگاه
-                  </Button>
+                <div className="d-flex w-100 flex-column justify-content-between mt-3 ReviewButton">
+                  <button className="btn mt-2 ReviewButton" onClick={() => handleCloseAndReset(product)} disabled={!rating}>
+                    ثبت امتیاز و دیدگاه
+                  </button>
                 </div>
               </div>
             )}
           </Modal.Body>
         </Modal>
       ))}
-    </>
+    </div>
   );
 };
 

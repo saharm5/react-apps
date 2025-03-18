@@ -7,7 +7,7 @@ const BASE_URL = "http://localhost:8081/";
 export const fetchProducts = async (
     url: string,
     withAuth: boolean = true
-): Promise<any[]> => {  // یا می‌توانید نوع دقیق‌تر را جایگزین کنید
+): Promise<any[]> => {
     const token = localStorage.getItem("token") || "";
     const headers: HeadersInit = {
         "Content-Type": "application/json",
@@ -25,7 +25,7 @@ export const fetchProducts = async (
             if (response.status === 401) {
                 const newToken = await refreshAccessToken();
                 if (newToken) {
-                    return fetchProducts(url, withAuth);  
+                    return fetchProducts(url, withAuth);
                 }
             }
             throw new Error(`خطا در دریافت اطلاعات: ${errorMessage}`);

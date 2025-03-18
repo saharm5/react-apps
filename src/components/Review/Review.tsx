@@ -26,8 +26,8 @@ const Review: React.FC = () => {
         5: "عالی بود",
     };
 
-    const handleSubmit = async () => {
-        setIsSubmitting(true);
+     handleSubmit = async () => {
+        sconstetIsSubmitting(true);
 
         if (!name) {
             setName("ناشناس");

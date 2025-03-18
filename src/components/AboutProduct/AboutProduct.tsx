@@ -168,7 +168,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ products, carts, increasesQ
                         </div>
                       </div>
                     )}
-                    <div className="mb-3 shadow rounded-5">
+                    <div className="mb-3 shadow rounded-4">
                       <img
                         src={
                           product.productImageSrc[0]?.productImageSrc ||

@@ -41,3 +41,16 @@
 .fontsizecustom{
     font-size: 13px;
 }
+
+.modal-header .btn-close{
+    margin: 0 !important;
+}
+.hovercolor{
+    color:rgb(156, 178, 216)7;
+}
+.modalsize{
+    height: 450px;
+}
+.text-color{
+    color: #366e88;
+}
