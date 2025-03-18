@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import Rating from "@mui/material/Rating";
 import { Box } from "@mui/material";
-import "./ProductReview/ProductReview.css";
-import { submitForm } from "../server/api";
+import "../ProductReview.css";
+import { submitForm } from "../../../server/api";
 
 interface Product {
   product_name: string;
@@ -65,7 +65,6 @@ const ReviewMultiStepModal: React.FC<ReviewMultiStepModalProps> = ({ show, produ
         <Modal
           key={product.id}
           show={show}
-          // در onHide، محصول فعلی را به handleCloseAndReset می‌فرستیم
           onHide={() => handleCloseAndReset(product)}
           dialogClassName="modal-dialog-centered"
         >

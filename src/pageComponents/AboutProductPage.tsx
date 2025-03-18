@@ -19,7 +19,7 @@ interface Image {
 }
 interface review {
     id: number;
-    reviewtitle: string;
+    product_name: string;
     reviewdetail: string;
     customerrating: number;
     customername: string;
@@ -202,7 +202,7 @@ const ProductDetails: React.FC = () => {
                     <ProductReview
                         reviews={reviews.map((review) => ({
                             id: review.id,
-                            reviewtitle: review.reviewtitle,
+                            product_name: review.product_name,
                             customerrating: review.customerrating,
                             customername: review.customername,
                             reviewdetail: review.reviewdetail,

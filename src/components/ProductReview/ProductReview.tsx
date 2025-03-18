@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Star from "../../assets/svg/Star";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ReviewMultiStepModal from "../ReviewMultiStepModal";
+import ReviewMultiStepModal from "./ReviewMultiStepModal/ReviewMultiStepModal";
 import "./ProductReview.css";
 
 interface Product {
@@ -14,7 +14,7 @@ interface Product {
 
 interface review {
     id: number;
-    reviewtitle: string;
+    product_name: string;
     reviewdetail: string;
     customerrating: number;
     customername: string;
@@ -75,7 +75,7 @@ const ProductReview: React.FC<ProductReviewtProps> = ({ products, reviews, effec
                             <div className="my-1">
                                 <span className="fw-bold mx-1">
                                     {/* عنوان نظر */}
-                                    {review.reviewtitle}
+                                    {review.product_name}
                                 </span>
                                 <span className="mx-2">
                                     {/* امتیاز مشتری */}
