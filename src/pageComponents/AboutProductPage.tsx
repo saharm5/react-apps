@@ -20,9 +20,9 @@ interface Image {
 interface review {
     id: number;
     product_name: string;
-    reviewdetail: string;
-    customerrating: number;
-    customername: string;
+    comment: string;
+    rating: number;
+    customer_name: string;
 }
 
 interface Product {
@@ -135,22 +135,28 @@ const ProductDetails: React.FC = () => {
         fetchData();
     }, [value]);
 
+    //  اینجا لیست می گیره
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchReviewData = async () => {
             try {
-                const endpoint = `api/data?id=${value}`;
-                const data = await fetchProducts(endpoint);
-                setreviews(data);
-                if (data.length > 0) {
+                const endpoint = `AddReview/list/?id=${value}`;
+                const reviewsdata = await fetchProducts(endpoint, false);
+                setreviews(reviewsdata);
+                if (reviewsdata.length > 0) {
                     const avgRating =
-                        data.reduce((acc: number, review: review) => acc + (review.customerrating || 0), 0) / data.length;
+                        reviewsdata.reduce((acc: number, review: review) => acc + (review.rating || 0), 0) / reviewsdata.length;
                     setRating(avgRating);
                 }
-            } catch (err) {
+                else {
+                    setRating(0);
+                }
+            }
+            catch (err) {
+
                 console.error("Failed to fetch reviews");
             }
         };
-        fetchData();
+        fetchReviewData();
     }, [value]);
 
     useBodyClass("body-main");
@@ -200,9 +206,9 @@ const ProductDetails: React.FC = () => {
                         reviews={reviews.map((review) => ({
                             id: review.id,
                             product_name: review.product_name,
-                            customerrating: review.customerrating,
-                            customername: review.customername,
-                            reviewdetail: review.reviewdetail,
+                            customerrating: review.rating,
+                            customer_name: review.customer_name,
+                            comment: review.comment,
                         }))}
                         effectiveRating={effectiveRating}
                         products={products.map((product) => ({

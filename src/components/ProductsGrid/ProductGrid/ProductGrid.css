@@ -2,6 +2,10 @@
   padding: 1%;
 }
 
+.productdiscount {
+  background-color: #d32f2f;
+}
+
 .maintabe {
   display: flex;
   justify-content: space-between;

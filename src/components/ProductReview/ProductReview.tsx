@@ -16,9 +16,10 @@ interface Product {
 interface review {
     id: number;
     product_name: string;
-    reviewdetail: string;
+    comment: string;
     customerrating: number;
-    customername: string;
+    customer_name: string;
+    // created_date: string;
 }
 interface ProductReviewtProps {
     products: Product[];
@@ -86,7 +87,7 @@ const ProductReview: React.FC<ProductReviewtProps> = ({ products, reviews, effec
             </div>
             {/*Right side:list of reviews*/}
             <div className="w-75 overflow-auto px-3 my-3 RightDiv">
-                {reviews.map((review) => (
+                {
                     // اینجا میخواد یه متغیری بیاد که احتمالا beloon  باشه 
                     fullStars === 0 ? (
                         <div className="card mb-3 ReviewCard">
@@ -98,35 +99,78 @@ const ProductReview: React.FC<ProductReviewtProps> = ({ products, reviews, effec
                             </div>
                         </div>
                     ) : (
-                        <div key={review.id} className="card mb-3 ReviewCard">
-                            <div className="card-header py-1 d-flex flex-row justify-content-between">
-                                <div className="my-1">
-                                    <span className="fw-bold mx-1">
-                                        {/* عنوان نظر */}
-                                        {review.product_name}
-                                    </span>
-                                    <span className="mx-2">
-                                        {/* امتیاز مشتری */}
-                                        {review.customerrating}
-                                    </span>
+                        reviews.map((review) => (
+                            <div key={review.id} className="card mb-3 ReviewCard">
+                                <div className="card-header py-1 d-flex flex-row justify-content-between">
+                                    <div className="my-1 d-flex flex-row">
+                                        <span className="fw-bold mx-1 align-items-center justify-content-between">
+                                            {/* عنوان نظر */}
+                                            {review.product_name}
+                                        </span>
+                                        <div className="d-flex flex-row gap-1 px-2 justify-content-start">
+                                            {[...Array(review.customerrating)].map((_, index) => (
+                                                <Star key={index} />
+                                            ))}
+                                        </div>
+                                        <span className="mx-2 align-items-center justify-content-between">
+                                            {/* امتیاز مشتری */}
+                                            5 /{review.customerrating}
+                                        </span>
+                                    </div>
+                                    <p className="text-muted my-1 CommentersName">
+                                        {/* نام مشتری */}
+                                        {review.customer_name}
+                                    </p>
                                 </div>
-                                <p className="text-muted my-1 CommentersName">
-                                    {/* نام مشتری */}
-                                    {review.customername}
-                                </p>
+                                <div className="card-body pt-3 p-4">
+                                    <p className="card-text ">
+                                        {/* متن نظر */}
+                                        {review.comment}
+                                    </p>
+                                    <p className="text-muted my-1 CommentersName">
+                                        {/* تاریخ ثبت نظر*/}
+                                        {/* فعلا این بمونه باید به استرینگ یا نامبر تعویض شه  */}
+                                        {review.customer_name}
+                                        {/* {review.commentdate} */}
+                                    </p>
+                                </div>
                             </div>
-                            <div className="card-body pt-3 p-4">
-                                <p className="card-text ">
-                                    {/* متن نظر */}
-                                    {review.reviewdetail}
-                                </p>
-                            </div>
-                        </div>
-                    ))
-                )}
+                        ))
+                    )}
             </div>
         </div>
     );
-};
+};[
+    {
+        "id": 2,
+        "product_id": 3,
+        "rating": 4,
+        "customer_name": "ok",
+        "comment": "kk",
+        "created_date": "2025-04-05 11:03:37.362129",
+        "user_id": 29,
+        "product_name": "\u0634\u06a9\u0644\u0627\u062a \u062a\u0644\u062e"
+    },
+    {
+        "id": 3,
+        "product_id": 3,
+        "rating": 5,
+        "customer_name": "8i",
+        "comment": "ii",
+        "created_date": "2025-04-05 11:13:12.344148",
+        "user_id": 29,
+        "product_name": "\u0634\u06a9\u0644\u0627\u062a \u062a\u0644\u062e"
+    },
+    {
+        "id": 4,
+        "product_id": 3,
+        "rating": 4,
+        "customer_name": "ii",
+        "comment": "ii",
+        "created_date": "2025-04-05 11:13:17.669011",
+        "user_id": 29,
+        "product_name": "\u0634\u06a9\u0644\u0627\u062a \u062a\u0644\u062e"
+    }
+]
 
 export default ProductReview;

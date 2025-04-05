@@ -25,6 +25,7 @@ const ReviewMultiStepModal: React.FC<ReviewMultiStepModalProps> = ({ show, produ
   const [error, setError] = useState<string>("");
   const [hover, setHover] = useState(-1);
 
+  //  اینجا اضافه میکنه
   const handleCloseAndReset = async (product: Product) => {
     if (!rating) {
       setError("لطفا امتیازتان را به محصول وارد کنید");
@@ -36,7 +37,7 @@ const ReviewMultiStepModal: React.FC<ReviewMultiStepModalProps> = ({ show, produ
     const formData = { id, rating, customer_name, comment };
     console.log("formData:", formData);
     try {
-      await submitForm("api/reviews/", formData);
+      await submitForm("AddReview/review/", formData);
       setError("");
       setRating(1);
       setName("");
@@ -46,7 +47,7 @@ const ReviewMultiStepModal: React.FC<ReviewMultiStepModalProps> = ({ show, produ
     } catch (err) {
       console.error("Error submitting form:", err);
       setError("ارسال فرم با خطا مواجه شد. لطفاً دوباره امتحان کنید.");
-      alert("لطفا وارد شوید");
+      // alert("لطفا وارد شوید");
     }
   };
 

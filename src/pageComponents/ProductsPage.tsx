@@ -18,6 +18,7 @@ interface Image {
 }
 
 interface Products {
+  Discount: number;
   available: any;
   id: number;
   product_name: string;
@@ -224,6 +225,7 @@ const ProductsPage: React.FC = () => {
             ) : (
               <ProductGrid
                 products={filteredProducts.map(product => ({
+                  Discount: product.Discount,
                   key: product.id,
                   quantity: product.quantity,
                   id: product.id,
