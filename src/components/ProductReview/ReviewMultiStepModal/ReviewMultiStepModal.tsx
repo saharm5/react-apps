@@ -30,11 +30,10 @@ const ReviewMultiStepModal: React.FC<ReviewMultiStepModalProps> = ({ show, produ
       setError("لطفا امتیازتان را به محصول وارد کنید");
       return;
     }
-    
-    const finalName = name || "ناشناس";
-    const fromTitle = product.product_name;
-    const fromid = product.id;
-    const formData = { fromid,fromTitle, rating, name: finalName, comment };
+
+    const customer_name = name || "ناشناس";
+    const id = product.id;
+    const formData = { id, rating, customer_name, comment };
     console.log("formData:", formData);
     try {
       await submitForm("api/reviews/", formData);
