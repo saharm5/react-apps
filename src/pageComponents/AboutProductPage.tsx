@@ -47,8 +47,8 @@ const ProductDetails: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [carts, setCarts] = useState<{ id: number; quantity: number }[]>([]);
     const [reviews, setreviews] = useState<review[]>([]);
-    const [rating, setRating] = useState<number>(4.8);
-    const effectiveRating = rating > 0 ? rating : 5;
+    const [rating, setRating] = useState<number>(0);
+    const effectiveRating = rating > 0 ? rating : 0;
     const [params] = useSearchParams();
     const value = params.get("id");
 
@@ -143,11 +143,8 @@ const ProductDetails: React.FC = () => {
                 setreviews(data);
                 if (data.length > 0) {
                     const avgRating =
-                        data.reduce((acc: number, review: review) => acc + (review.customerrating || 0), 0) /
-                        data.length;
+                        data.reduce((acc: number, review: review) => acc + (review.customerrating || 0), 0) / data.length;
                     setRating(avgRating);
-                } else {
-                    setRating(4.8);
                 }
             } catch (err) {
                 console.error("Failed to fetch reviews");
