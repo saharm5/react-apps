@@ -7,6 +7,7 @@
 .ReviewButton button {
     background-color: rgb(230, 242, 252);
     color: #133e87;
+    border: #b4c4df 1px solid;
 }
 
 .ReviewButton :hover {
@@ -18,7 +19,7 @@
     height: 400px;
     scrollbar-width: thin;
     scrollbar-color: #888 #ffffff;
-}
+}   
 
 .RightDiv::-webkit-scrollbar-track {
     border-radius: 4px;
