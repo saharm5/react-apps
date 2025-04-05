@@ -23,6 +23,7 @@ interface review {
     comment: string;
     rating: number;
     customer_name: string;
+    created_date: string | null;     
 }
 
 interface Product {
@@ -205,6 +206,7 @@ const ProductDetails: React.FC = () => {
                     <ProductReview
                         reviews={reviews.map((review) => ({
                             id: review.id,
+                            created_date: review.created_date,
                             product_name: review.product_name,
                             customerrating: review.rating,
                             customer_name: review.customer_name,

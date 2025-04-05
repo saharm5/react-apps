@@ -19,7 +19,7 @@ interface review {
     comment: string;
     customerrating: number;
     customer_name: string;
-    // created_date: string;
+    created_date: string;
 }
 interface ProductReviewtProps {
     products: Product[];
@@ -130,8 +130,8 @@ const ProductReview: React.FC<ProductReviewtProps> = ({ products, reviews, effec
                                     <p className="text-muted my-1 CommentersName">
                                         {/* تاریخ ثبت نظر*/}
                                         {/* فعلا این بمونه باید به استرینگ یا نامبر تعویض شه  */}
-                                        {review.customer_name}
-                                        {/* {review.commentdate} */}
+                                        {/* {review.customer_name} */}
+                                        {review.created_date}
                                     </p>
                                 </div>
                             </div>
@@ -140,37 +140,6 @@ const ProductReview: React.FC<ProductReviewtProps> = ({ products, reviews, effec
             </div>
         </div>
     );
-};[
-    {
-        "id": 2,
-        "product_id": 3,
-        "rating": 4,
-        "customer_name": "ok",
-        "comment": "kk",
-        "created_date": "2025-04-05 11:03:37.362129",
-        "user_id": 29,
-        "product_name": "\u0634\u06a9\u0644\u0627\u062a \u062a\u0644\u062e"
-    },
-    {
-        "id": 3,
-        "product_id": 3,
-        "rating": 5,
-        "customer_name": "8i",
-        "comment": "ii",
-        "created_date": "2025-04-05 11:13:12.344148",
-        "user_id": 29,
-        "product_name": "\u0634\u06a9\u0644\u0627\u062a \u062a\u0644\u062e"
-    },
-    {
-        "id": 4,
-        "product_id": 3,
-        "rating": 4,
-        "customer_name": "ii",
-        "comment": "ii",
-        "created_date": "2025-04-05 11:13:17.669011",
-        "user_id": 29,
-        "product_name": "\u0634\u06a9\u0644\u0627\u062a \u062a\u0644\u062e"
-    }
-]
+};
 
 export default ProductReview;
