@@ -55,7 +55,7 @@ const ReviewMultiStepModal: React.FC<ReviewMultiStepModalProps> = ({ show, produ
     } catch (err) {
       console.error("Error submitting form:", err);
       setError("ارسال فرم با خطا مواجه شد. لطفاً دوباره امتحان کنید.");
-      // alert("لطفا وارد شوید");
+      alert("لطفا وارد شوید");
     }
   };
 
