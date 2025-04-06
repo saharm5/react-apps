@@ -206,7 +206,7 @@ const ProductDetails: React.FC = () => {
                     <ProductReview
                         reviews={reviews.map((review) => ({
                             id: review.id,
-                            created_date: review.created_date,
+                            created_date: review.created_date ?? "",
                             product_name: review.product_name,
                             customerrating: review.rating,
                             customer_name: review.customer_name,
