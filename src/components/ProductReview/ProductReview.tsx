@@ -52,7 +52,7 @@ const ProductReview: React.FC<ProductReviewtProps> = ({ products, reviews, effec
                         ) : (
                             <p className="px-2 fontsizecustom"> 5 / <span className="fs-5 fw-bold">{effectiveRating.toFixed(1)}</span></p>)}
                     </div>
-                    <div className="d-flex flex-row align-items-center gap-1 px-4">
+                    <div className="d-flex flex-row align-items-center gap-1 ">
                         {[...Array(validTotalStars)].map((_, index) => (
                             <Star key={index} />
                         ))}
@@ -85,10 +85,9 @@ const ProductReview: React.FC<ProductReviewtProps> = ({ products, reviews, effec
                     </div>
                 </div>
             </div>
-            {/*Right side:list of reviews*/}
+            {/*Left side:list of reviews*/}
             <div className="w-75 overflow-auto px-3 my-3 RightDiv">
                 {
-                    // اینجا میخواد یه متغیری بیاد که احتمالا beloon  باشه 
                     fullStars === 0 ? (
                         <div className="card mb-3 ReviewCard">
                             <div className="card-body pt-3 p-4">
@@ -108,13 +107,13 @@ const ProductReview: React.FC<ProductReviewtProps> = ({ products, reviews, effec
                                             {review.product_name}
                                         </span>
                                         <div className="d-flex flex-row gap-1 px-2 justify-content-start">
+                                            {/* امتیاز مشتری */}
                                             {[...Array(review.customerrating)].map((_, index) => (
                                                 <Star key={index} />
                                             ))}
                                         </div>
                                         <span className="mx-2 align-items-center justify-content-between">
-                                            {/* امتیاز مشتری */}
-                                            5 /{review.customerrating}
+                                            {/* 5 /{review.customerrating} */}
                                         </span>
                                     </div>
                                     <p className="text-muted my-1 CommentersName">
@@ -129,8 +128,6 @@ const ProductReview: React.FC<ProductReviewtProps> = ({ products, reviews, effec
                                     </p>
                                     <p className="text-muted my-1 CommentersName">
                                         {/* تاریخ ثبت نظر*/}
-                                        {/* فعلا این بمونه باید به استرینگ یا نامبر تعویض شه  */}
-                                        {/* {review.customer_name} */}
                                         {review.created_date}
                                     </p>
                                 </div>
