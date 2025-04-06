@@ -25,7 +25,15 @@ const ReviewMultiStepModal: React.FC<ReviewMultiStepModalProps> = ({ show, produ
   const [error, setError] = useState<string>("");
   const [hover, setHover] = useState(-1);
 
-  //  اینجا اضافه میکنه
+  const handleModalClose = () => {
+    setError("");
+    setRating(1);
+    setName("");
+    setComment("");
+    setStep(1);
+    handleClose();
+  };
+
   const handleCloseAndReset = async (product: Product) => {
     if (!rating) {
       setError("لطفا امتیازتان را به محصول وارد کنید");
@@ -65,7 +73,7 @@ const ReviewMultiStepModal: React.FC<ReviewMultiStepModalProps> = ({ show, produ
         <Modal
           key={product.id}
           show={show}
-          onHide={() => handleCloseAndReset(product)}
+          onHide={handleModalClose}
           dialogClassName="modal-dialog-centered"
         >
           <Modal.Header closeButton className="d-flex justify-content-between">
