@@ -82,13 +82,28 @@ const AboutProduct: React.FC<AboutProductProps> = ({ products, carts, increasesQ
   };
 
   const handleCopyLink = () => {
-    navigator.clipboard
-      .writeText(window.location.href)
-      .then(() => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard
+        .writeText(window.location.href)
+        .then(() => {
+          setIsCopied(true);
+          setTimeout(() => setIsCopied(false), 2000);
+        })
+        .catch((error) => console.error("Error copying to clipboard:", error));
+    } else {
+      const textArea = document.createElement("textarea");
+      textArea.value = window.location.href;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand("copy");
         setIsCopied(true);
         setTimeout(() => setIsCopied(false), 2000);
-      })
-      .catch((error) => console.error("Error copying to clipboard:", error));
+      } catch (err) {
+        console.error("Fallback: Oops, unable to copy", err);
+      }
+      document.body.removeChild(textArea);
+    }
   };
 
   return (
