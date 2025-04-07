@@ -4,6 +4,7 @@ import { submitForm } from "../../server/api";
 import Phone from "../../assets/svg/Phone";
 import VerificationCode from "../../assets/svg/VerificationCode";
 import Key from "../../assets/svg/Key";
+import { useNavigate } from "react-router-dom"; 
 
 const Signup: React.FC = () => {
 
@@ -12,6 +13,7 @@ const Signup: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const navigate = useNavigate(); 
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -54,16 +56,18 @@ const Signup: React.FC = () => {
       setTimeout(() => setIsSubmitting(false), 2000);
       return;
     }
+
     const formData = {
-      "phone_number": phone_number,
-      "otp": confirm_code,
-      "password": password
+      phone_number: phone_number,
+      otp: confirm_code,
+      password: password
     };
 
     try {
-      await submitForm("/api/auth/verify-otp/", formData, false);
+      await submitForm("/api/auth/verify-otp/", formData, navigate, false); 
       setphone_number("");
       setconfirm_code("");
+      setPassword("");
       setError("");
     } catch (err) {
       setError("کد احراز هویت اشتباه است");

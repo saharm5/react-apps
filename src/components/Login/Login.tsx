@@ -3,12 +3,14 @@ import "./Login.css";
 import { submitForm } from "../../server/api";
 import Phone from "../../assets/svg/Phone";
 import Key from "../../assets/svg/Key";
+import { useNavigate } from "react-router-dom"; 
 
 const Login: React.FC = () => {
   const [phone_number, setPhoneNumber] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const navigate = useNavigate(); 
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPhoneNumber(e.target.value);
@@ -47,10 +49,14 @@ const Login: React.FC = () => {
     };
 
     try {
-      const result = await submitForm("/api/auth/login-with-password/", formData, false);
-      if (result && result.access) {
+      const result = await submitForm("/api/auth/login-with-password/", formData, navigate, false); 
+
+      if (result?.access && result?.refresh) {
         localStorage.setItem("token", result.access);
+        localStorage.setItem("refresh_token", result.refresh);
+        navigate("/");
       }
+
       setPhoneNumber("");
       setPassword("");
       setError("");

@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import "../Login/Login.css";
 import { submitForm } from "../../server/api";
 import Phone from "../../assets/svg/Phone";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 
 const Register: React.FC = () => {
     const [phone_number, setPhoneNumber] = useState<string>("");
     const [error, setError] = useState<string>("");
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPhoneNumber(e.target.value);
@@ -38,10 +38,18 @@ const Register: React.FC = () => {
         };
 
         try {
-            const result = await submitForm("/api/auth/login-or-register/", formData, false);
+            const result = await submitForm("/api/auth/login-or-register/", formData, navigate, false);
             console.log("نتیجه ثبت نام یا ورود:", result);
             setPhoneNumber("");
             setError("");
+            if (result.isregister === 1) {
+                alert("لطفا ثبت نام کنید");
+                navigate("/Signup");
+            } else if (result.isregister === 2) {
+                alert("لطفا وارد شوید");
+                navigate("/login");
+                return;
+            }
         } catch (err) {
             setError("ارسال با خطا مواجه شد. لطفاً دوباره امتحان کنید.");
         } finally {
@@ -79,12 +87,12 @@ const Register: React.FC = () => {
                 </button>
             </form>
             <p className="Signin-login d-flex gap-1">
-                برای
-                {" "}<Link to="/login" className="" aria-label="User Profile">
+                برای{" "}
+                <Link to="/login" className="" aria-label="User Profile">
                     ورود‌
                 </Link>{" "}
-                یا‌
-                {" "}<Link to="/Signup" className="" aria-label="User Profile">
+                یا‌{" "}
+                <Link to="/Signup" className="" aria-label="User Profile">
                     ثبت‌نام‌
                 </Link>{" "}
                 کلیک کنید.

@@ -73,12 +73,12 @@ const refreshAccessToken = async () => {
 export const submitForm = async (
     url: string,
     formData: object,
-    withAuth: boolean = true
+    navigate: (path: string) => void,
+    withAuth: boolean = true 
 ) => {
-    const token = localStorage.getItem("token") || "";
     const headers: HeadersInit = {
         "Content-Type": "application/json",
-        ...(withAuth && token ? { Authorization: `Bearer ${token}` } : {}),
+        ...(withAuth ? { Authorization: `Bearer ${localStorage.getItem("token")}` } : {}),
     };
 
     try {
@@ -96,7 +96,7 @@ export const submitForm = async (
         }
 
         if (text.trim() === "ok") {
-            window.location.href = "/";
+            navigate("/"); 
             return { text };
         }
 
@@ -109,16 +109,21 @@ export const submitForm = async (
             throw new Error("Response is not valid JSON");
         }
 
-        if (result.isregister === 1) {
-            window.location.href = "/Signin";
-        } else if (result.isregister === 2) {
-            window.location.href = "/login";
-            return;
-        }
-        else if (result.Status === "ok") {
-            window.location.href = "/";
-            return;
-        }
+        // if (result.isregister === 1) {
+        //     alert("لطفا ثبت نام کنید");
+        //     navigate("/Signup");
+        // } else if (result.isregister === 2) {
+        //     alert("لطفا وارد شوید");
+        //     navigate("/login");
+        //     return;
+        // } 
+        // else if (result.Status === "ok") {
+        //     const userConfirmed = confirm("خوش آمدید! آیا می‌خواهید به صفحه اصلی بروید؟");
+        //     if (userConfirmed) {
+        //         navigate("/");
+        //     }
+        //     return;
+        // }
 
         return result;
     } catch (error) {
