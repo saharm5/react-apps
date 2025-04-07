@@ -4,6 +4,7 @@ import Rating from "@mui/material/Rating";
 import { Box } from "@mui/material";
 import "../ProductReview.css";
 import { submitForm } from "../../../server/api";
+import { useNavigate } from "react-router-dom";  // Import useNavigate
 
 interface Product {
   product_name: string;
@@ -24,6 +25,7 @@ const ReviewMultiStepModal: React.FC<ReviewMultiStepModalProps> = ({ show, produ
   const [comment, setComment] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [hover, setHover] = useState(-1);
+  const navigate = useNavigate();  // Use navigate hook
 
   const handleModalClose = () => {
     setError("");
@@ -45,7 +47,7 @@ const ReviewMultiStepModal: React.FC<ReviewMultiStepModalProps> = ({ show, produ
     const formData = { id, rating, customer_name, comment };
     console.log("formData:", formData);
     try {
-      await submitForm("AddReview/review/", formData);
+      await submitForm("AddReview/review/", formData, navigate);  // Pass navigate here
       setError("");
       setRating(1);
       setName("");

@@ -11,6 +11,7 @@ import Filter from "../components/Filters/Filters";
 import Footer from "../components/Footer/Footer";
 import useBodyClass from "../components/useBodyClass/useBodyClass";
 import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
+import { useNavigate } from "react-router-dom";  // Import useNavigate
 
 interface Image {
   product_name: string;
@@ -38,6 +39,8 @@ interface CartItem {
 }
 
 const ProductsPage: React.FC = () => {
+
+  const navigate = useNavigate();  // Use navigate hook
   const [isLoading, setIsLoading] = useState(true);
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
   const [products, setProducts] = useState<Products[]>([]);
@@ -48,7 +51,6 @@ const ProductsPage: React.FC = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000000]);
   const [onlyAvailable, setOnlyAvailable] = useState(false);
   const [activeTab, setActiveTab] = useState<string>("BestSeller");
-
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const limit = 22;
@@ -168,7 +170,7 @@ const ProductsPage: React.FC = () => {
     });
     try {
       const formData = { id, operation: "add" };
-      const response = await submitForm("AddCart/cart/", formData);
+      const response = await submitForm("AddCart/cart/", formData, navigate);
       console.log(response);
     } catch (error) {
       alert("لطفا وارد شوید");
@@ -188,7 +190,7 @@ const ProductsPage: React.FC = () => {
     });
     try {
       const formData = { id, operation: "remove" };
-      const response = await submitForm("AddCart/cart/", formData);
+      const response = await submitForm("AddCart/cart/", formData, navigate);
       console.log(response);
     } catch (error) {
       alert("لطفا وارد شوید");

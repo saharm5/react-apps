@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../../styles/global.css";
 import { fetchProducts, submitForm } from "../../server/api";
+import { useNavigate } from "react-router-dom";  // Import useNavigate
 
 interface Image {
     product_name: string;
@@ -23,6 +24,7 @@ interface Product {
 }
 
 const ProductGrid2: React.FC = () => {
+    const navigate = useNavigate();  // Use navigate hook
     const [products, setProducts] = useState<Product[]>([]);
     const [carts, setCarts] = useState<{ id: number; quantity: number }[]>([]);
 
@@ -41,7 +43,7 @@ const ProductGrid2: React.FC = () => {
                 id,
                 operation: "add",
             };
-            const response = await submitForm("AddCart/cart/", formData);
+            const response = await submitForm("AddCart/cart/", formData, navigate);
             console.log(response);
         } catch (error) {
             alert("لطفا وارد شوید");
@@ -64,7 +66,7 @@ const ProductGrid2: React.FC = () => {
                 id,
                 operation: "remove",
             };
-            const response = await submitForm("AddCart/cart/", formData);
+            const response = await submitForm("AddCart/cart/", formData, navigate);
             console.log(response);
         } catch (error) {
             alert("لطفا وارد شوید");

@@ -4,8 +4,10 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import { submitForm } from "../../server/api";
+import { useNavigate } from "react-router-dom";  // Import useNavigate
 
 const Review: React.FC = () => {
+    const navigate = useNavigate();  // Use navigate hook
     const [fromHeader, setFromHeader] = useState<string>("");
     const [rating, setRating] = useState<number | null>(1);
     const [name, setName] = useState<string | "ناشناس">("");
@@ -43,7 +45,7 @@ const Review: React.FC = () => {
         const formData = { fromHeader, rating, name, comments };
 
         try {
-            await submitForm("api/reviews/", formData);
+            await submitForm("api/reviews/", formData, navigate);
             setResponseMessage("فرم با موفقیت ارسال شد!");
             setError("");
             setFromHeader("");

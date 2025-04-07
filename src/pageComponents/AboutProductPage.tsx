@@ -1,29 +1,30 @@
-// C: \Users\Sanay\react - apps\src\pageComponents\AboutProductPage.tsx
 import React, { useEffect, useState } from "react";
 import FooterResponsive from "../components/FooterResponsive/FooterResponsive";
 import "../styles/global.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "../components/Header/Header";
-import useBodyClass from "../components/useBodyClass/useBodyClass"
+import useBodyClass from "../components/useBodyClass/useBodyClass";
 import Footer from "../components/Footer/Footer";
 import AboutProduct from "../components/AboutProduct/AboutProduct";
 import ProductGrid2 from "../components/ProductsGrid/ProductGrid2";
 import ProductReview from "../components/ProductReview/ProductReview";
-import { fetchProducts, submitForm } from "../server/api";
+import { fetchProducts, submitForm } from "../server/api";  // Fixed import
 import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";  // Correct use of useNavigate
 
 interface Image {
     product_name: string;
     productImageSrc: string;
 }
+
 interface review {
     id: number;
     product_name: string;
     comment: string;
     rating: number;
     customer_name: string;
-    created_date: string | null;     
+    created_date: string | null;
 }
 
 interface Product {
@@ -45,6 +46,8 @@ interface Product {
 }
 
 const ProductDetails: React.FC = () => {
+
+    const navigate = useNavigate();  // Use navigate hook
     const [products, setProducts] = useState<Product[]>([]);
     const [carts, setCarts] = useState<{ id: number; quantity: number }[]>([]);
     const [reviews, setreviews] = useState<review[]>([]);
@@ -68,7 +71,7 @@ const ProductDetails: React.FC = () => {
                 id,
                 is_favorite: newFavoriteStatus,
             };
-            const response = await submitForm("/favorites/toggle/", formData);
+            const response = await submitForm("/favorites/toggle/", formData, navigate);
             console.log(`Product ${id} toggled favorite: ${newFavoriteStatus}`, response);
         } catch (error) {
             setProducts((prevProducts) =>
@@ -78,6 +81,7 @@ const ProductDetails: React.FC = () => {
             console.error(error);
         }
     };
+
     const increasesQuantity = async (id: number) => {
         setCarts((prev) => {
             const existingProduct = prev.find((item) => item.id === id);
@@ -90,7 +94,7 @@ const ProductDetails: React.FC = () => {
         });
         try {
             const formData = { id, operation: "add" };
-            const response = await submitForm("AddCart/cart/", formData);
+            const response = await submitForm("AddCart/cart/", formData, navigate);
             console.log(response);
         } catch (error) {
             alert("لطفا وارد شوید");
@@ -110,13 +114,14 @@ const ProductDetails: React.FC = () => {
         });
         try {
             const formData = { id, operation: "remove" };
-            const response = await submitForm("AddCart/cart/", formData);
+            const response = await submitForm("AddCart/cart/", formData, navigate);
             console.log(response);
         } catch (error) {
             alert("لطفا وارد شوید");
             console.error(error);
         }
     };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -136,7 +141,6 @@ const ProductDetails: React.FC = () => {
         fetchData();
     }, [value]);
 
-    //  اینجا لیست می گیره
     useEffect(() => {
         const fetchReviewData = async () => {
             try {
@@ -153,7 +157,6 @@ const ProductDetails: React.FC = () => {
                 }
             }
             catch (err) {
-
                 console.error("Failed to fetch reviews");
             }
         };
@@ -195,7 +198,6 @@ const ProductDetails: React.FC = () => {
                         handleAddFavorite={handleAddFavorite}
                     />
                     <div className=" shadow-lg rounded mainproductcard" style={{ margin: "1% 0 ", padding: "1.5%", overflow: "auto" }}>
-                        {/* Tabs */}
                         <div className="maintabe">
                             <h5 className="ptabe" style={{ fontSize: "20px" }}>محصولات مشابه</h5>
                         </div>
