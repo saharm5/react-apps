@@ -117,7 +117,7 @@ const ProductsPage: React.FC = () => {
     };
 
     fetchData();
-  }, [activeTab, page, search]);
+  }, [activeTab, page, search, queryParams]);
 
   useEffect(() => {
     const handleScroll = () => {

@@ -1,7 +1,7 @@
 // C:\Users\Sanay\react - apps\src\server\api.tsx
-// const BASE_URL = "http://192.168.111.164:8081/";
+const BASE_URL = "http://192.168.111.164:8081/";
 // const BASE_URL = "http://127.0.0.1:8000/";
-const BASE_URL = "http://localhost:8081/";
+// const BASE_URL = "http://localhost:8081/";
 
 
 export const fetchProducts = async (
@@ -109,16 +109,16 @@ export const submitForm = async (
             throw new Error("Response is not valid JSON");
         }
 
-        // if (result.isregister === 1) {
-        //     window.location.href = "/Signin";
-        // } else if (result.isregister === 2) {
-        //     window.location.href = "/login";
-        //     return;
-        // }
-        // else if (result.Status === "ok") {
-        //     window.location.href = "/";
-        //     return;
-        // }
+        if (result.isregister === 1) {
+            window.location.href = "/Signin";
+        } else if (result.isregister === 2) {
+            window.location.href = "/login";
+            return;
+        }
+        else if (result.Status === "ok") {
+            window.location.href = "/";
+            return;
+        }
 
         return result;
     } catch (error) {
