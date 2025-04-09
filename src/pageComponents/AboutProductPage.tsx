@@ -42,7 +42,7 @@ interface Product {
     Discount: number;
     final_price: number;
     productImageSrc: Image[];
-    is_favorite: boolean;
+    is_favorite: number;
 }
 
 const ProductDetails: React.FC = () => {
@@ -56,31 +56,31 @@ const ProductDetails: React.FC = () => {
     const [params] = useSearchParams();
     const value = params.get("id");
 
-    const handleAddFavorite = async (id: number) => {
-        const product = products.find((p) => p.id === id);
-        if (!product) return;
-
-        const newFavoriteStatus = !product.is_favorite;
-        setProducts((prevProducts) =>
-            prevProducts.map((p) => (p.id === id ? { ...p, is_favorite: newFavoriteStatus } : p))
-        );
-
-        try {
-            const formData = {
-                url: window.location.href,
-                id,
-                is_favorite: newFavoriteStatus,
-            };
-            const response = await submitForm("/favorites/toggle/", formData, navigate);
-            console.log(`Product ${id} toggled favorite: ${newFavoriteStatus}`, response);
-        } catch (error) {
-            setProducts((prevProducts) =>
-                prevProducts.map((p) => (p.id === id ? { ...p, is_favorite: product.is_favorite } : p))
-            );
-            alert("لطفا وارد شوید");
-            console.error(error);
-        }
-    };
+  const handleAddFavorite = async (id: number) => {
+          const product = products.find((p) => p.id === id);
+          if (!product) return;
+  
+          const newFavoriteStatus = product.is_favorite === 1 ? 0 : 1;
+  
+          setProducts((prevProducts) =>
+              prevProducts.map((p) => (p.id === id ? { ...p, is_favorite: newFavoriteStatus } : p))
+          );
+  
+          try {
+              const formData = {
+                  url: window.location.href,
+                  id,
+                  is_favorite: newFavoriteStatus,
+              };
+              await submitForm("/favorites/toggle/", formData, navigate);  // Pass navigate here
+          } catch (error) {
+              setProducts((prevProducts) =>
+                  prevProducts.map((p) => (p.id === id ? { ...p, is_favorite: product.is_favorite } : p))
+              );
+              alert("لطفا وارد شوید");
+              console.error(error);
+          }
+      };
 
     const increasesQuantity = async (id: number) => {
         setCarts((prev) => {
@@ -189,7 +189,7 @@ const ProductDetails: React.FC = () => {
                                 production_date: product.production_date,
                                 expiration_date: product.expiration_date,
                                 size: product.size,
-                                is_favorite: false,
+                                is_favorite: product.is_favorite ===1,
                             }))
                         }
                         carts={carts}

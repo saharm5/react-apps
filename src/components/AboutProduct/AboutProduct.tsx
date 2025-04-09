@@ -129,7 +129,7 @@ const AboutProduct: React.FC<AboutProductProps> = ({ products, carts, increasesQ
                         className="iconB favorite btn-light"
                         onClick={() => handleAddFavorite(product.id)}
                       >
-                        {product.is_favorite ? (
+                        {product.is_favorite == true ? (
                           <i className="bi bi-suit-heart-fill text-danger"></i>
                         ) : (
                           <i className="bi bi-suit-heart"></i>
