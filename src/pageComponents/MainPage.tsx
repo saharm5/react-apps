@@ -29,7 +29,10 @@ const MainPage: React.FC = () => {
   return (
     <div>
       {isLoading ? (
-        <p>Loading...</p>
+        <div className="d-flex flex-column align-items-center justify-content-center">
+          <img className="w-25" src=".\public\Img\Loading.gif" style={{ marginRight: "20px" }} alt="loading" />
+        </div>
+        //  <p>Loading...</p> 
       ) : (
         <div>
           <Header />

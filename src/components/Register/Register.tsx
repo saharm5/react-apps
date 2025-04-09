@@ -44,6 +44,7 @@ const Register: React.FC = () => {
             setError("");
             if (result.isregister === 1) {
                 alert("لطفا ثبت نام کنید");
+                console.log("نتیجه ثبت نام یا ورود:", result);
                 navigate("/Signup");
             } else if (result.isregister === 2) {
                 alert("لطفا وارد شوید");

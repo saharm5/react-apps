@@ -11,7 +11,7 @@ import Filter from "../components/Filters/Filters";
 import Footer from "../components/Footer/Footer";
 import useBodyClass from "../components/useBodyClass/useBodyClass";
 import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
-import { useNavigate } from "react-router-dom";  // Import useNavigate
+import { useNavigate } from "react-router-dom";
 
 interface Image {
   product_name: string;
@@ -40,7 +40,7 @@ interface CartItem {
 
 const ProductsPage: React.FC = () => {
 
-  const navigate = useNavigate();  // Use navigate hook
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
   const [products, setProducts] = useState<Products[]>([]);
@@ -111,7 +111,7 @@ const ProductsPage: React.FC = () => {
             return updatedCart;
           });
         }
-
+        console.log(`activeTab: ${activeTab}, page: ${page}, search: ${search}, queryParams: ${JSON.stringify(queryParams)}`);
         setHasMore(data.length === limit);
       } catch (err) {
         console.error("Failed to fetch products", err);
@@ -119,7 +119,7 @@ const ProductsPage: React.FC = () => {
     };
 
     fetchData();
-  }, [activeTab, page, search, queryParams]);
+  }, [activeTab, page, search]);
 
   useEffect(() => {
     const handleScroll = () => {
